@@ -45,25 +45,25 @@ RECALL_QUERIES = [
 ]
 
 VLA_PATTERNS = [
+    "vla",
     "vision-language-action",
     "vision language action",
     "vision-language action",
-    "vla",
 ]
 
 WAM_PATTERNS = [
+    "wam",
     "world action model",
-    "world-language-action",
-    "world language action",
-    "world-language-action model",
+    "action world model",
     "action-conditioned world model",
     "video world model",
+    "generative world model",
+    "latent action",
     "world model",
 ]
 
+
 NEGATIVE_PATTERNS = [
-    "autonomous driving",
-    "self-driving",
     "lane detection",
     "trajectory prediction",
     "object detection",
