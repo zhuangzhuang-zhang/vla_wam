@@ -7,6 +7,9 @@ const siteData = window.PAPERS_SITE_DATA || {
   categories: ["cs.RO", "cs.AI", "cs.CV", "cs.LG"],
   keywords: ["vision-language-action", "world action model", "robotics", "autonomous driving"],
   currentDateKey: null,
+  llmEnabled: false,
+  llmProvider: "DeepSeek",
+  modelInfo: "pending",
   archives: [],
 };
 
@@ -18,11 +21,14 @@ const state = {
 
 const paperCount = document.querySelector("#paper-count");
 const generatedAt = document.querySelector("#generated-at");
+const llmStatus = document.querySelector("#llm-status");
+const llmDetail = document.querySelector("#llm-detail");
 const metaDescription = document.querySelector("#meta-description");
 const pageTitle = document.querySelector("#page-title");
 const summaryWindow = document.querySelector("#summary-window");
 const summaryCategories = document.querySelector("#summary-categories");
 const summaryKeywords = document.querySelector("#summary-keywords");
+const summaryLlm = document.querySelector("#summary-llm");
 const selectedDateTitle = document.querySelector("#selected-date-title");
 const selectedDateKey = document.querySelector("#selected-date-key");
 const selectedPaperCount = document.querySelector("#selected-paper-count");
@@ -59,9 +65,13 @@ function renderMeta(currentArchive, filteredCount) {
   const archives = getArchives();
   const allPaperCount = archives.reduce((count, archive) => count + (archive.papers?.length || 0), 0);
   const currentPaperCount = currentArchive?.papers?.length || 0;
+  const llmActive = Boolean(siteData.llmEnabled && siteData.modelInfo && siteData.modelInfo !== "fallback-summary");
+  const llmProvider = siteData.llmProvider || "DeepSeek";
 
   paperCount.textContent = `${currentPaperCount}`;
   generatedAt.textContent = formatDateTime(siteData.generatedAt);
+  llmStatus.textContent = llmActive ? `${llmProvider} 已启用` : "当前使用回退摘要";
+  llmDetail.textContent = llmActive ? `模型：${siteData.modelInfo}` : "未检测到可用的 DeepSeek 模型";
   pageTitle.textContent = currentArchive
     ? `最新消息总结展示 · ${currentArchive.dateKey}`
     : "最新消息总结展示";
@@ -70,6 +80,7 @@ function renderMeta(currentArchive, filteredCount) {
   summaryWindow.textContent = `近 ${siteData.dateWindowDays || 7} 天最新提交`;
   summaryCategories.textContent = `重点分类：${(siteData.categories || []).join(" / ")}`;
   summaryKeywords.textContent = `关键词：${(siteData.keywords || []).join(" / ")}`;
+  summaryLlm.textContent = llmActive ? `摘要模型：${llmProvider} / ${siteData.modelInfo}` : "摘要模型：未启用";
   selectedDateTitle.textContent = currentArchive ? `${currentArchive.dateKey} 论文列表` : "当天论文";
   selectedDateKey.textContent = currentArchive?.dateLabel || "--";
   selectedPaperCount.textContent = `${currentPaperCount} 篇`;

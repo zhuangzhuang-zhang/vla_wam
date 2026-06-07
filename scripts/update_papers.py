@@ -15,8 +15,11 @@ from pathlib import Path
 API_URL = "https://export.arxiv.org/api/query"
 OUTPUT_FILE = Path(__file__).resolve().parents[1] / "data" / "site-data.js"
 TARGET_COUNT = 20
-MAX_RESULTS_PER_QUERY = 80
+MAX_RESULTS_PER_QUERY = 200
 LOOKBACK_DAYS = 7
+MAX_ARCHIVE_DAYS = 60
+BOOTSTRAP_START_KEY = "20260601"
+BOOTSTRAP_END_KEY = "20260607"
 TZ_BEIJING = dt.timezone(dt.timedelta(hours=8))
 ATOM_NS = {"atom": "http://www.w3.org/2005/Atom"}
 
@@ -71,13 +74,28 @@ KEYWORD_WEIGHTS = {
 
 
 def main() -> None:
-    window = compute_batch_window()
-    papers = fetch_recent_papers(window["start_utc"], window["end_utc"])
-    selected = select_top_papers(papers)
-    selected = enrich_with_chinese_summaries(selected)
-    site_data = build_site_data(selected, window)
+    existing = load_existing_site_data()
+    current_window = compute_batch_window()
+    llm_config = get_llm_config()
+    archive_map = {
+        item["dateKey"]: item
+        for item in existing.get("archives", [])
+        if isinstance(item, dict) and item.get("dateKey")
+    }
+    query_cache: dict[str, list[dict]] = {}
+
+    windows = resolve_windows_to_generate(current_window, set(archive_map))
+    for window in windows:
+        papers = fetch_recent_papers(window["start_utc"], window["end_utc"], query_cache)
+        selected = select_top_papers(papers)
+        selected = enrich_with_chinese_summaries(selected, llm_config)
+        archive_map[window["date_key"]] = build_archive_entry(window, selected)
+        print(f"Prepared {len(selected)} papers for {window['date_key']}")
+
+    archives = sort_archives(list(archive_map.values()))
+    site_data = build_site_data(archives, current_window, llm_config)
     write_site_data(site_data)
-    print(f"Wrote {len(selected)} papers for {window['date_key']} to {OUTPUT_FILE}")
+    print(f"Wrote {len(archives)} archives to {OUTPUT_FILE}")
 
 
 def compute_batch_window() -> dict:
@@ -87,6 +105,10 @@ def compute_batch_window() -> dict:
         end_bj = eight_am - dt.timedelta(days=1)
     else:
         end_bj = eight_am
+    return build_window(end_bj)
+
+
+def build_window(end_bj: dt.datetime) -> dict:
     start_bj = end_bj - dt.timedelta(days=1)
     return {
         "date_key": end_bj.strftime("%Y%m%d"),
@@ -98,11 +120,53 @@ def compute_batch_window() -> dict:
     }
 
 
-def fetch_recent_papers(start_utc: dt.datetime, end_utc: dt.datetime) -> list[dict]:
+def build_window_for_date_key(date_key: str) -> dict:
+    date_value = dt.datetime.strptime(date_key, "%Y%m%d").date()
+    end_bj = dt.datetime(
+        date_value.year,
+        date_value.month,
+        date_value.day,
+        8,
+        0,
+        0,
+        tzinfo=TZ_BEIJING,
+    )
+    return build_window(end_bj)
+
+
+def resolve_windows_to_generate(current_window: dict, existing_keys: set[str]) -> list[dict]:
+    windows: dict[str, dict] = {current_window["date_key"]: current_window}
+    bootstrap_end = min(current_window["date_key"], BOOTSTRAP_END_KEY)
+    for date_key in iter_date_keys(BOOTSTRAP_START_KEY, bootstrap_end):
+        if date_key not in existing_keys:
+            windows[date_key] = build_window_for_date_key(date_key)
+    return [windows[key] for key in sorted(windows)]
+
+
+def iter_date_keys(start_key: str, end_key: str) -> list[str]:
+    start_date = dt.datetime.strptime(start_key, "%Y%m%d").date()
+    end_date = dt.datetime.strptime(end_key, "%Y%m%d").date()
+    keys: list[str] = []
+    current = start_date
+    while current <= end_date:
+        keys.append(current.strftime("%Y%m%d"))
+        current += dt.timedelta(days=1)
+    return keys
+
+
+def fetch_recent_papers(
+    start_utc: dt.datetime,
+    end_utc: dt.datetime,
+    query_cache: dict[str, list[dict]],
+) -> list[dict]:
     papers_by_id: dict[str, dict] = {}
     for query in RECALL_QUERIES:
         try:
-            for paper in fetch_query_results(query):
+            cached_results = query_cache.get(query)
+            if cached_results is None:
+                cached_results = fetch_query_results(query)
+                query_cache[query] = cached_results
+            for paper in cached_results:
                 if not (start_utc <= paper["published_dt"] < end_utc):
                     continue
                 existing = papers_by_id.get(paper["id"])
@@ -222,10 +286,9 @@ def score_paper(paper: dict) -> int:
     return score
 
 
-def enrich_with_chinese_summaries(papers: list[dict]) -> list[dict]:
+def enrich_with_chinese_summaries(papers: list[dict], llm_config: dict | None) -> list[dict]:
     if not papers:
         return papers
-    llm_config = get_llm_config()
     if llm_config is None:
         for paper in papers:
             paper["summaryCn"] = fallback_summary_cn(paper["summary"])
@@ -249,7 +312,7 @@ def get_llm_config() -> dict | None:
     if not api_key:
         return None
     base_url = os.getenv("DEEPSEEK_BASE_URL", "https://api.deepseek.com").rstrip("/")
-    model = os.getenv("DEEPSEEK_MODEL", "deepseek-chat")
+    model = os.getenv("DEEPSEEK_MODEL", "deepseek-chat").strip() or "deepseek-chat"
     return {
         "api_key": api_key,
         "base_url": base_url,
@@ -307,18 +370,24 @@ def call_deepseek_batch_summary(papers: list[dict], llm_config: dict) -> dict[st
     }
 
 
-def build_site_data(selected: list[dict], window: dict) -> dict:
-    existing = load_existing_site_data()
-    archives = existing.get("archives", [])
-    archive_entry = {
+def build_archive_entry(window: dict, selected: list[dict]) -> dict:
+    return {
         "dateKey": window["date_key"],
         "dateLabel": window["date_label"],
         "generatedAt": dt.datetime.now(dt.timezone.utc).isoformat(),
         "papers": selected,
     }
-    archives = [item for item in archives if item.get("dateKey") != window["date_key"]]
-    archives.insert(0, archive_entry)
-    archives = archives[:30]
+
+
+def sort_archives(archives: list[dict]) -> list[dict]:
+    normalized = [item for item in archives if isinstance(item, dict) and item.get("dateKey")]
+    normalized.sort(key=lambda item: item["dateKey"], reverse=True)
+    return normalized[:MAX_ARCHIVE_DAYS]
+
+
+def build_site_data(archives: list[dict], current_window: dict, llm_config: dict | None) -> dict:
+    llm_enabled = llm_config is not None
+    model_info = llm_config["model"] if llm_config else "fallback-summary"
     return {
         "generatedAt": dt.datetime.now(dt.timezone.utc).isoformat(),
         "description": "每天北京时间 08:00 自动更新，筛选 arXiv 上与 VLA、WAM、机器人、自动驾驶相关的重要新论文。",
@@ -330,9 +399,11 @@ def build_site_data(selected: list[dict], window: dict) -> dict:
             "robotics",
             "autonomous driving",
         ],
-        "currentDateKey": window["date_key"],
+        "currentDateKey": current_window["date_key"],
         "selectionMethod": "keyword_ranking_plus_deepseek_summary",
-        "modelInfo": os.getenv("DEEPSEEK_MODEL", "fallback-summary"),
+        "llmEnabled": llm_enabled,
+        "llmProvider": "DeepSeek",
+        "modelInfo": model_info,
         "archives": archives,
     }
 
