@@ -6,7 +6,7 @@
   <title>VLA / WAM 每日论文精选</title>
   <meta
     name="description"
-    content="每天自动整理 arXiv 上与 VLA、WAM、机器人、自动驾驶相关的重要论文，并生成中文摘要。"
+    content="每天自动整理 arXiv 上与 VLA、WAM 主线强相关的重要论文，并生成中文摘要。"
   >
   <link rel="stylesheet" href="./styles.css">
 </head>
@@ -17,8 +17,8 @@
         <p class="eyebrow">每日更新 · arXiv Digest</p>
         <h1>VLA / WAM 重要论文精选</h1>
         <p class="hero-text">
-          每天抓取 arXiv 最新论文，聚焦 VLA、WAM、机器人与自动驾驶方向，
-          保留历史归档，并优先展示 DeepSeek 生成的精简中文摘要。
+          每天抓取 arXiv 最新论文，只聚焦 VLA 与 WAM 主线，
+          使用 DeepSeek 参与筛选排序，并展示更完整的中文摘要。
         </p>
       </div>
       <div class="hero-panel">
@@ -58,7 +58,7 @@
     <section class="summary-bar">
       <span id="summary-window">近 7 天最新提交</span>
       <span id="summary-categories">重点分类：cs.RO / cs.AI / cs.CV / cs.LG</span>
-      <span id="summary-keywords">关键词：VLA / WAM / 机器人 / 自动驾驶</span>
+      <span id="summary-keywords">关键词：VLA / WAM</span>
       <span id="summary-llm">摘要模型：等待检测</span>
     </section>
 
@@ -78,6 +78,7 @@
           <div>
             <p class="content-eyebrow">当前查看</p>
             <h3 id="selected-date-title">当天论文</h3>
+            <p id="selected-archive-note" class="archive-note">正在加载归档说明。</p>
           </div>
           <div class="selected-meta">
             <span id="selected-date-key">--</span>

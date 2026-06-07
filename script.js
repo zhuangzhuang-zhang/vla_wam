@@ -5,7 +5,7 @@ const siteData = window.PAPERS_SITE_DATA || {
   description: "尚未生成最新论文数据。",
   dateWindowDays: 7,
   categories: ["cs.RO", "cs.AI", "cs.CV", "cs.LG"],
-  keywords: ["vision-language-action", "world action model", "robotics", "autonomous driving"],
+  keywords: ["vision-language-action", "world action model"],
   currentDateKey: null,
   llmEnabled: false,
   llmProvider: "DeepSeek",
@@ -30,6 +30,7 @@ const summaryCategories = document.querySelector("#summary-categories");
 const summaryKeywords = document.querySelector("#summary-keywords");
 const summaryLlm = document.querySelector("#summary-llm");
 const selectedDateTitle = document.querySelector("#selected-date-title");
+const selectedArchiveNote = document.querySelector("#selected-archive-note");
 const selectedDateKey = document.querySelector("#selected-date-key");
 const selectedPaperCount = document.querySelector("#selected-paper-count");
 const archiveList = document.querySelector("#archive-list");
@@ -82,6 +83,7 @@ function renderMeta(currentArchive, filteredCount) {
   summaryKeywords.textContent = `关键词：${(siteData.keywords || []).join(" / ")}`;
   summaryLlm.textContent = llmActive ? `摘要模型：${llmProvider} / ${siteData.modelInfo}` : "摘要模型：未启用";
   selectedDateTitle.textContent = currentArchive ? `${currentArchive.dateKey} 论文列表` : "当天论文";
+  selectedArchiveNote.textContent = currentArchive?.sourceNoteCn || "当前展示严格日窗口内的论文结果。";
   selectedDateKey.textContent = currentArchive?.dateLabel || "--";
   selectedPaperCount.textContent = `${currentPaperCount} 篇`;
 }
@@ -123,6 +125,8 @@ function renderPapers(papers, startIndex) {
     const authors = Array.isArray(paper.authors) ? paper.authors.join(", ") : "";
     const tags = Array.isArray(paper.categories) ? paper.categories : [];
     const summaryText = paper.summaryCn || paper.summary || "暂无摘要。";
+    const reasonText = paper.reasonCn || "";
+    const laneText = paper.lane || "";
 
     item.innerHTML = `
       <article>
@@ -139,8 +143,10 @@ function renderPapers(papers, startIndex) {
           <span class="paper-rank">#${rank}</span>
         </header>
         <p class="paper-summary">${escapeHtml(summaryText)}</p>
+        ${reasonText ? `<p class="paper-note">推荐理由：${escapeHtml(reasonText)}</p>` : ""}
         <footer class="paper-footer">
           <div class="tag-list">
+            ${laneText ? `<span class="tag">${escapeHtml(laneText)}</span>` : ""}
             ${tags.map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join("")}
           </div>
           <div class="link-group">

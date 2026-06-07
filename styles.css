@@ -120,7 +120,8 @@ a {
 }
 
 .toolbar-copy p,
-.archive-head p {
+.archive-head p,
+.archive-note {
   margin: 8px 0 0;
   color: var(--muted);
   line-height: 1.6;
@@ -326,6 +327,13 @@ a {
   color: #29435f;
   font-size: 15px;
   line-height: 1.9;
+}
+
+.paper-note {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.7;
 }
 
 .paper-footer {

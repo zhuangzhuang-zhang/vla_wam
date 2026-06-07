@@ -15,6 +15,7 @@ from pathlib import Path
 API_URL = "https://export.arxiv.org/api/query"
 OUTPUT_FILE = Path(__file__).resolve().parents[1] / "data" / "site-data.js"
 TARGET_COUNT = 20
+LLM_CANDIDATE_COUNT = 36
 MAX_RESULTS_PER_QUERY = 200
 LOOKBACK_DAYS = 7
 MAX_ARCHIVE_DAYS = 60
@@ -22,6 +23,7 @@ BOOTSTRAP_START_KEY = "20260601"
 BOOTSTRAP_END_KEY = "20260607"
 TZ_BEIJING = dt.timezone(dt.timedelta(hours=8))
 ATOM_NS = {"atom": "http://www.w3.org/2005/Atom"}
+CATEGORY_QUERY = "(cat:cs.RO OR cat:cs.AI OR cat:cs.CV OR cat:cs.LG)"
 
 CATEGORIES = ["cs.RO", "cs.AI", "cs.CV", "cs.LG"]
 CATEGORY_SCORES = {
@@ -32,45 +34,42 @@ CATEGORY_SCORES = {
 }
 
 RECALL_QUERIES = [
-    'cat:cs.RO',
-    'cat:cs.AI',
-    'cat:cs.CV',
-    'cat:cs.LG',
-    'all:"vision-language-action"',
-    'all:"vision language action"',
-    'all:"world action model"',
-    'all:"world model"',
-    'all:robot',
-    'all:robotics',
-    'all:"autonomous driving"',
-    'all:"self-driving"',
-    'all:embodied',
-    'all:manipulation',
+    f'{CATEGORY_QUERY} AND all:"vision-language-action"',
+    f'{CATEGORY_QUERY} AND all:"vision language action"',
+    f'{CATEGORY_QUERY} AND all:"world action model"',
+    f'{CATEGORY_QUERY} AND all:"world-language-action"',
+    f'{CATEGORY_QUERY} AND all:"world language action"',
+    f'{CATEGORY_QUERY} AND all:"action-conditioned world model"',
+    f'{CATEGORY_QUERY} AND all:"video world model"',
+    f'{CATEGORY_QUERY} AND all:"world model"',
 ]
 
-KEYWORD_WEIGHTS = {
-    "vision-language-action": 16,
-    "vision language action": 16,
-    "vla": 12,
-    "world action model": 16,
-    "world model": 10,
-    "robot": 10,
-    "robotics": 10,
-    "robotic": 9,
-    "manipulation": 8,
-    "embodied": 8,
-    "navigation": 6,
-    "autonomous driving": 12,
-    "self-driving": 11,
-    "driving": 7,
-    "policy": 4,
-    "planning": 4,
-    "benchmark": 3,
-    "foundation model": 6,
-    "generalist": 5,
-    "multimodal": 4,
-    "action": 3,
-}
+VLA_PATTERNS = [
+    "vision-language-action",
+    "vision language action",
+    "vision-language action",
+    "vla",
+]
+
+WAM_PATTERNS = [
+    "world action model",
+    "world-language-action",
+    "world language action",
+    "world-language-action model",
+    "action-conditioned world model",
+    "video world model",
+    "world model",
+]
+
+NEGATIVE_PATTERNS = [
+    "autonomous driving",
+    "self-driving",
+    "lane detection",
+    "trajectory prediction",
+    "object detection",
+    "3d detection",
+    "3d perception",
+]
 
 
 def main() -> None:
@@ -84,13 +83,14 @@ def main() -> None:
     }
     query_cache: dict[str, list[dict]] = {}
 
-    windows = resolve_windows_to_generate(current_window, set(archive_map))
+    windows = resolve_windows_to_generate(current_window)
     for window in windows:
-        papers = fetch_recent_papers(window["start_utc"], window["end_utc"], query_cache)
-        selected = select_top_papers(papers)
-        selected = enrich_with_chinese_summaries(selected, llm_config)
-        archive_map[window["date_key"]] = build_archive_entry(window, selected)
-        print(f"Prepared {len(selected)} papers for {window['date_key']}")
+        archive_entry = build_archive_for_window(window, llm_config, query_cache)
+        archive_map[window["date_key"]] = archive_entry
+        print(
+            f"Prepared {len(archive_entry['papers'])} papers for {window['date_key']} "
+            f"({archive_entry['sourceMode']})"
+        )
 
     archives = sort_archives(list(archive_map.values()))
     site_data = build_site_data(archives, current_window, llm_config)
@@ -101,10 +101,7 @@ def main() -> None:
 def compute_batch_window() -> dict:
     now_bj = dt.datetime.now(TZ_BEIJING)
     eight_am = now_bj.replace(hour=8, minute=0, second=0, microsecond=0)
-    if now_bj < eight_am:
-        end_bj = eight_am - dt.timedelta(days=1)
-    else:
-        end_bj = eight_am
+    end_bj = eight_am - dt.timedelta(days=1) if now_bj < eight_am else eight_am
     return build_window(end_bj)
 
 
@@ -134,12 +131,11 @@ def build_window_for_date_key(date_key: str) -> dict:
     return build_window(end_bj)
 
 
-def resolve_windows_to_generate(current_window: dict, existing_keys: set[str]) -> list[dict]:
+def resolve_windows_to_generate(current_window: dict) -> list[dict]:
     windows: dict[str, dict] = {current_window["date_key"]: current_window}
     bootstrap_end = min(current_window["date_key"], BOOTSTRAP_END_KEY)
     for date_key in iter_date_keys(BOOTSTRAP_START_KEY, bootstrap_end):
-        if date_key not in existing_keys:
-            windows[date_key] = build_window_for_date_key(date_key)
+        windows[date_key] = build_window_for_date_key(date_key)
     return [windows[key] for key in sorted(windows)]
 
 
@@ -152,6 +148,49 @@ def iter_date_keys(start_key: str, end_key: str) -> list[str]:
         keys.append(current.strftime("%Y%m%d"))
         current += dt.timedelta(days=1)
     return keys
+
+
+def build_archive_for_window(
+    window: dict,
+    llm_config: dict | None,
+    query_cache: dict[str, list[dict]],
+) -> dict:
+    strict_candidates = fetch_recent_papers(window["start_utc"], window["end_utc"], query_cache)
+    strict_selected = select_top_papers(strict_candidates, llm_config)
+    if strict_selected:
+        return build_archive_entry(
+            window,
+            strict_selected,
+            source_mode="strict",
+            source_note_cn="严格窗口：使用前一天 08:00 到当天 08:00 的 VLA / WAM 论文。",
+        )
+
+    lookback_candidates = fetch_recent_papers(
+        window["end_utc"] - dt.timedelta(days=LOOKBACK_DAYS),
+        window["end_utc"],
+        query_cache,
+    )
+    lookback_selected = select_top_papers(lookback_candidates, llm_config)
+    if lookback_selected:
+        return build_archive_entry(
+            window,
+            lookback_selected,
+            source_mode="fallback_7d",
+            source_note_cn="当日严格窗口没有命中论文，已回退展示截止当日最近 7 天内最相关的 VLA / WAM 论文。",
+        )
+
+    month_candidates = fetch_recent_papers(
+        window["end_utc"] - dt.timedelta(days=30),
+        window["end_utc"],
+        query_cache,
+    )
+    month_selected = select_top_papers(month_candidates, llm_config)
+    return build_archive_entry(
+        window,
+        month_selected,
+        source_mode="fallback_30d",
+        source_note_cn="当日严格窗口与 7 天窗口均未命中论文，已回退展示截止当日最近 30 天内最相关的 VLA / WAM 论文。",
+    )
 
 
 def fetch_recent_papers(
@@ -193,7 +232,7 @@ def fetch_query_results(query: str) -> list[dict]:
     results: list[dict] = []
     for entry in entries:
         paper = parse_entry(entry)
-        paper["score_hint"] = score_paper(paper)
+        paper["score_hint"] = heuristic_focus_score(paper)
         results.append(paper)
     return results
 
@@ -217,6 +256,8 @@ def parse_entry(entry: ET.Element) -> dict:
         "summary_raw": summary_raw,
         "summary": build_short_summary(summary_raw),
         "summaryCn": "",
+        "reasonCn": "",
+        "lane": "OTHER",
         "link": f"https://arxiv.org/abs/{paper_id}",
         "pdfLink": f"https://arxiv.org/pdf/{paper_id}",
         "published": published_raw,
@@ -228,16 +269,31 @@ def parse_entry(entry: ET.Element) -> dict:
     }
 
 
-def select_top_papers(papers: list[dict]) -> list[dict]:
+def select_top_papers(papers: list[dict], llm_config: dict | None) -> list[dict]:
+    candidates = build_candidate_pool(papers)
+    if not candidates:
+        return []
+
+    if llm_config is not None:
+        llm_selected = rerank_with_deepseek(candidates, llm_config)
+        if llm_selected:
+            return llm_selected
+
+    return fallback_select_top_papers(candidates)
+
+
+def build_candidate_pool(papers: list[dict]) -> list[dict]:
     ranked: list[dict] = []
     for paper in papers:
-        score = score_paper(paper)
+        score = heuristic_focus_score(paper)
         if score <= 0:
             continue
-        paper["score"] = score
+        paper["heuristicScore"] = score
+        paper["laneHint"] = infer_lane(paper)
         ranked.append(paper)
+
     ranked.sort(
-        key=lambda item: (item["score"], item["published_dt"], item["updated_dt"]),
+        key=lambda item: (item["heuristicScore"], item["published_dt"], item["updated_dt"]),
         reverse=True,
     )
 
@@ -248,63 +304,132 @@ def select_top_papers(papers: list[dict]) -> list[dict]:
         if title_key in seen_title_keys:
             continue
         seen_title_keys.add(title_key)
-        selected.append(
-            {
-                "id": paper["id"],
-                "title": paper["title"],
-                "summary": paper["summary"],
-                "summaryCn": paper["summaryCn"],
-                "link": paper["link"],
-                "pdfLink": paper["pdfLink"],
-                "published": paper["published"],
-                "updated": paper["updated"],
-                "authors": paper["authors"],
-                "categories": [cat for cat in paper["categories"] if cat in CATEGORY_SCORES][:4],
-                "score": paper["score"],
-            }
-        )
-        if len(selected) >= TARGET_COUNT:
+        selected.append(paper)
+        if len(selected) >= LLM_CANDIDATE_COUNT:
             break
     return selected
 
 
-def score_paper(paper: dict) -> int:
+def heuristic_focus_score(paper: dict) -> int:
     haystack = f"{paper['title']} {paper['summary_raw']}".lower()
-    score = sum(CATEGORY_SCORES.get(cat, 0) for cat in paper["categories"])
-    for keyword, weight in KEYWORD_WEIGHTS.items():
-        if keyword in haystack:
-            score += weight
+    vla_hits = count_pattern_hits(haystack, VLA_PATTERNS)
+    wam_hits = count_pattern_hits(haystack, WAM_PATTERNS)
+    negative_hits = count_pattern_hits(haystack, NEGATIVE_PATTERNS)
+    category_score = sum(CATEGORY_SCORES.get(cat, 0) for cat in paper["categories"])
     title_lower = paper["title"].lower()
+    title_bonus = 0
     if "vision-language-action" in title_lower or "vision language action" in title_lower:
-        score += 10
-    if "world action model" in title_lower:
-        score += 10
-    if "robot" in title_lower or "driving" in title_lower:
-        score += 5
+        title_bonus += 18
+    if "world action model" in title_lower or "world-language-action" in title_lower:
+        title_bonus += 18
+    if vla_hits == 0 and wam_hits == 0:
+        return 0
     age_days = max((dt.datetime.now(dt.timezone.utc) - paper["published_dt"]).days, 0)
-    score += max(0, LOOKBACK_DAYS - age_days)
-    return score
+    freshness = max(0, LOOKBACK_DAYS - age_days)
+    return vla_hits * 18 + wam_hits * 18 + title_bonus + category_score + freshness - negative_hits * 2
 
 
-def enrich_with_chinese_summaries(papers: list[dict], llm_config: dict | None) -> list[dict]:
-    if not papers:
-        return papers
-    if llm_config is None:
-        for paper in papers:
-            paper["summaryCn"] = fallback_summary_cn(paper["summary"])
-        return papers
+def count_pattern_hits(haystack: str, patterns: list[str]) -> int:
+    return sum(1 for pattern in patterns if pattern in haystack)
 
-    try:
-        summary_map = call_deepseek_batch_summary(papers, llm_config)
-        for paper in papers:
-            paper["summaryCn"] = clean_text(summary_map.get(paper["id"], "")) or fallback_summary_cn(
-                paper["summary"]
+
+def infer_lane(paper: dict) -> str:
+    haystack = f"{paper['title']} {paper['summary_raw']}".lower()
+    vla_hits = count_pattern_hits(haystack, VLA_PATTERNS)
+    wam_hits = count_pattern_hits(haystack, WAM_PATTERNS)
+    if vla_hits and wam_hits:
+        return "BOTH"
+    if vla_hits:
+        return "VLA"
+    if wam_hits:
+        return "WAM"
+    return "OTHER"
+
+
+def normalize_lane(value: str) -> str:
+    normalized = value.strip().upper()
+    if normalized in {"VLA", "WAM", "BOTH", "OTHER"}:
+        return normalized
+    return "OTHER"
+
+
+def fallback_select_top_papers(papers: list[dict]) -> list[dict]:
+    selected: list[dict] = []
+    for paper in papers[:TARGET_COUNT]:
+        lane = infer_lane(paper)
+        selected.append(
+            finalize_paper(
+                paper,
+                lane=lane,
+                selection_reason="规则回退：标题和摘要多次命中 VLA / WAM 相关术语，因此被保留。",
+                summary_cn=fallback_summary_cn(paper["summary"], lane),
+                llm_total_score=None,
             )
+        )
+    return selected
+
+
+def rerank_with_deepseek(papers: list[dict], llm_config: dict) -> list[dict]:
+    try:
+        analysis_map = call_deepseek_rank_and_summarize(papers, llm_config)
     except Exception as exc:
-        print(f"DeepSeek summarization failed, fallback to plain summaries: {exc}")
-        for paper in papers:
-            paper["summaryCn"] = fallback_summary_cn(paper["summary"])
-    return papers
+        print(f"DeepSeek rerank failed, fallback to heuristic ranking: {exc}")
+        return []
+
+    ranked: list[dict] = []
+    for paper in papers:
+        analysis = analysis_map.get(paper["id"])
+        if not analysis or not analysis.get("include", False):
+            continue
+        lane = normalize_lane(str(analysis.get("lane", "")))
+        if lane not in {"VLA", "WAM", "BOTH"}:
+            continue
+        ranked.append(
+            finalize_paper(
+                paper,
+                lane=lane,
+                selection_reason=clean_text(str(analysis.get("reason_cn", "")))
+                or "DeepSeek 判断该论文与 VLA / WAM 主问题强相关。",
+                summary_cn=clean_text(str(analysis.get("summary_cn", "")))
+                or fallback_summary_cn(paper["summary"], lane),
+                llm_total_score=int_or_none(analysis.get("total_score")),
+            )
+        )
+
+    ranked.sort(
+        key=lambda item: (
+            item.get("llmTotalScore") or 0,
+            item.get("heuristicScore") or 0,
+            item.get("published", ""),
+        ),
+        reverse=True,
+    )
+    return ranked[:TARGET_COUNT]
+
+
+def finalize_paper(
+    paper: dict,
+    lane: str,
+    selection_reason: str,
+    summary_cn: str,
+    llm_total_score: int | None,
+) -> dict:
+    return {
+        "id": paper["id"],
+        "title": paper["title"],
+        "summary": paper["summary"],
+        "summaryCn": summary_cn,
+        "reasonCn": selection_reason,
+        "lane": lane,
+        "link": paper["link"],
+        "pdfLink": paper["pdfLink"],
+        "published": paper["published"],
+        "updated": paper["updated"],
+        "authors": paper["authors"],
+        "categories": [cat for cat in paper["categories"] if cat in CATEGORY_SCORES][:4],
+        "heuristicScore": paper.get("heuristicScore", 0),
+        "llmTotalScore": llm_total_score,
+    }
 
 
 def get_llm_config() -> dict | None:
@@ -320,23 +445,35 @@ def get_llm_config() -> dict | None:
     }
 
 
-def call_deepseek_batch_summary(papers: list[dict], llm_config: dict) -> dict[str, str]:
+def call_deepseek_rank_and_summarize(papers: list[dict], llm_config: dict) -> dict[str, dict]:
     endpoint = f"{llm_config['base_url']}/chat/completions"
-    prompt_items = [
-        {
-            "id": paper["id"],
-            "title": paper["title"],
-            "abstract": trim_text(paper["summary"], 900),
-        }
-        for paper in papers
-    ]
+    prompt_items = []
+    for paper in papers:
+        prompt_items.append(
+            {
+                "id": paper["id"],
+                "title": paper["title"],
+                "abstract": trim_text(paper["summary_raw"], 1400),
+                "categories": paper["categories"][:4],
+                "heuristic_score": paper.get("heuristicScore", 0),
+                "lane_hint": paper.get("laneHint", "OTHER"),
+            }
+        )
+
     messages = [
         {
             "role": "system",
             "content": (
-                "你是一个论文摘要助手。请只输出 JSON 对象，不要输出代码块，不要解释。"
-                "字段格式为 {\"items\":[{\"id\":\"...\",\"summary_cn\":\"...\"}]}。"
-                "summary_cn 必须是精简中文摘要，1-2 句，45 到 90 个中文字符，突出方法、任务和结果价值。"
+                "你是一个只为 VLA 和 WAM 做论文筛选的研究助理。"
+                "用户只关心 Vision-Language-Action (VLA) 与 World Action Model (WAM) 主线。"
+                "如果论文只是一般机器人、自动驾驶、感知、控制、规划或泛化 world model，"
+                "但没有清晰围绕 VLA 或 WAM，请标记为 include=false。"
+                "请只输出 JSON，不要输出代码块，不要解释。"
+                "输出格式为 "
+                "{\"items\":[{\"id\":\"...\",\"include\":true,\"lane\":\"VLA|WAM|BOTH|OTHER\","
+                "\"total_score\":0,\"reason_cn\":\"...\",\"summary_cn\":\"...\"}]}"
+                "其中 summary_cn 必须是 2 到 3 句中文，突出任务、方法和价值。"
+                "reason_cn 用 1 句中文说明为什么它值得保留。"
             ),
         },
         {
@@ -348,6 +485,7 @@ def call_deepseek_batch_summary(papers: list[dict], llm_config: dict) -> dict[st
         "model": llm_config["model"],
         "temperature": 0.2,
         "messages": messages,
+        "response_format": {"type": "json_object"},
     }
     request = urllib.request.Request(
         endpoint,
@@ -358,23 +496,25 @@ def call_deepseek_batch_summary(papers: list[dict], llm_config: dict) -> dict[st
         },
         method="POST",
     )
-    body = fetch_bytes(request, timeout=90)
+    body = fetch_bytes(request, timeout=120)
     response = json.loads(body.decode("utf-8"))
     content = response["choices"][0]["message"]["content"]
     parsed = parse_json_from_text(content)
     items = parsed.get("items", [])
     return {
-        str(item.get("id", "")).strip(): str(item.get("summary_cn", "")).strip()
+        str(item.get("id", "")).strip(): item
         for item in items
         if item.get("id")
     }
 
 
-def build_archive_entry(window: dict, selected: list[dict]) -> dict:
+def build_archive_entry(window: dict, selected: list[dict], source_mode: str, source_note_cn: str) -> dict:
     return {
         "dateKey": window["date_key"],
         "dateLabel": window["date_label"],
         "generatedAt": dt.datetime.now(dt.timezone.utc).isoformat(),
+        "sourceMode": source_mode,
+        "sourceNoteCn": source_note_cn,
         "papers": selected,
     }
 
@@ -390,17 +530,15 @@ def build_site_data(archives: list[dict], current_window: dict, llm_config: dict
     model_info = llm_config["model"] if llm_config else "fallback-summary"
     return {
         "generatedAt": dt.datetime.now(dt.timezone.utc).isoformat(),
-        "description": "每天北京时间 08:00 自动更新，筛选 arXiv 上与 VLA、WAM、机器人、自动驾驶相关的重要新论文。",
+        "description": "每天北京时间 08:00 自动更新，只筛选与 VLA 和 WAM 主问题强相关的 arXiv 新论文。",
         "dateWindowDays": LOOKBACK_DAYS,
         "categories": CATEGORIES,
         "keywords": [
             "vision-language-action",
             "world action model",
-            "robotics",
-            "autonomous driving",
         ],
         "currentDateKey": current_window["date_key"],
-        "selectionMethod": "keyword_ranking_plus_deepseek_summary",
+        "selectionMethod": "deepseek_vla_wam_rerank",
         "llmEnabled": llm_enabled,
         "llmProvider": "DeepSeek",
         "modelInfo": model_info,
@@ -467,20 +605,32 @@ def parse_json_from_text(text: str) -> dict:
 
 def build_short_summary(summary: str) -> str:
     summary = clean_text(summary)
-    if len(summary) <= 320:
+    if len(summary) <= 520:
         return summary
     sentences = split_sentences(summary)
     if not sentences:
-        return trim_text(summary, 320)
-    concise = " ".join(sentences[:2])
-    return trim_text(concise, 320)
+        return trim_text(summary, 520)
+    concise = " ".join(sentences[:3])
+    return trim_text(concise, 520)
 
 
-def fallback_summary_cn(summary: str) -> str:
-    short = trim_text(clean_text(summary), 110)
+def fallback_summary_cn(summary: str, lane: str) -> str:
+    short = trim_text(clean_text(summary), 180)
+    lane_text = "VLA" if lane == "VLA" else "WAM" if lane == "WAM" else "VLA / WAM"
     if not short:
-        return "该论文提出了一个与 VLA/WAM 或机器人智能相关的新方法，建议查看原文获取更多细节。"
-    return f"论文围绕相关任务提出方法并进行了实验验证，核心内容可概括为：{short}"
+        return f"这篇论文与 {lane_text} 方向相关。它提出了新的任务设定或模型方法。建议进一步阅读原文确认具体贡献。"
+    return (
+        f"这篇论文围绕 {lane_text} 主线展开，问题设置与方法设计具有直接相关性。"
+        f"从摘要看，它的核心内容是：{short}。"
+        "如果你关注该方向近期进展，这篇论文值得优先浏览原文。"
+    )
+
+
+def int_or_none(value) -> int | None:
+    try:
+        return int(value)
+    except (TypeError, ValueError):
+        return None
 
 
 def split_sentences(text: str) -> list[str]:
