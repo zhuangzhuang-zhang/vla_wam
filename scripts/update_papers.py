@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import datetime as dt
 import json
+import logging
 import os
 import re
 import time
@@ -11,11 +12,19 @@ import urllib.request
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
+# ============================================================
+# 日志
+# ============================================================
+logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
+logger = logging.getLogger(__name__)
 
+# ============================================================
+# 配置常量（便于以后提取为配置文件）
+# ============================================================
 API_URL = "https://export.arxiv.org/api/query"
 OUTPUT_FILE = Path(__file__).resolve().parents[1] / "data" / "site-data.js"
 TARGET_COUNT = 20
-LLM_CANDIDATE_COUNT = 36
+LLM_CANDIDATE_COUNT = 50           # 提高候选数，避免错过优质论文
 MAX_RESULTS_PER_QUERY = 200
 LOOKBACK_DAYS = 7
 MAX_ARCHIVE_DAYS = 60
@@ -23,27 +32,42 @@ BOOTSTRAP_START_KEY = "20260601"
 BOOTSTRAP_END_KEY = "20260607"
 TZ_BEIJING = dt.timezone(dt.timedelta(hours=8))
 ATOM_NS = {"atom": "http://www.w3.org/2005/Atom"}
-CATEGORY_QUERY = "(cat:cs.RO OR cat:cs.AI OR cat:cs.CV OR cat:cs.LG)"
 
+# 分类及权重（提升与 VLA/WAM 最相关的 cs.RO 权重）
 CATEGORIES = ["cs.RO", "cs.AI", "cs.CV", "cs.LG"]
 CATEGORY_SCORES = {
-    "cs.RO": 5,
-    "cs.AI": 3,
-    "cs.CV": 3,
+    "cs.RO": 8,
+    "cs.AI": 4,
+    "cs.CV": 4,
     "cs.LG": 2,
 }
 
+# ============================================================
+# 查询策略改进：增加直接命中、缩写查询，并带分类过滤
+# ============================================================
+CATEGORY_QUERY = "(cat:cs.RO OR cat:cs.AI OR cat:cs.CV OR cat:cs.LG)"
+
 RECALL_QUERIES = [
+    # 精确短语
     f'{CATEGORY_QUERY} AND all:"vision-language-action"',
     f'{CATEGORY_QUERY} AND all:"vision language action"',
     f'{CATEGORY_QUERY} AND all:"world action model"',
     f'{CATEGORY_QUERY} AND all:"world-language-action"',
     f'{CATEGORY_QUERY} AND all:"world language action"',
     f'{CATEGORY_QUERY} AND all:"action-conditioned world model"',
+    # 缩写查询（增加命中率）
+    f'{CATEGORY_QUERY} AND all:VLA',
+    f'{CATEGORY_QUERY} AND all:WAM',
+    # 宽泛但高质量的组合
     f'{CATEGORY_QUERY} AND all:"video world model"',
+    f'{CATEGORY_QUERY} AND all:"generative world model" AND (all:"robot" OR all:"action")',
+    # 泛 world model 查询（会噪音大，但靠后续筛选）
     f'{CATEGORY_QUERY} AND all:"world model"',
 ]
 
+# ============================================================
+# 关键词匹配列表
+# ============================================================
 VLA_PATTERNS = [
     "vla",
     "vision-language-action",
@@ -62,16 +86,31 @@ WAM_PATTERNS = [
     "world model",
 ]
 
-
+# 加强负面关键词，避免召回纯感知、纯规划等论文
 NEGATIVE_PATTERNS = [
     "lane detection",
     "trajectory prediction",
     "object detection",
     "3d detection",
     "3d perception",
+    "semantic segmentation",
+    "depth estimation",
+    "point cloud",
+    "lidar",
+    "motion prediction",
+    "tracking",
+    "localization",
+    "slam",
+    "path planning",
+    "motion planning",
+    "control barrier function",
+    "model predictive control",
+    "reinforcement learning policy",   # 不加 action 的纯 RL 策略
 ]
 
-
+# ============================================================
+# 主要入口
+# ============================================================
 def main() -> None:
     existing = load_existing_site_data()
     current_window = compute_batch_window()
@@ -81,13 +120,14 @@ def main() -> None:
         for item in existing.get("archives", [])
         if isinstance(item, dict) and item.get("dateKey")
     }
+    # 简单的跨请求缓存（当天运行时能避免重复请求 arXiv）
     query_cache: dict[str, list[dict]] = {}
 
     windows = resolve_windows_to_generate(current_window)
     for window in windows:
         archive_entry = build_archive_for_window(window, llm_config, query_cache)
         archive_map[window["date_key"]] = archive_entry
-        print(
+        logger.info(
             f"Prepared {len(archive_entry['papers'])} papers for {window['date_key']} "
             f"({archive_entry['sourceMode']})"
         )
@@ -95,9 +135,12 @@ def main() -> None:
     archives = sort_archives(list(archive_map.values()))
     site_data = build_site_data(archives, current_window, llm_config)
     write_site_data(site_data)
-    print(f"Wrote {len(archives)} archives to {OUTPUT_FILE}")
+    logger.info(f"Wrote {len(archives)} archives to {OUTPUT_FILE}")
 
 
+# ============================================================
+# 时间窗口计算（保持不变）
+# ============================================================
 def compute_batch_window() -> dict:
     now_bj = dt.datetime.now(TZ_BEIJING)
     eight_am = now_bj.replace(hour=8, minute=0, second=0, microsecond=0)
@@ -123,9 +166,7 @@ def build_window_for_date_key(date_key: str) -> dict:
         date_value.year,
         date_value.month,
         date_value.day,
-        8,
-        0,
-        0,
+        8, 0, 0,
         tzinfo=TZ_BEIJING,
     )
     return build_window(end_bj)
@@ -150,11 +191,15 @@ def iter_date_keys(start_key: str, end_key: str) -> list[str]:
     return keys
 
 
+# ============================================================
+# 单个日期的论文归档构建
+# ============================================================
 def build_archive_for_window(
     window: dict,
     llm_config: dict | None,
     query_cache: dict[str, list[dict]],
 ) -> dict:
+    # 第一优先级：严格 1 天窗口
     strict_candidates = fetch_recent_papers(window["start_utc"], window["end_utc"], query_cache)
     strict_selected = select_top_papers(strict_candidates, llm_config)
     if strict_selected:
@@ -165,6 +210,7 @@ def build_archive_for_window(
             source_note_cn="严格窗口：使用前一天 08:00 到当天 08:00 的 VLA / WAM 论文。",
         )
 
+    # 第二优先级：7 天回退
     lookback_candidates = fetch_recent_papers(
         window["end_utc"] - dt.timedelta(days=LOOKBACK_DAYS),
         window["end_utc"],
@@ -179,6 +225,7 @@ def build_archive_for_window(
             source_note_cn="当日严格窗口没有命中论文，已回退展示截止当日最近 7 天内最相关的 VLA / WAM 论文。",
         )
 
+    # 第三优先级：30 天回退
     month_candidates = fetch_recent_papers(
         window["end_utc"] - dt.timedelta(days=30),
         window["end_utc"],
@@ -193,6 +240,9 @@ def build_archive_for_window(
     )
 
 
+# ============================================================
+# arXiv API 获取与去重
+# ============================================================
 def fetch_recent_papers(
     start_utc: dt.datetime,
     end_utc: dt.datetime,
@@ -203,16 +253,18 @@ def fetch_recent_papers(
         try:
             cached_results = query_cache.get(query)
             if cached_results is None:
+                logger.info(f"Fetching from arXiv: {query[:100]}...")
                 cached_results = fetch_query_results(query)
                 query_cache[query] = cached_results
             for paper in cached_results:
                 if not (start_utc <= paper["published_dt"] < end_utc):
                     continue
                 existing = papers_by_id.get(paper["id"])
+                # 保留启发式得分更高的版本（去重）
                 if existing is None or paper["score_hint"] > existing["score_hint"]:
                     papers_by_id[paper["id"]] = paper
         except Exception as exc:
-            print(f"Skip query {query!r}: {exc}")
+            logger.warning(f"Skip query {query!r}: {exc}")
             continue
     return list(papers_by_id.values())
 
@@ -269,6 +321,9 @@ def parse_entry(entry: ET.Element) -> dict:
     }
 
 
+# ============================================================
+# 论文选择（启发式 + LLM）
+# ============================================================
 def select_top_papers(papers: list[dict], llm_config: dict | None) -> list[dict]:
     candidates = build_candidate_pool(papers)
     if not candidates:
@@ -311,22 +366,44 @@ def build_candidate_pool(papers: list[dict]) -> list[dict]:
 
 
 def heuristic_focus_score(paper: dict) -> int:
+    """
+    改进的启发式打分：
+    - 标题命中 VLA/WAM 得更高分
+    - 缩写命中给更高权重
+    - 负面词加大惩罚
+    - 新鲜度采用对数平滑
+    """
     haystack = f"{paper['title']} {paper['summary_raw']}".lower()
     vla_hits = count_pattern_hits(haystack, VLA_PATTERNS)
     wam_hits = count_pattern_hits(haystack, WAM_PATTERNS)
     negative_hits = count_pattern_hits(haystack, NEGATIVE_PATTERNS)
     category_score = sum(CATEGORY_SCORES.get(cat, 0) for cat in paper["categories"])
+
     title_lower = paper["title"].lower()
     title_bonus = 0
+    # 标题命中精确短语
     if "vision-language-action" in title_lower or "vision language action" in title_lower:
-        title_bonus += 18
+        title_bonus += 25
     if "world action model" in title_lower or "world-language-action" in title_lower:
-        title_bonus += 18
+        title_bonus += 25
+    if "world model" in title_lower and ("action" in haystack or "robot" in haystack):
+        title_bonus += 15
+    # 标题中有 VLA / WAM 缩写（且不是别的单词的一部分）
+    if re.search(r'\bvla\b', title_lower):
+        title_bonus += 30
+    if re.search(r'\bwam\b', title_lower):
+        title_bonus += 30
+
     if vla_hits == 0 and wam_hits == 0:
         return 0
+
     age_days = max((dt.datetime.now(dt.timezone.utc) - paper["published_dt"]).days, 0)
-    freshness = max(0, LOOKBACK_DAYS - age_days)
-    return vla_hits * 18 + wam_hits * 18 + title_bonus + category_score + freshness - negative_hits * 2
+    # 使用对数新鲜度，使近期论文稍有优势但不完全线性
+    freshness = max(0, int(10 * (1 - age_days / max(LOOKBACK_DAYS, 1))))
+
+    base_score = vla_hits * 20 + wam_hits * 20
+    penalty = negative_hits * 8          # 负面词惩罚加重
+    return base_score + title_bonus + category_score + freshness - penalty
 
 
 def count_pattern_hits(haystack: str, patterns: list[str]) -> int:
@@ -369,11 +446,14 @@ def fallback_select_top_papers(papers: list[dict]) -> list[dict]:
     return selected
 
 
+# ============================================================
+# DeepSeek 重排与摘要
+# ============================================================
 def rerank_with_deepseek(papers: list[dict], llm_config: dict) -> list[dict]:
     try:
         analysis_map = call_deepseek_rank_and_summarize(papers, llm_config)
     except Exception as exc:
-        print(f"DeepSeek rerank failed, fallback to heuristic ranking: {exc}")
+        logger.error(f"DeepSeek rerank failed, fallback to heuristic ranking: {exc}")
         return []
 
     ranked: list[dict] = []
@@ -460,22 +540,25 @@ def call_deepseek_rank_and_summarize(papers: list[dict], llm_config: dict) -> di
             }
         )
 
+    # 改进 system prompt：明确要求严格过滤，并给出 VLA/WAM 的判别标准
+    system_prompt = (
+        "你是一个只为 VLA（Vision-Language-Action）和 WAM（World Action Model）"
+        "筛选论文的研究助理。请严格遵守以下规则：\n"
+        "1. VLA 论文必须同时涉及视觉输入、语言指令和机器人动作输出。"
+        "纯粹的视觉问答、图像描述、非具身对话系统均不符合。\n"
+        "2. WAM 论文必须以世界模型（world model）为核心，并明确用于动作预测、规划或控制。"
+        "仅使用 world model 做视频预测/生成而不涉及动作的，应标记为 include=false。\n"
+        "3. 若论文属于一般机器人控制、自动驾驶感知、轨迹预测、目标检测等，但未聚焦 VLA/WAM，直接 exclude。\n"
+        "4. 在 reason_cn 中简要说明为何符合（或不符合）上述标准。\n"
+        "请只输出 JSON，不要输出代码块，不要解释。\n"
+        '输出格式：{"items":[{"id":"...","include":true/false,"lane":"VLA|WAM|BOTH|OTHER",'
+        '"total_score":0,"reason_cn":"...","summary_cn":"..."}]}\n'
+        "summary_cn 必须是2-3句中文，突出任务、方法和价值。\n"
+        "reason_cn 用1句中文说明保留理由。"
+    )
+
     messages = [
-        {
-            "role": "system",
-            "content": (
-                "你是一个只为 VLA 和 WAM 做论文筛选的研究助理。"
-                "用户只关心 Vision-Language-Action (VLA) 与 World Action Model (WAM) 主线。"
-                "如果论文只是一般机器人、自动驾驶、感知、控制、规划或泛化 world model，"
-                "但没有清晰围绕 VLA 或 WAM，请标记为 include=false。"
-                "请只输出 JSON，不要输出代码块，不要解释。"
-                "输出格式为 "
-                "{\"items\":[{\"id\":\"...\",\"include\":true,\"lane\":\"VLA|WAM|BOTH|OTHER\","
-                "\"total_score\":0,\"reason_cn\":\"...\",\"summary_cn\":\"...\"}]}"
-                "其中 summary_cn 必须是 2 到 3 句中文，突出任务、方法和价值。"
-                "reason_cn 用 1 句中文说明为什么它值得保留。"
-            ),
-        },
+        {"role": "system", "content": system_prompt},
         {
             "role": "user",
             "content": json.dumps({"items": prompt_items}, ensure_ascii=False),
@@ -483,7 +566,7 @@ def call_deepseek_rank_and_summarize(papers: list[dict], llm_config: dict) -> di
     ]
     payload = {
         "model": llm_config["model"],
-        "temperature": 0.2,
+        "temperature": 0.1,        # 更低温度保证确定性
         "messages": messages,
         "response_format": {"type": "json_object"},
     }
@@ -508,6 +591,9 @@ def call_deepseek_rank_and_summarize(papers: list[dict], llm_config: dict) -> di
     }
 
 
+# ============================================================
+# 归档 & 网站数据构建
+# ============================================================
 def build_archive_entry(window: dict, selected: list[dict], source_mode: str, source_note_cn: str) -> dict:
     return {
         "dateKey": window["date_key"],
@@ -533,10 +619,7 @@ def build_site_data(archives: list[dict], current_window: dict, llm_config: dict
         "description": "每天北京时间 08:00 自动更新，只筛选与 VLA 和 WAM 主问题强相关的 arXiv 新论文。",
         "dateWindowDays": LOOKBACK_DAYS,
         "categories": CATEGORIES,
-        "keywords": [
-            "vision-language-action",
-            "world action model",
-        ],
+        "keywords": ["vision-language-action", "world action model"],
         "currentDateKey": current_window["date_key"],
         "selectionMethod": "deepseek_vla_wam_rerank",
         "llmEnabled": llm_enabled,
@@ -546,13 +629,16 @@ def build_site_data(archives: list[dict], current_window: dict, llm_config: dict
     }
 
 
+# ============================================================
+# 文件读写
+# ============================================================
 def load_existing_site_data() -> dict:
     if not OUTPUT_FILE.exists():
         return {"archives": []}
     raw = OUTPUT_FILE.read_text(encoding="utf-8").strip()
     prefix = "window.PAPERS_SITE_DATA = "
     if raw.startswith(prefix):
-        raw = raw[len(prefix) :]
+        raw = raw[len(prefix):]
     if raw.endswith(";"):
         raw = raw[:-1]
     try:
@@ -574,6 +660,9 @@ def write_site_data(site_data: dict) -> None:
     )
 
 
+# ============================================================
+# 工具函数
+# ============================================================
 def fetch_bytes(request_or_url, timeout: int = 30) -> bytes:
     last_error: Exception | None = None
     for attempt in range(3):
