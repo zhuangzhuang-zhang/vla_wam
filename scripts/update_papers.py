@@ -48,6 +48,11 @@ CATEGORY_SCORES = {
 CATEGORY_QUERY = "(cat:cs.RO OR cat:cs.AI OR cat:cs.CV OR cat:cs.LG)"
 
 RECALL_QUERIES = [
+    # 缩写查询（增加命中率）
+    f'{CATEGORY_QUERY} AND all:"vla"',
+    f'{CATEGORY_QUERY} AND all:"wam"',
+
+    f'{CATEGORY_QUERY} AND all:"world model"',        
     # 精确短语
     f'{CATEGORY_QUERY} AND all:"vision-language-action"',
     f'{CATEGORY_QUERY} AND all:"vision language action"',
@@ -55,14 +60,10 @@ RECALL_QUERIES = [
     f'{CATEGORY_QUERY} AND all:"world-language-action"',
     f'{CATEGORY_QUERY} AND all:"world language action"',
     f'{CATEGORY_QUERY} AND all:"action-conditioned world model"',
-    # 缩写查询（增加命中率）
-    f'{CATEGORY_QUERY} AND all:VLA',
-    f'{CATEGORY_QUERY} AND all:WAM',
+
     # 宽泛但高质量的组合
     f'{CATEGORY_QUERY} AND all:"video world model"',
     f'{CATEGORY_QUERY} AND all:"generative world model" AND (all:"robot" OR all:"action")',
-    # 泛 world model 查询（会噪音大，但靠后续筛选）
-    f'{CATEGORY_QUERY} AND all:"world model"',
 ]
 
 # ============================================================
