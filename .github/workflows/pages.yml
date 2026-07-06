@@ -23,11 +23,12 @@ jobs:
       DEEPSEEK_MODEL: ${{ secrets.DEEPSEEK_MODEL }}
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.deployment.outputs.page_url || steps.deployment_retry.outputs.page_url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
+          ref: main
           fetch-depth: 0
 
       - name: Setup Python
@@ -48,7 +49,15 @@ jobs:
           fi
           git add data/site-data.js
           git commit -m "chore: update paper archive data [skip ci]"
-          git push
+          for attempt in 1 2 3; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            echo "Archive push attempt ${attempt} failed."
+            if [ "$attempt" -lt 3 ]; then
+              sleep 5
+            fi
+          done
+          echo "Failed to push generated archive data after 3 attempts."
+          exit 1
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -60,4 +69,14 @@ jobs:
 
       - name: Deploy to GitHub Pages
         id: deployment
+        continue-on-error: true
         uses: actions/deploy-pages@v4
+
+      - name: Retry GitHub Pages deploy
+        id: deployment_retry
+        if: steps.deployment.outcome == 'failure'
+        uses: actions/deploy-pages@v4
+
+      - name: Fail when deploy retry also fails
+        if: steps.deployment.outcome == 'failure' && steps.deployment_retry.outcome == 'failure'
+        run: exit 1
