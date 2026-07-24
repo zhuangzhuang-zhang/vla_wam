@@ -1,5 +1,5 @@
 window.PAPERS_SITE_DATA = {
-  "generatedAt": "2026-07-23T03:48:23.631236+00:00",
+  "generatedAt": "2026-07-24T03:23:49.520860+00:00",
   "description": "每天北京时间 08:00 自动更新，只筛选与 VLA 和 WAM 主问题强相关的 arXiv 新论文。",
   "dateWindowDays": 7,
   "categories": [
@@ -12,12 +12,45 @@ window.PAPERS_SITE_DATA = {
     "vision-language-action",
     "world action model"
   ],
-  "currentDateKey": "20260723",
+  "currentDateKey": "20260724",
   "selectionMethod": "deepseek_vla_wam_rerank",
   "llmEnabled": true,
   "llmProvider": "DeepSeek",
   "modelInfo": "deepseek-v4-pro",
   "archives": [
+    {
+      "dateKey": "20260724",
+      "dateLabel": "2026-07-24",
+      "generatedAt": "2026-07-24T03:23:49.520726+00:00",
+      "sourceMode": "strict",
+      "sourceNoteCn": "严格窗口：使用前一天 08:00 到当天 08:00 的 VLA / WAM 论文。",
+      "papers": [
+        {
+          "id": "2607.20988v1",
+          "title": "HyWorldVLA: A Vision-Language-Action Model with Hybrid World Modeling for Autonomous Driving",
+          "summary": "Vision-Language-Action (VLA) models augmented with world modeling represent a promising paradigm for end-to-end autonomous driving. While pixel-level future prediction enables fine-grained spatiotemporal reasoning, it compromises robustness in noisy driving scenarios. Conversely, latent-based world models alleviate this sensitivity but often incur limited interpretability and representational degradation due to absent pixel-level grounding.",
+          "summaryCn": "HyWorldVLA提出一种用于自动驾驶的混合世界模型VLA框架，结合像素级和潜在表示学习，在NAVSIM基准上显著超越现有方法，并首次系统分析世界模型噪声鲁棒性。",
+          "reasonCn": "论文提出混合世界模型增强的VLA框架，同时涉及视觉、语言和动作输出，且世界模型用于动作预测。",
+          "lane": "BOTH",
+          "link": "https://arxiv.org/abs/2607.20988v1",
+          "pdfLink": "https://arxiv.org/pdf/2607.20988v1",
+          "published": "2026-07-23T07:11:41Z",
+          "updated": "2026-07-23T07:11:41Z",
+          "authors": [
+            "Quanfu Yu",
+            "Xian Wu",
+            "Hao Xu",
+            "Liulong Ma"
+          ],
+          "categories": [
+            "cs.CV",
+            "cs.AI"
+          ],
+          "heuristicScore": 118,
+          "llmTotalScore": 0
+        }
+      ]
+    },
     {
       "dateKey": "20260723",
       "dateLabel": "2026-07-23",
@@ -17919,7 +17952,7 @@ window.PAPERS_SITE_DATA = {
     {
       "dateKey": "20260607",
       "dateLabel": "2026-06-07",
-      "generatedAt": "2026-07-23T03:46:42.337661+00:00",
+      "generatedAt": "2026-07-24T03:23:27.909755+00:00",
       "sourceMode": "strict",
       "sourceNoteCn": "严格窗口：使用前一天 08:00 到当天 08:00 的 VLA / WAM 论文。",
       "papers": [
@@ -17927,8 +17960,8 @@ window.PAPERS_SITE_DATA = {
           "id": "2606.08242v1",
           "title": "Light-WAM: Efficient World Action Models with State-Fusion Action Decoding",
           "summary": "World Action Models (WAMs) extend robot policy learning by incorporating future prediction as an additional training objective, encouraging the policy to encode task-relevant temporal structure in its representations. Current WAMs often rely on large-scale generative architectures that incur high training costs and inference latency, making them difficult to deploy as efficient closed-loop policies. We propose Light-WAM, a lightweight World Action Model for efficient robot manipulation.",
-          "summaryCn": "Light-WAM提出了一种轻量级世界动作模型，通过紧凑视频骨干和状态融合动作专家，在潜在空间中实现未来视频监督与高效动作预测。该方法在LIBERO和RoboTwin 2.0上展现了强大性能，同时大幅降低了推理延迟和训练成本。",
-          "reasonCn": "该论文以世界动作模型为核心，明确用于机器人操作的动作预测。",
+          "summaryCn": "提出Light-WAM，一种用于高效机器人操作的轻量世界动作模型。它采用紧凑视频主干和下采样潜在空间进行视频监督，并通过StateFusionActionExpert直接预测动作块。在LIBERO和RoboTwin 2.0上保持高性能，参数量仅0.44B，推理延迟低。",
+          "reasonCn": "论文提出轻量级世界动作模型，明确结合未来视频监督与动作预测，用于高效机器人操作，符合WAM标准。",
           "lane": "WAM",
           "link": "https://arxiv.org/abs/2606.08242v1",
           "pdfLink": "https://arxiv.org/pdf/2606.08242v1",
@@ -17955,7 +17988,7 @@ window.PAPERS_SITE_DATA = {
     {
       "dateKey": "20260606",
       "dateLabel": "2026-06-06",
-      "generatedAt": "2026-07-23T03:44:21.198834+00:00",
+      "generatedAt": "2026-07-24T03:22:58.849610+00:00",
       "sourceMode": "strict",
       "sourceNoteCn": "严格窗口：使用前一天 08:00 到当天 08:00 的 VLA / WAM 论文。",
       "papers": [
@@ -17963,9 +17996,9 @@ window.PAPERS_SITE_DATA = {
           "id": "2606.07089v1",
           "title": "Dreaming when Necessary: Advancing World Action Models with Adaptive Multi-Modal Reasoning",
           "summary": "World Action Models (WAMs) offer a promising approach to embodied intelligence, yet existing methods rely heavily on video prediction as action priors and lack adaptive multimodal reasoning, limiting their effectiveness on long-horizon, complex tasks. We observe that WAMs require different multimodal reasoning modes under different execution contexts: textual reasoning is essential during task transitions to guide high-level action prediction, while visual reasoning is critical during fine-grained manipulation for…",
-          "summaryCn": "该工作针对世界动作模型的自适应推理需求，提出动态路由器根据任务上下文切换文本与视觉推理，以提升长程复杂任务的效率与性能。在模拟与真实具身任务上验证了优越性。",
-          "reasonCn": "论文提出自适应多模态推理的世界动作模型，用于具身任务的动作预测，符合WAM标准。",
-          "lane": "WAM",
+          "summaryCn": "提出 AdaWAM，一种自适应触发文本或视觉推理的世界动作模型，用于机器人操作。通过动态路由器提高推理效率，在模拟和真实任务中表现优于现有方法。",
+          "reasonCn": "该论文提出自适应多模态推理的世界动作模型，同时涉及视觉、语言和动作预测，符合 VLA 和 WAM 标准。",
+          "lane": "BOTH",
           "link": "https://arxiv.org/abs/2606.07089v1",
           "pdfLink": "https://arxiv.org/pdf/2606.07089v1",
           "published": "2026-06-05T09:35:48Z",
@@ -17984,39 +18017,13 @@ window.PAPERS_SITE_DATA = {
           ],
           "heuristicScore": 73,
           "llmTotalScore": 0
-        },
-        {
-          "id": "2606.07687v1",
-          "title": "What Makes Video World Model Latents Action-Relevant: Prediction over Reconstruction",
-          "summary": "Video world models are increasingly used to provide predictive visual representations, yet it remains unclear which pretraining signals induce action-relevant structure in their latent spaces. We study this question through a unified probe-based evaluation across diverse encoder families, including image-only self-supervision, video pretraining with and without latent prediction, reconstruction-based autoencoders, diffusion models, and shortcut-forcing dynamics models. Using a common inverse-dynamics probing objec…",
-          "summaryCn": "该工作通过统一探测框架，评估不同预训练方式对视频世界模型潜在空间中动作相关结构的影响，发现时间预测优于像素重建。结论为动作感知目标能提升对视觉损坏的鲁棒性。",
-          "reasonCn": "论文研究视频世界模型潜在表示的动作相关性，通过逆动力学探测分析预训练信号，属于世界模型用于动作预测的范畴。",
-          "lane": "WAM",
-          "link": "https://arxiv.org/abs/2606.07687v1",
-          "pdfLink": "https://arxiv.org/pdf/2606.07687v1",
-          "published": "2026-06-05T04:43:02Z",
-          "updated": "2026-06-05T04:43:02Z",
-          "authors": [
-            "Jewon Yeom",
-            "Hanseul Kim",
-            "Jeongjae Park",
-            "Sungmok Jung",
-            "Jaejin Lee",
-            "Taesup Kim"
-          ],
-          "categories": [
-            "cs.CV",
-            "cs.AI"
-          ],
-          "heuristicScore": 63,
-          "llmTotalScore": 0
         }
       ]
     },
     {
       "dateKey": "20260605",
       "dateLabel": "2026-06-05",
-      "generatedAt": "2026-07-23T03:36:48.441481+00:00",
+      "generatedAt": "2026-07-24T03:22:32.178451+00:00",
       "sourceMode": "strict",
       "sourceNoteCn": "严格窗口：使用前一天 08:00 到当天 08:00 的 VLA / WAM 论文。",
       "papers": [
@@ -18024,8 +18031,8 @@ window.PAPERS_SITE_DATA = {
           "id": "2606.05979v1",
           "title": "World-Language-Action Model for Unified World Modeling, Language Reasoning, and Action Synthesis",
           "summary": "We propose world-language-action (WLA) models as a new class of embodied foundation models. WLA takes textual instructions, images, and robot states as inputs to jointly predict textual subtasks, subgoal images, and robot actions, conjoining the \\emph{world modeling interface} to learn from extensive egocentric videos as in the world-action model (WAM) and the \\emph{language reasoning} capacities to solve complex long-horizon tasks as in vision-language-action (VLA) models. At the core of WLA lies an \\emph{autoreg…",
-          "summaryCn": "提出世界-语言-动作（WLA）模型，统一世界建模、语言推理和动作生成；采用自回归Transformer骨干预测语义意图和物理动态，通过元查询实现世界预测与动作生成的隐式交互；在仿真和真实环境中验证了有效性。",
-          "reasonCn": "论文同时涉及视觉输入、语言指令和机器人动作输出，并以世界模型为核心用于动作预测，符合VLA和WAM标准。",
+          "summaryCn": "提出世界-语言-动作(WLA)模型，统一世界建模、语言推理和动作合成；采用自回归Transformer预测语义子任务和物理动态；通过世界专家监督和元查询隐式影响动作生成，支持测试时缩放，提升复杂长程任务中的机器人控制性能。",
+          "reasonCn": "论文提出WLA模型，同时涉及视觉输入、语言指令和机器人动作，并包含世界模型用于动作合成。",
           "lane": "BOTH",
           "link": "https://arxiv.org/abs/2606.05979v1",
           "pdfLink": "https://arxiv.org/pdf/2606.05979v1",
@@ -18049,37 +18056,813 @@ window.PAPERS_SITE_DATA = {
           ],
           "heuristicScore": 132,
           "llmTotalScore": 132
+        },
+        {
+          "id": "2606.05645v2",
+          "title": "Discrete-WAM: Unified Discrete Vision-Action Token Editing for World-Policy Learning",
+          "summary": "Autonomous driving requires reasoning about how ego actions shape future world evolution, rather than merely mapping observations to actions. However, most end-to-end methods rely on direct state-to-action imitation, while existing world models often remain weakly aligned with downstream policy generation. We introduce Discrete-WAM, a unified discrete vision-action world-policy framework that represents visual observations, future states, high-level decisions, and ego actions within a shared token space.",
+          "summaryCn": "提出Discrete-WAM，统一的离散视觉-动作世界-策略框架，将视觉、未来状态和动作映射到共享标记空间；通过多任务预训练实现动作条件未来预测直接支持策略生成；在自动驾驶基准上实现强规划性能，支持可控未来生成和反事实评估。",
+          "reasonCn": "以世界模型为核心，通过离散视觉-动作联合建模实现动作条件未来预测以支持策略生成，但不涉及语言指令。",
+          "lane": "WAM",
+          "link": "https://arxiv.org/abs/2606.05645v2",
+          "pdfLink": "https://arxiv.org/pdf/2606.05645v2",
+          "published": "2026-06-04T03:16:31Z",
+          "updated": "2026-06-09T07:25:40Z",
+          "authors": [
+            "Ziyang Yao",
+            "Haochen Liu",
+            "Yuncheng Jiang",
+            "Zeyu Zhu",
+            "Zibin Guo",
+            "Jingru Wang",
+            "Tianle Liu",
+            "Jianwei Cui",
+            "Kuiyuan Yang",
+            "Hongwei Xie"
+          ],
+          "categories": [
+            "cs.RO"
+          ],
+          "heuristicScore": 78,
+          "llmTotalScore": 78
         }
       ]
     },
     {
       "dateKey": "20260604",
       "dateLabel": "2026-06-04",
-      "generatedAt": "2026-07-23T03:29:55.758521+00:00",
-      "sourceMode": "fallback_30d",
-      "sourceNoteCn": "当日严格窗口与 7 天窗口均未命中论文，已回退展示截止当日最近 30 天内最相关的 VLA / WAM 论文。",
-      "papers": []
+      "generatedAt": "2026-07-24T03:21:46.894766+00:00",
+      "sourceMode": "strict",
+      "sourceNoteCn": "严格窗口：使用前一天 08:00 到当天 08:00 的 VLA / WAM 论文。",
+      "papers": [
+        {
+          "id": "2606.05254v1",
+          "title": "Flash-WAM: Modality-Aware Distillation for World Action Models",
+          "summary": "World-action models (WAMs) jointly generate future video and robot actions through iterative diffusion, achieving strong performance on manipulation benchmarks but requiring tens of denoising steps, a cost that precludes real-time control. Step distillation has emerged as the natural remedy, but off-the-shelf methods break down in the joint video-action setting because video and action streams use different SNR-shifted noise schedules and reach training with substantially different marginal noise distributions, an…",
+          "summaryCn": "Flash-WAM 提出模态感知的步数蒸馏框架，通过一致性蒸馏将世界动作模型压缩至单步推理，实现实时控制。方法基于对视频和动作模态噪声模式的结构分析，显著加速推理。在机器操作基准上实现 23 倍延迟降低，保持任务性能。",
+          "reasonCn": "论文专注于世界动作模型（WAM），联合生成未来视频和机器人动作，符合 WAM 标准，没有提及语言指令，故不属于 VLA。",
+          "lane": "WAM",
+          "link": "https://arxiv.org/abs/2606.05254v1",
+          "pdfLink": "https://arxiv.org/pdf/2606.05254v1",
+          "published": "2026-06-03T15:29:57Z",
+          "updated": "2026-06-03T15:29:57Z",
+          "authors": [
+            "Arman Akbari",
+            "Ci Zhang",
+            "Arash Akbari",
+            "Lin Zhao",
+            "Yixiao Chen",
+            "Weiwei Chen",
+            "Xuan Zhang",
+            "Geng Yuan",
+            "Yanzhi Wang"
+          ],
+          "categories": [
+            "cs.LG",
+            "cs.CV",
+            "cs.RO"
+          ],
+          "heuristicScore": 109,
+          "llmTotalScore": 109
+        },
+        {
+          "id": "2606.04463v2",
+          "title": "OSCAR: Omni-Embodiment Action-Conditioned World Model for Robotics",
+          "summary": "We present OSCAR, a precise action-conditioned video world model that generalizes across different robot embodiments and enables robot policy evaluation. Existing video world models face three main challenges for real-world robot evaluation: limited scenario diversity in current robot training datasets, imprecise action following, and poor generalization across embodiments for broad adoption. We tackle these challenges from two perspectives.",
+          "summaryCn": "OSCAR 是一个可跨实体泛化的动作条件视频世界模型，通过统一2D骨架条件表示和大规模数据管线训练，实现高质量的未来状态预测。模型用于机器人策略的虚拟评估，与真实环境表现高度相关，为策略开发提供高效测试平台。",
+          "reasonCn": "该论文提出动作条件视频世界模型，用于机器人策略评估，以世界模型为核心，并明确用于基于动作的预测和政策评估，符合 WAM 标准。",
+          "lane": "WAM",
+          "link": "https://arxiv.org/abs/2606.04463v2",
+          "pdfLink": "https://arxiv.org/pdf/2606.04463v2",
+          "published": "2026-06-03T05:16:41Z",
+          "updated": "2026-06-04T13:11:48Z",
+          "authors": [
+            "Zhuoyuan Wu",
+            "Jun Gao"
+          ],
+          "categories": [
+            "cs.RO"
+          ],
+          "heuristicScore": 83,
+          "llmTotalScore": 83
+        },
+        {
+          "id": "2606.04627v2",
+          "title": "MIRAGE: Mobile Agents with Implicit Reasoning and Generative World Models",
+          "summary": "Mobile agents are increasingly expected to operate everyday applications from screenshots and language goals, where reliable control requires reasoning over screen affordances, multi-step navigation, and future state changes. However, many agents externalize this computation as long textual chains of thought, which slows interaction, increases supervision cost, and complicates deployment. We introduce MIRAGE, a framework that learns continuous latent reasoning representations from visible textual reasoning traces.",
+          "summaryCn": "MIRAGE 框架从显式文本推理中学习隐式表征，并加入生成式世界模型目标来预测未来界面状态，使移动智能体在隐空间推理，减少解码文本量。在 Android 控制任务上，模型匹配或超过思维链微调基线，但推理效率大幅提升，展示了高效隐式推理的潜力。",
+          "reasonCn": "论文涉及视觉输入（屏幕截图）、语言指令（语言目标）和移动设备动作，符合 VLA 标准；世界模型作为辅助，不是核心用于动作预测，故不属于 WAM。",
+          "lane": "VLA",
+          "link": "https://arxiv.org/abs/2606.04627v2",
+          "pdfLink": "https://arxiv.org/pdf/2606.04627v2",
+          "published": "2026-06-03T09:01:24Z",
+          "updated": "2026-06-06T08:34:56Z",
+          "authors": [
+            "Zhichao Yang",
+            "Yuanze Hu",
+            "Haojie Hao",
+            "Longkun Hao",
+            "Dongshuo Huang",
+            "Hongyu Lin",
+            "Gen Li",
+            "Lanqing Hong",
+            "Yihang Lou",
+            "Yan Bai"
+          ],
+          "categories": [
+            "cs.AI"
+          ],
+          "heuristicScore": 59,
+          "llmTotalScore": 59
+        },
+        {
+          "id": "2606.04907v2",
+          "title": "WAM-Nav: Asymmetric Latent World-Action Modeling for Unified Visual Navigation",
+          "summary": "Visual navigation requires generating smooth and collision-free trajectories under complex geometric and physical constraints. Existing reactive policies that directly map observations to actions lack anticipatory reasoning, limiting their ability to proactively avoid obstacles. While visual imagination offers predictive foresight, conventional modular approaches separate scene prediction from policy learning, often leading to error accumulation and inefficient inference.",
+          "summaryCn": "WAM-Nav 提出非对称联合扩散的世界动作模型，同时输出长程导航动作和短程视觉预见，通过共享 Transformer 减少误差累积和延迟。引入双流上下文条件机制和统一目标对齐模块，支持多种视觉导航任务，提升了在复杂环境中的避障和规划能力。",
+          "reasonCn": "论文提出潜在世界动作模型，联合生成导航动作和视觉预测，以世界模型为核心用于动作生成和规划，符合 WAM 标准，没有语言指令。",
+          "lane": "WAM",
+          "link": "https://arxiv.org/abs/2606.04907v2",
+          "pdfLink": "https://arxiv.org/pdf/2606.04907v2",
+          "published": "2026-06-03T14:05:19Z",
+          "updated": "2026-06-13T10:28:53Z",
+          "authors": [
+            "Ning Yang",
+            "Yan Huang",
+            "Kaiwen Peng",
+            "Ziheng He",
+            "Kai Wang",
+            "Cui Miao",
+            "Kailin Lyu",
+            "Guo Li",
+            "Xiaofeng Wang",
+            "Zheng Zhu"
+          ],
+          "categories": [
+            "cs.RO"
+          ],
+          "heuristicScore": 58,
+          "llmTotalScore": 58
+        }
+      ]
     },
     {
       "dateKey": "20260603",
       "dateLabel": "2026-06-03",
-      "generatedAt": "2026-07-23T03:10:06.265239+00:00",
-      "sourceMode": "fallback_30d",
-      "sourceNoteCn": "当日严格窗口与 7 天窗口均未命中论文，已回退展示截止当日最近 30 天内最相关的 VLA / WAM 论文。",
-      "papers": []
+      "generatedAt": "2026-07-24T03:16:42.520504+00:00",
+      "sourceMode": "strict",
+      "sourceNoteCn": "严格窗口：使用前一天 08:00 到当天 08:00 的 VLA / WAM 论文。",
+      "papers": [
+        {
+          "id": "2606.03188v1",
+          "title": "GeoSem-WAM: Geometry- and Semantic-Aware World Action Models",
+          "summary": "Recent World Action Models (WAMs) have demonstrated impressive capabilities in embodied decision-making. However, whether their effectiveness stems from explicit future imagination during inference or representation learning induced by predictive training remains an open question. Emerging evidence suggests the primary advantage lies in learning robust latent representations rather than generating future observations at test time.",
+          "summaryCn": "该工作提出GeoSem-WAM，通过引入未来几何和语义辅助预测分支，在统一潜在空间中增强世界模型表征，无需测试时未来 rollout，显著提升动作预测和场景理解性能。",
+          "reasonCn": "论文提出了几何和语义感知的世界动作模型，通过结构化世界建模提升动作预测精度，符合WAM标准。",
+          "lane": "WAM",
+          "link": "https://arxiv.org/abs/2606.03188v1",
+          "pdfLink": "https://arxiv.org/pdf/2606.03188v1",
+          "published": "2026-06-02T05:48:02Z",
+          "updated": "2026-06-02T05:48:02Z",
+          "authors": [
+            "Fulong Ma",
+            "Daojie Peng",
+            "Wenjun Yue",
+            "Jiahang Cao",
+            "Bintao Wang",
+            "Qiang Zhang",
+            "Jun Ma"
+          ],
+          "categories": [
+            "cs.RO"
+          ],
+          "heuristicScore": 123,
+          "llmTotalScore": 0
+        },
+        {
+          "id": "2606.03159v1",
+          "title": "NVIDIA OmniDreams: Real-Time Generative World Model for Closed-Loop Autonomous Vehicle Simulation",
+          "summary": "As autonomous vehicle capabilities advance, the safe evaluation of driving policies in long-tail scenarios remains a critical bottleneck. In closed-loop simulation, the driving policy model actively interacts with the environment, where its actions dynamically update the simulator state and directly influence the next set of generated sensor observations. While recent reconstruction-based neural simulators offer photorealism, they are fundamentally constrained by their initial captured data and struggle to general…",
+          "summaryCn": "OmniDreams 基于 Cosmos 扩散模型训练，通过自回归地给定过去帧、模拟器状态和驾驶动作生成逼真传感器视频，在闭环仿真中作为反应式环境，支持自动驾驶策略的安全评估。",
+          "reasonCn": "论文提出一个用于自动驾驶闭环仿真的实时生成世界模型，以动作为条件生成视频，明确用于评估驾驶策略，符合WAM。",
+          "lane": "WAM",
+          "link": "https://arxiv.org/abs/2606.03159v1",
+          "pdfLink": "https://arxiv.org/pdf/2606.03159v1",
+          "published": "2026-06-02T05:11:05Z",
+          "updated": "2026-06-02T05:11:05Z",
+          "authors": [
+            "NVIDIA",
+            ":",
+            "Aarti Basant",
+            "Amlan Kar",
+            "Despoina Paschalidou",
+            "Fangyin Wei",
+            "Francesco Ferroni",
+            "Guillermo Garcia Cobo",
+            "Haithem Turki",
+            "Huan Ling"
+          ],
+          "categories": [
+            "cs.CV",
+            "cs.AI",
+            "cs.RO"
+          ],
+          "heuristicScore": 111,
+          "llmTotalScore": 0
+        },
+        {
+          "id": "2606.03868v1",
+          "title": "Unified Video-Action Joint Denoising for Dexterous Action and Data Generation",
+          "summary": "Recent world action models leverage video foundation models by aligning broad visual-dynamics priors with executable robot actions. We revisit this alignment from a distributional perspective. Existing formulations typically narrow the aligned prior into an observation-conditioned policy distribution over future actions.",
+          "summaryCn": "Donk 提出统一视频-动作去噪模型，在语言、初始图像和手部状态条件下生成未来视频及灵巧手动作轨迹，既能作为动作策略，也能作为数据引擎，提升了灵巧手操作的轨迹精度和视频保真度。",
+          "reasonCn": "该论文同时涉及视觉输入、语言指令和机器人动作输出，并以视频-动作联合建模的世界模型为核心，用于动作策略和数据生成，符合VLA和WAM。",
+          "lane": "BOTH",
+          "link": "https://arxiv.org/abs/2606.03868v1",
+          "pdfLink": "https://arxiv.org/pdf/2606.03868v1",
+          "published": "2026-06-02T16:39:23Z",
+          "updated": "2026-06-02T16:39:23Z",
+          "authors": [
+            "Dingrui Wang",
+            "YuAn Wang",
+            "Jinkun Liu",
+            "Yue Zhang",
+            "Mattia Piccinini",
+            "Yu Sun",
+            "Johannes Betz"
+          ],
+          "categories": [
+            "cs.CV"
+          ],
+          "heuristicScore": 24,
+          "llmTotalScore": 0
+        }
+      ]
     },
     {
       "dateKey": "20260602",
       "dateLabel": "2026-06-02",
-      "generatedAt": "2026-07-23T02:52:02.242547+00:00",
+      "generatedAt": "2026-07-24T03:04:06.574580+00:00",
       "sourceMode": "fallback_30d",
       "sourceNoteCn": "当日严格窗口与 7 天窗口均未命中论文，已回退展示截止当日最近 30 天内最相关的 VLA / WAM 论文。",
-      "papers": []
+      "papers": [
+        {
+          "id": "2605.06481v1",
+          "title": "OA-WAM: Object-Addressable World Action Model for Robust Robot Manipulation",
+          "summary": "World Action Models (WAMs) enhance Vision-Language-Action policies by jointly predicting scene evolution and robot actions, but existing methods usually represent the predicted world as holistic images, video tokens, or global latents. These representations are difficult for an action decoder to address when an instruction refers to a particular object, especially under scene shifts where object identity is entangled with context. We propose OA-WAM, an Object-Addressable World Action Model for robust robot manipul…",
+          "summaryCn": "OA-WAM将图像分解为目标插槽，实现对象级别寻址的世界动作建模。通过解耦地址与内容，增强在场景变化下的鲁棒操作。在LIBERO和SimplerEnv上达到先进性能。",
+          "reasonCn": "该工作提出对象可寻址的世界动作模型，同时预测场景演化和机器人动作，融合视觉、语言和动作。",
+          "lane": "BOTH",
+          "link": "https://arxiv.org/abs/2605.06481v1",
+          "pdfLink": "https://arxiv.org/pdf/2605.06481v1",
+          "published": "2026-05-07T16:06:08Z",
+          "updated": "2026-05-07T16:06:08Z",
+          "authors": [
+            "Yushan Liu",
+            "Peibo Sun",
+            "Shoujie Li",
+            "Yifan Xie",
+            "Lingfeng Zhang",
+            "Xintao Chao",
+            "Shiyuan Dong",
+            "Fang Chen",
+            "Xiao-Ping Zhang",
+            "Wenbo Ding"
+          ],
+          "categories": [
+            "cs.RO"
+          ],
+          "heuristicScore": 143,
+          "llmTotalScore": 143
+        },
+        {
+          "id": "2605.12090v1",
+          "title": "World Action Models: The Next Frontier in Embodied AI",
+          "summary": "Vision-Language-Action (VLA) models have achieved strong semantic generalization for embodied policy learning, yet they learn reactive observation-to-action mappings without explicitly modeling how the physical world evolves under intervention. A growing body of work addresses this limitation by integrating world models, predictive models of environment dynamics, into the action generation pipeline. We term this emerging paradigm World Action Models (WAMs): embodied foundation models that unify predictive state mo…",
+          "summaryCn": "本文对世界动作模型进行了系统化的概念界定与分类。提出级联和联合两类WAM架构，并分析了数据生态与评估协议。为具身AI研究提供了统一框架。",
+          "reasonCn": "该综述正式定义世界动作模型（WAM），并阐述VLA到WAM的演进，涵盖预测状态建模与动作生成。",
+          "lane": "BOTH",
+          "link": "https://arxiv.org/abs/2605.12090v1",
+          "pdfLink": "https://arxiv.org/pdf/2605.12090v1",
+          "published": "2026-05-12T13:10:52Z",
+          "updated": "2026-05-12T13:10:52Z",
+          "authors": [
+            "Siyin Wang",
+            "Junhao Shi",
+            "Zhaoyang Fu",
+            "Xinzhe He",
+            "Feihong Liu",
+            "Chenchen Yang",
+            "Yikang Zhou",
+            "Zhaoye Fei",
+            "Jingjing Gong",
+            "Jinlan Fu"
+          ],
+          "categories": [
+            "cs.RO",
+            "cs.CV"
+          ],
+          "heuristicScore": 137,
+          "llmTotalScore": 137
+        },
+        {
+          "id": "2606.01095v1",
+          "title": "Beyond Task Success: Behavioral and Representational Diagnostics for WAM and VLA",
+          "summary": "Vision-language-action (VLA) policies and World-Action Models (WAM) represent two increasingly important paradigms for robotic manipulation. However, it remains unclear whether future prediction in WAMs leads to behaviorally meaningful improvements beyond final task success. In this paper, we ask whether WAMs merely add future prediction, or whether they change robot behavior and internal representations in ways that are actionable for control.",
+          "summaryCn": "通过行为分析和稀疏自编码器特征分析，比较了7种策略的内部表征和动作动态。发现成功指标掩盖了WAM在对象级别行为上的改善。诊断结果为WAM设计提供了指导。",
+          "reasonCn": "该工作提出了一个模型诊断框架，专门对比分析VLA和WAM在行为与表征层面的差异。",
+          "lane": "BOTH",
+          "link": "https://arxiv.org/abs/2606.01095v1",
+          "pdfLink": "https://arxiv.org/pdf/2606.01095v1",
+          "published": "2026-05-31T08:35:12Z",
+          "updated": "2026-05-31T08:35:12Z",
+          "authors": [
+            "Hung Mai",
+            "Bin Zhu",
+            "Tuan Do"
+          ],
+          "categories": [
+            "cs.RO",
+            "cs.AI"
+          ],
+          "heuristicScore": 132,
+          "llmTotalScore": 132
+        },
+        {
+          "id": "2606.01955v1",
+          "title": "WALL-WM: Carving World Action Modeling at the Event Joints",
+          "summary": "WALL-WM is a World Action Model that shifts video-action learning from chunk-centric optimization to event-grounded Vision-Language-Action pretraining, using semantically coherent action events as the atomic unit of learning. Existing WAMs commonly initialize from multimodal or video foundation models and then optimize fixed-length action chunks conditioned directly on the current observation and instruction. Although convenient, this chunk-centric formulation creates a fundamental granularity mismatch.",
+          "summaryCn": "WALL-WM将视频-动作学习从固定块优化转向语义事件驱动的预训练。支持事件模式和统一模式推理，以适应不同指令。在多个基准上展现了可扩展性。",
+          "reasonCn": "WALL-WM以事件为粒度进行视觉-语言-动作预训练，实现世界动作建模。",
+          "lane": "BOTH",
+          "link": "https://arxiv.org/abs/2606.01955v1",
+          "pdfLink": "https://arxiv.org/pdf/2606.01955v1",
+          "published": "2026-06-01T09:14:51Z",
+          "updated": "2026-06-01T09:14:51Z",
+          "authors": [
+            "Shalfun Li",
+            "Victor Yao",
+            "Charles Yang",
+            "Truth Qu",
+            "Regis Cheng",
+            "Ryan Yu",
+            "Howard Lu",
+            "Newton Von",
+            "Vincent Chen",
+            "Yohann Tang"
+          ],
+          "categories": [
+            "cs.RO",
+            "cs.CV"
+          ],
+          "heuristicScore": 117,
+          "llmTotalScore": 117
+        },
+        {
+          "id": "2605.15964v1",
+          "title": "WorldVLN: Autoregressive World Action Model for Aerial Vision-Language Navigation",
+          "summary": "Aerial vision-language navigation (VLN) requires agents to follow natural-language instructions through closed-loop perception and action in 3D environments. We argue that aerial VLN can be formulated as a prediction-driven world-action problem: the agent should anticipate latent world evolution and act according to the predicted consequences. To this end, we propose WorldVLN, the first autoregressive world action model for aerial VLN.",
+          "summaryCn": "WorldVLN利用潜在自回归视频骨干预测短视距世界状态转移并解码为航点动作。引入两阶段训练，包括强化学习优化。在室外和室内基准上超越现有VLA方法。",
+          "reasonCn": "提出首个用于空中视觉语言导航的自回归世界动作模型，融合指令、视觉和动作预测。",
+          "lane": "BOTH",
+          "link": "https://arxiv.org/abs/2605.15964v1",
+          "pdfLink": "https://arxiv.org/pdf/2605.15964v1",
+          "published": "2026-05-15T13:55:39Z",
+          "updated": "2026-05-15T13:55:39Z",
+          "authors": [
+            "Baining Zhao",
+            "Jiacheng Xu",
+            "Weicheng Feng",
+            "Xin Zhang",
+            "Zhaolu Wang",
+            "Haoyang Wang",
+            "Shilong Ji",
+            "Ziyou Wang",
+            "Jianjie Fang",
+            "Zhiheng Zheng"
+          ],
+          "categories": [
+            "cs.RO",
+            "cs.CV"
+          ],
+          "heuristicScore": 117,
+          "llmTotalScore": 117
+        },
+        {
+          "id": "2605.10942v1",
+          "title": "HarmoWAM: Harmonizing Generalizable and Precise Manipulation via Adaptive World Action Models",
+          "summary": "World Action Models (WAMs) have emerged as a promising paradigm for robot control by modeling physical dynamics. Current WAMs generally follow two paradigms: the \"Imagine-then-Execute\" approach, which uses video prediction to infer actions via inverse dynamics, and the \"Joint Modeling\" approach, which jointly models actions and video representations. Based on systematic experiments, we observe a fundamental trade-off between these paradigms: the former explicitly leverages world models for generalizable transit bu…",
+          "summaryCn": "通过世界模型提供时空先验，协调预测专家与反应专家。进程自适应门控机制自动确定切换时机。在机器人操作任务中实现鲁棒操控。",
+          "reasonCn": "HarmoWAM提出自适应世界动作模型，统一预测与反应控制，解决泛化与精度权衡。",
+          "lane": "BOTH",
+          "link": "https://arxiv.org/abs/2605.10942v1",
+          "pdfLink": "https://arxiv.org/pdf/2605.10942v1",
+          "published": "2026-05-11T17:59:56Z",
+          "updated": "2026-05-11T17:59:56Z",
+          "authors": [
+            "Qiuxuan Feng",
+            "Jiale Yu",
+            "Jiaming Liu",
+            "Yueru Jia",
+            "Zhuangzhe Wu",
+            "Hao Chen",
+            "Zezhong Qian",
+            "Shuo Gu",
+            "Peng Jia",
+            "Siwei Ma"
+          ],
+          "categories": [
+            "cs.RO"
+          ],
+          "heuristicScore": 113,
+          "llmTotalScore": 113
+        },
+        {
+          "id": "2605.07079v1",
+          "title": "Learning Visual Feature-Based World Models via Residual Latent Action",
+          "summary": "World models predict future transitions from observations and actions. Existing works predominantly focus on image generation only. Visual feature-based world models, on the other hand, predict future visual features instead of raw video pixels, offering a promising alternative that is more efficient and less prone to hallucination.",
+          "summaryCn": "RLA-WM从DINO残差中学习残差潜动作，利用流匹配预测未来特征。比视频扩散世界模型更快，并用于从无动作演示中学习世界动作模型和视觉RL。为世界模型在机器人学习中的应用提供了新途径。",
+          "reasonCn": "提出基于视觉特征的世界模型RLA-WM，通过残差潜动作预测未来特征，用于改进策略学习，明确涉及动作预测与控制。",
+          "lane": "WAM",
+          "link": "https://arxiv.org/abs/2605.07079v1",
+          "pdfLink": "https://arxiv.org/pdf/2605.07079v1",
+          "published": "2026-05-08T00:58:16Z",
+          "updated": "2026-05-08T00:58:16Z",
+          "authors": [
+            "Xinyu Zhang",
+            "Zhengtong Xu",
+            "Yutian Tao",
+            "Yeping Wang",
+            "Yu She",
+            "Abdeslam Boularias"
+          ],
+          "categories": [
+            "cs.CV",
+            "cs.AI",
+            "cs.LG",
+            "cs.RO"
+          ],
+          "heuristicScore": 113,
+          "llmTotalScore": 113
+        },
+        {
+          "id": "2605.06247v1",
+          "title": "CKT-WAM: Parameter-Efficient Context Knowledge Transfer Between World Action Models",
+          "summary": "World action models (WAMs) provide a powerful generative framework for embodied control, yet transferring knowledge across heterogeneous WAMs remains challenging due to mismatched latent interfaces, high adaptation cost, and the rigidity of conventional distillation objectives. We propose \\textbf{CKT-WAM}, a parameter-efficient \\textbf{C}ontext \\textbf{K}nowledge \\textbf{T}ransfer framework that transfers teacher WAM's knowledge into a student WAM through a compact context in the text embedding space, rather than…",
+          "summaryCn": "CKT-WAM通过紧凑的文本嵌入上下文传递知识，避免输出模仿。使用可学习查询交叉注意力和适配器，减少可训练参数。在LIBERO-Plus上取得最佳性能，并验证了真实世界长程操作。",
+          "reasonCn": "提出WAM之间知识迁移的框架，提升零样本泛化能力，用于具身控制。",
+          "lane": "WAM",
+          "link": "https://arxiv.org/abs/2605.06247v1",
+          "pdfLink": "https://arxiv.org/pdf/2605.06247v1",
+          "published": "2026-05-07T13:26:51Z",
+          "updated": "2026-05-07T13:26:51Z",
+          "authors": [
+            "Yuhua Jiang",
+            "Yijun Guo",
+            "Hongbing Yang",
+            "Guojun Lei",
+            "Nuo Chen",
+            "Yinuo Zhang",
+            "Shaoqiang Yan",
+            "Bo Lin",
+            "Feifei Gao",
+            "Biqing Qi"
+          ],
+          "categories": [
+            "cs.RO"
+          ],
+          "heuristicScore": 103,
+          "llmTotalScore": 103
+        },
+        {
+          "id": "2605.25829v1",
+          "title": "OASIS: Observation-Action Space Alignment via SE(3) Trajectory Prediction for Robotic Manipulation",
+          "summary": "Recent vision-language-action (VLA) models and world action models (WAMs) advance robotic manipulation by enriching intermediate representations with auxiliary spatial features or future visual-state prediction. However, these representations largely remain within the observation space and do not share the rigid-body geometry of the action space, forcing the action decoder to implicitly recover this geometry. We propose OASIS, a visuomotor policy that aligns the intermediate representation with the action space vi…",
+          "summaryCn": "OASIS将3D感知特征编码器与SE(3)轨迹预测器结合，生成刚体运动一致的动作块。在仿真和真实实验中超越基线。显式几何表示提升了泛化能力。",
+          "reasonCn": "OASIS在VLA/WAM基础上引入SE(3)轨迹预测来对齐观察与动作空间，融合视觉、语言和动作。",
+          "lane": "BOTH",
+          "link": "https://arxiv.org/abs/2605.25829v1",
+          "pdfLink": "https://arxiv.org/pdf/2605.25829v1",
+          "published": "2026-05-25T13:28:33Z",
+          "updated": "2026-05-25T13:28:33Z",
+          "authors": [
+            "Xinzhe Chen",
+            "Sihua Ren",
+            "Liqi Huang",
+            "Haowen Sun",
+            "Mingyang Li",
+            "Xingyu Chen",
+            "Zeyang Liu",
+            "Xuguang Lan"
+          ],
+          "categories": [
+            "cs.RO",
+            "cs.AI"
+          ],
+          "heuristicScore": 84,
+          "llmTotalScore": 84
+        },
+        {
+          "id": "2605.07514v1",
+          "title": "Is the Future Compatible? Diagnosing Dynamic Consistency in World Action Models",
+          "summary": "World Action Models (WAMs) enable decision-making through imagined rollouts by predicting future observations and actions. However, the reliability of these imagined futures remains under-examined: is a generated future merely visually plausible, or is it dynamically compatible with the action sequence it claims to model? In this work, we identify action-state consistency, the alignment between predicted actions and induced state transitions, as a missing reliability axis for WAMs.",
+          "summaryCn": "发现动作-状态一致性可以有效区分成功与失败轨迹。提出无价值函数的共识策略用于测试时选择，无需训练。在RoboCasa和RoboTwin上提升了成功率。",
+          "reasonCn": "诊断世界动作模型中预测未来与动作序列的动态一致性，属于WAM可靠性研究。",
+          "lane": "WAM",
+          "link": "https://arxiv.org/abs/2605.07514v1",
+          "pdfLink": "https://arxiv.org/pdf/2605.07514v1",
+          "published": "2026-05-08T09:44:43Z",
+          "updated": "2026-05-08T09:44:43Z",
+          "authors": [
+            "Bo-Kai Ruan",
+            "Teng-Fang Hsiao",
+            "Ling Lo",
+            "Hong-Han Shuai"
+          ],
+          "categories": [
+            "cs.RO",
+            "cs.CV"
+          ],
+          "heuristicScore": 77,
+          "llmTotalScore": 77
+        },
+        {
+          "id": "2605.06222v2",
+          "title": "When to Trust Imagination: Adaptive Action Execution for World Action Models",
+          "summary": "World Action Models (WAMs) have recently emerged as a promising paradigm for robotic manipulation by jointly predicting future visual observations and future actions. However, current WAMs typically execute a fixed number of predicted actions after each model inference, leaving the robot blind to whether the imagined future remains consistent with the actual physical rollout. In this work, we formulate adaptive WAM execution as a future-reality verification problem: the robot should execute longer when the WAM-pre…",
+          "summaryCn": "提出未来前向动力学因果注意力（FFDC）验证器，估计剩余动作是否可信。混合时间步训练改善长程覆盖。实现了效率与鲁棒性的权衡。",
+          "reasonCn": "研究WAM的自适应动作执行，通过验证预测未来与现实一致性提高鲁棒性。",
+          "lane": "WAM",
+          "link": "https://arxiv.org/abs/2605.06222v2",
+          "pdfLink": "https://arxiv.org/pdf/2605.06222v2",
+          "published": "2026-05-07T13:18:28Z",
+          "updated": "2026-05-09T10:59:29Z",
+          "authors": [
+            "Rui Wang",
+            "Yue Zhang",
+            "Jiehong Lin",
+            "Kuncheng Luo",
+            "Jianan Wang",
+            "Zhongrui Wang",
+            "Xiaojuan Qi"
+          ],
+          "categories": [
+            "cs.RO",
+            "cs.AI"
+          ],
+          "heuristicScore": 77,
+          "llmTotalScore": 77
+        },
+        {
+          "id": "2605.27947v2",
+          "title": "SANTS: A State-Adaptive Scheduler for World Action Models",
+          "summary": "World Action Models (WAMs) improve robot manipulation by using video-based future representations to condition action generation. In pixel-space WAMs, however, the best action condition is not necessarily the fully denoised video. Controlled denoising-depth scans show that video refinement can reduce action error up to a state-dependent point, after which the gain may saturate or even reverse when late predictions become less action-relevant or physically unreliable.",
+          "summaryCn": "发现视频去噪深度对动作质量的影响与状态相关，提出学习停止危险和噪声比的调度器。以路径奖励优化，在RoboTwin上达到94.4%成功率，并大幅降低延迟。",
+          "reasonCn": "SANTS为像素空间WAM设计状态自适应噪声轨迹调度器，优化动作生成。",
+          "lane": "WAM",
+          "link": "https://arxiv.org/abs/2605.27947v2",
+          "pdfLink": "https://arxiv.org/pdf/2605.27947v2",
+          "published": "2026-05-27T04:40:48Z",
+          "updated": "2026-07-14T03:37:07Z",
+          "authors": [
+            "Yirui Sun",
+            "Guangyu Zhuge",
+            "Keliang Liu",
+            "Jie Gu",
+            "Xinyu Bing",
+            "Zhongxue Gan",
+            "Chunxu Tian"
+          ],
+          "categories": [
+            "cs.RO"
+          ],
+          "heuristicScore": 73,
+          "llmTotalScore": 73
+        },
+        {
+          "id": "2605.07794v1",
+          "title": "NoiseGate: Learning Per-Latent Timestep Schedules as Information Gating in World Action Models",
+          "summary": "World Action Models (WAMs) are an emerging family of policies that tie robot action generation to future-observation modeling. In this work, we focus on the joint video--action modeling paradigm, where actions and imagined future observations are co-generated along a shared denoising or flow trajectory, so that perception, prediction, and control are coupled within one generative process. Existing WAMs typically realize this paradigm with a Mixture-of-Transformers (MoT), where video and action tokens interact thro…",
+          "summaryCn": "取代共享时间步，通过独立采样和轻量门控网络动态调整每个预测帧的噪声水平。提高了动作生成的可靠性，并在机器人操作任务中验证。",
+          "reasonCn": "NoiseGate将每个潜在帧的时间步视为可学习信息门控策略，改进WAM中的视频-动作联合建模。",
+          "lane": "WAM",
+          "link": "https://arxiv.org/abs/2605.07794v1",
+          "pdfLink": "https://arxiv.org/pdf/2605.07794v1",
+          "published": "2026-05-08T14:31:52Z",
+          "updated": "2026-05-08T14:31:52Z",
+          "authors": [
+            "Wen Huang",
+            "Haoran Sun",
+            "Yongjian Guo",
+            "Yunxuan Ma",
+            "Haoran Li",
+            "Jing Long",
+            "Zhouying Mo",
+            "Zhong Guan",
+            "Yucheng Guo",
+            "Shuai Di"
+          ],
+          "categories": [
+            "cs.RO"
+          ],
+          "heuristicScore": 73,
+          "llmTotalScore": 73
+        },
+        {
+          "id": "2605.13548v3",
+          "title": "AttenA+: Rectifying Action Inequality in Robotic Foundation Models",
+          "summary": "Existing robotic foundation models, while powerful, are predicated on an implicit assumption of temporal homogeneity: treating all actions as equally informative during optimization. This \"flat\" training paradigm, inherited from language modeling, remains indifferent to the underlying physical hierarchy of manipulation. In reality, robot trajectories are fundamentally heterogeneous, where low-velocity segments often dictate task success through precision-demanding interactions, while high-velocity motions serve as…",
+          "summaryCn": "针对物理层次异构性，基于逆速度场重新加权训练目标，使模型关注精密交互段。即插即用，提升了OpenVLA等模型的性能。",
+          "reasonCn": "AttenA+是一种架构无关框架，通过速度驱动注意力加权提升VLA和WAM在长程任务上的表现。",
+          "lane": "BOTH",
+          "link": "https://arxiv.org/abs/2605.13548v3",
+          "pdfLink": "https://arxiv.org/pdf/2605.13548v3",
+          "published": "2026-05-13T13:55:37Z",
+          "updated": "2026-06-01T10:46:32Z",
+          "authors": [
+            "Daojie Peng",
+            "Fulong Ma",
+            "Jiahang Cao",
+            "Qiang Zhang",
+            "Xupeng Xie",
+            "Jian Guo",
+            "Ping Luo",
+            "Andrew F. Luo",
+            "Boyu Zhou",
+            "Jun Ma"
+          ],
+          "categories": [
+            "cs.RO",
+            "cs.AI"
+          ],
+          "heuristicScore": 72,
+          "llmTotalScore": 72
+        },
+        {
+          "id": "2605.08638v1",
+          "title": "Geometry Guided Self-Consistency for Physical AI",
+          "summary": "State-of-the-art physical AI models generate a chunk of actions per inference through diffusion or flow matching, iteratively refining an initial noise sample into an action trajectory. Because this inference process is inherently stochastic, committing to a single trajectory per round is brittle, and this brittleness compounds across the many sequential rounds that comprise a complete episode. We introduce KeyStone, an inference-time self-consistency method for diffusion-based action generation that draws $K$ can…",
+          "summaryCn": "并行采样多个动作块，通过聚类和几何相似度选择最佳动作。无需额外模型，利用动作空间的欧氏距离反映物理相似性。提高了任务成功率。",
+          "reasonCn": "KeyStone是一种推理时自一致性方法，用于扩散动作生成，适用于VLA和WAM。",
+          "lane": "BOTH",
+          "link": "https://arxiv.org/abs/2605.08638v1",
+          "pdfLink": "https://arxiv.org/pdf/2605.08638v1",
+          "published": "2026-05-09T03:14:30Z",
+          "updated": "2026-05-09T03:14:30Z",
+          "authors": [
+            "Yinwei Dai",
+            "Zhuofu Chen",
+            "Lijie Yang",
+            "Ravi Netravali"
+          ],
+          "categories": [
+            "cs.RO",
+            "cs.AI"
+          ],
+          "heuristicScore": 72,
+          "llmTotalScore": 72
+        },
+        {
+          "id": "2605.06192v1",
+          "title": "EA-WM: Event-Aware Generative World Model with Structured Kinematic-to-Visual Action Fields",
+          "summary": "Pretrained video diffusion models provide powerful spatiotemporal generative priors, making them a natural foundation for robotic world models. While recent world-action models jointly optimize future videos and actions, they predominantly treat video generation as an auxiliary representation for policy learning. Consequently, they insufficiently explore the inverse problem: leveraging action signals to guide video synthesis, thereby often failing to preserve precise robot spatial geometry and fine-grained robot-o…",
+          "summaryCn": "将动作和运动状态投影为结构化场，融合事件感知注意力捕捉交互动态。在世界模拟基准WorldArena上取得最优。加强了运动控制与视觉感知的联系。",
+          "reasonCn": "EA-WM是事件感知生成世界模型，利用结构化运动学-视觉动作场进行视频生成和动作引导，用于机器人世界模型。",
+          "lane": "WAM",
+          "link": "https://arxiv.org/abs/2605.06192v1",
+          "pdfLink": "https://arxiv.org/pdf/2605.06192v1",
+          "published": "2026-05-07T13:06:19Z",
+          "updated": "2026-05-07T13:06:19Z",
+          "authors": [
+            "Zhaoyang Yang",
+            "Yurun Jin",
+            "Lizhe Qi",
+            "Cong Huang",
+            "Kai Chen"
+          ],
+          "categories": [
+            "cs.CV",
+            "cs.AI",
+            "cs.RO"
+          ],
+          "heuristicScore": 71,
+          "llmTotalScore": 71
+        },
+        {
+          "id": "2605.11550v1",
+          "title": "The DAWN of World-Action Interactive Models",
+          "summary": "A plausible scene evolution depends on the maneuver being considered, while a good maneuver depends on how the scene may evolve. Existing World Action Models (WAMs) largely miss this reciprocity, treating world prediction and action generation as either isolated parallel branches or rigid predict-then-plan pipelines. We formalize this perspective as World-Action Interactive Models (WAIMs), and instantiate it in autonomous driving with \\textbf{DAWN} (\\textbf{D}enoising \\textbf{A}ctions and \\textbf{W}orld i\\textbf{N…",
+          "summaryCn": "DAWN在紧凑语义潜空间中耦合世界预测器与动作去噪器，通过递归细化生成轨迹。在自动驾驶基准上展现强规划性能。为交互世界-动作生成提供了原则性方法。",
+          "reasonCn": "提出世界-动作交互模型DAWN，实现自动驾驶中预测与规划的交互细化，明确用于控制。",
+          "lane": "WAM",
+          "link": "https://arxiv.org/abs/2605.11550v1",
+          "pdfLink": "https://arxiv.org/pdf/2605.11550v1",
+          "published": "2026-05-12T05:30:00Z",
+          "updated": "2026-05-12T05:30:00Z",
+          "authors": [
+            "Hongbo Lu",
+            "Liang Yao",
+            "Chenghao He",
+            "Haoyu Wang",
+            "Xiang Gu",
+            "Xianfei Li",
+            "Wenlong Liao",
+            "Tao He",
+            "Pai Peng"
+          ],
+          "categories": [
+            "cs.CV"
+          ],
+          "heuristicScore": 64,
+          "llmTotalScore": 64
+        },
+        {
+          "id": "2606.02800v4",
+          "title": "Cosmos 3: Omnimodal World Models for Physical AI",
+          "summary": "We introduce Cosmos 3, a family of omnimodal world models designed to jointly process and generate language, image, video, audio, and action sequences within a unified mixture-of-transformers architecture. By supporting highly flexible input-output configurations, Cosmos 3 seamlessly unifies critical modalities for Physical AI -- effectively subsuming vision-language models, video generators, world simulators, and world-action models into a single framework. Our evaluation demonstrates that Cosmos 3 establishes a…",
+          "summaryCn": "Cosmos 3采用混合专家架构，灵活处理多模态输入输出。在理解与生成任务上达到新领先水平，并作为策略模型在RoboArena获得最佳。开源模型推动物理AI研究。",
+          "reasonCn": "Cosmos 3是统一多模态世界模型，支持语言、视觉和动作序列，覆盖VLA和WAM功能。",
+          "lane": "BOTH",
+          "link": "https://arxiv.org/abs/2606.02800v4",
+          "pdfLink": "https://arxiv.org/pdf/2606.02800v4",
+          "published": "2026-06-01T19:12:30Z",
+          "updated": "2026-06-23T17:33:32Z",
+          "authors": [
+            "NVIDIA",
+            ":",
+            "Aditi",
+            "Niket Agarwal",
+            "Arslan Ali",
+            "Jon Allen",
+            "Martin Antolini",
+            "Adeline Aubame",
+            "Alisson Azzolini",
+            "Junjie Bai"
+          ],
+          "categories": [
+            "cs.CV",
+            "cs.AI",
+            "cs.LG",
+            "cs.RO"
+          ],
+          "heuristicScore": 53,
+          "llmTotalScore": 53
+        },
+        {
+          "id": "2606.01205v2",
+          "title": "ImagineUAV: Aerial Vision-Language Navigation via World-Action Modeling and Kinodynamic Planning",
+          "summary": "Vision-language navigation (VLN) for UAVs demands grounding free-form instructions into 6-DoF flight under partial observability. While Vision-Language-Action (VLA) models excel at semantic reasoning, they suffer from brittleness due to geometric inconsistency and dynamics mismatch. To address this, we propose ImagineUAV, an imagination-driven framework leveraging cascaded world-action modeling.",
+          "summaryCn": "通过潜在视频扩散模型想象未来观测，提取6-DoF动作，再由运动动力学规划器优化。步长蒸馏实现实时推理。在基准和真实飞行中优于先前方法。",
+          "reasonCn": "ImagineUAV结合世界动作建模与运动规划，实现无人机视觉语言导航，涉及指令、视觉和动作。",
+          "lane": "BOTH",
+          "link": "https://arxiv.org/abs/2606.01205v2",
+          "pdfLink": "https://arxiv.org/pdf/2606.01205v2",
+          "published": "2026-05-31T12:39:44Z",
+          "updated": "2026-06-08T02:19:04Z",
+          "authors": [
+            "Xuchen Liu",
+            "Jiawei Huang",
+            "Shihao Xia",
+            "Bingxi Liu",
+            "Jinqiang Cui",
+            "Jiankun Yang"
+          ],
+          "categories": [
+            "cs.RO"
+          ],
+          "heuristicScore": 48,
+          "llmTotalScore": 48
+        },
+        {
+          "id": "2605.23856v1",
+          "title": "Point Tracking Improves World Action Models",
+          "summary": "Robot policy learning benefits from world-action models that capture environment dynamics, but pixel-level prediction entangles dynamics with nuisance factors such as lighting and texture, making learned representations vulnerable to task-irrelevant visual variation. We propose JOPAT, a JOint Pixel-And-Track World-Action Model that predicts latent visual observations, 2D point tracks with visibility, and actions in a single denoising diffusion transformer. The key insight is that tracks provide an explicit represe…",
+          "summaryCn": "联合预测潜在视觉观测、2D点轨迹和动作。点追踪显式表示运动，处理遮挡和离屏运动。在LIBERO和真实任务上超过纯像素基线，长程任务提升显著。",
+          "reasonCn": "JOPAT在WAM中加入点追踪预测，改善动态建模，用于机器人策略学习。",
+          "lane": "WAM",
+          "link": "https://arxiv.org/abs/2605.23856v1",
+          "pdfLink": "https://arxiv.org/pdf/2605.23856v1",
+          "published": "2026-05-22T17:08:37Z",
+          "updated": "2026-05-22T17:08:37Z",
+          "authors": [
+            "Jiarui Guan",
+            "Wenshuai Zhao",
+            "Yue Pei",
+            "Ziliang Chen",
+            "Arno Solin",
+            "Juho Kannala"
+          ],
+          "categories": [
+            "cs.RO"
+          ],
+          "heuristicScore": 45,
+          "llmTotalScore": 45
+        }
+      ]
     },
     {
       "dateKey": "20260601",
       "dateLabel": "2026-06-01",
-      "generatedAt": "2026-07-23T02:31:46.020423+00:00",
+      "generatedAt": "2026-07-24T02:30:18.483989+00:00",
       "sourceMode": "fallback_30d",
       "sourceNoteCn": "当日严格窗口与 7 天窗口均未命中论文，已回退展示截止当日最近 30 天内最相关的 VLA / WAM 论文。",
       "papers": []
