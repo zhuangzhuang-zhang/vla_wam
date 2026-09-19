@@ -1,5 +1,5 @@
 window.PAPERS_SITE_DATA = {
-  "generatedAt": "2026-09-18T03:22:27.259792+00:00",
+  "generatedAt": "2026-09-19T03:21:42.716372+00:00",
   "description": "每天北京时间 08:00 自动更新，只筛选与 VLA 和 WAM 主问题强相关的 arXiv 新论文。",
   "dateWindowDays": 7,
   "categories": [
@@ -12,12 +12,20 @@ window.PAPERS_SITE_DATA = {
     "vision-language-action",
     "world action model"
   ],
-  "currentDateKey": "20260918",
+  "currentDateKey": "20260919",
   "selectionMethod": "deepseek_vla_wam_rerank",
   "llmEnabled": true,
   "llmProvider": "DeepSeek",
   "modelInfo": "deepseek-v4-pro",
   "archives": [
+    {
+      "dateKey": "20260919",
+      "dateLabel": "2026-09-19",
+      "generatedAt": "2026-09-19T03:21:42.716250+00:00",
+      "sourceMode": "fallback_30d",
+      "sourceNoteCn": "当日严格窗口与 7 天窗口均未命中论文，已回退展示截止当日最近 30 天内最相关的 VLA / WAM 论文。",
+      "papers": []
+    },
     {
       "dateKey": "20260918",
       "dateLabel": "2026-09-18",
@@ -23225,223 +23233,6 @@ window.PAPERS_SITE_DATA = {
             "cs.AI"
           ],
           "heuristicScore": 49,
-          "llmTotalScore": 0
-        }
-      ]
-    },
-    {
-      "dateKey": "20260721",
-      "dateLabel": "2026-07-21",
-      "generatedAt": "2026-07-21T02:50:07.856364+00:00",
-      "sourceMode": "strict",
-      "sourceNoteCn": "严格窗口：使用前一天 08:00 到当天 08:00 的 VLA / WAM 论文。",
-      "papers": [
-        {
-          "id": "2607.18231v1",
-          "title": "FM-VLA: Force-based Memory for Vision-Language-Action Models in Contact-Rich Manipulation",
-          "summary": "Vision-language-action (VLA) models have achieved impressive generalization in robotic manipulation, and recent memory-augmented VLAs have relaxed the Markovian assumption by conditioning on past images or language summaries. Vision-based memory approaches address this by conditioning on sampled past image frames, but they are computationally expensive and fundamentally limited when temporal events are visually ambiguous, e.g., pushing a button multiple times with small movements. We propose FM-VLA, a VLA model wi…",
-          "summaryCn": "提出FM-VLA，通过力觉记忆令牌增强VLA模型在接触密集型操作中的时序推理。该方法将力历史编码为紧凑记忆，与短时状态一起作为附加条件输入动作专家模块，有效处理非马尔可夫任务。实验表明以极低推理开销实现超过80%成功率，显著超越基准。",
-          "reasonCn": "明确提出了视觉-语言-动作（VLA）模型，利用视觉和语言指令输出机器人动作。",
-          "lane": "VLA",
-          "link": "https://arxiv.org/abs/2607.18231v1",
-          "pdfLink": "https://arxiv.org/pdf/2607.18231v1",
-          "published": "2026-07-20T17:58:31Z",
-          "updated": "2026-07-20T17:58:31Z",
-          "authors": [
-            "Ruicheng Li",
-            "Qixiu Li",
-            "Ruichun Ma",
-            "Yu Deng",
-            "Lin Luo",
-            "Zhiying Du",
-            "Jianfeng Xiang",
-            "Huizhi Liang",
-            "Ruicheng Wang",
-            "Jiaolong Yang"
-          ],
-          "categories": [
-            "cs.RO"
-          ],
-          "heuristicScore": 113,
-          "llmTotalScore": 0
-        },
-        {
-          "id": "2607.17786v1",
-          "title": "Reasoning as a Double-Edged Sword: Architecture and Cross-Stage Robustness in Vision-Language-Action Models",
-          "summary": "Does adding a reasoning step make a Vision-Language-Action (VLA) model more robust to perturbation? Intuitively, a policy that reasons before acting should absorb a perturbed input better than one that maps observations directly to actions. We test this premise head-on across three models that span the reasoning spectrum (no reasoning, a text chain-of-thought, and a latent iterative loop), perturbing each at the vision, reasoning, and action stages on LIBERO and SimplerEnv.",
-          "summaryCn": "探讨添加推理步骤是否提升VLA模型鲁棒性，在LIBERO和SimplerEnv上测试三类模型。发现潜在迭代推理模型最脆弱，而文本链式思维模型相对鲁棒；还分析了在运行时将推理输出作为安全信号的可行性。研究揭示了不同推理架构的鲁棒性权衡，并指出当前监控机制在自适应攻击下失效。",
-          "reasonCn": "论文研究VLA模型在视觉、推理和动作阶段的鲁棒性，属于VLA相关研究。",
-          "lane": "VLA",
-          "link": "https://arxiv.org/abs/2607.17786v1",
-          "pdfLink": "https://arxiv.org/pdf/2607.17786v1",
-          "published": "2026-07-20T10:20:32Z",
-          "updated": "2026-07-20T10:20:32Z",
-          "authors": [
-            "Tuan Duong Trinh",
-            "Naveed Akhtar",
-            "Basim Azam"
-          ],
-          "categories": [
-            "cs.RO",
-            "cs.AI",
-            "cs.LG"
-          ],
-          "heuristicScore": 89,
-          "llmTotalScore": 0
-        },
-        {
-          "id": "2607.18016v1",
-          "title": "Closing the Loop in Humanoid VLA: Persistent 3D Object Tokens for Verifiable Loco-Manipulation",
-          "summary": "Vision-language-action policies are a promising foundation for general robot control, but long-horizon humanoid loco-manipulation requires the robot to treat task objects as persistent physical entities across movement, contact, occlusion, and recovery. We study this problem as object-state divergence: the object state used to condition a whole-body action can differ from the state used to decide whether the action achieved the intended physical relation. We propose \\emph{Persistent Object Tokenization} (POT), whi…",
-          "summaryCn": "引入持久对象令牌化（POT）维持角色索引的3D对象记录，用于VLA的全身份体动作生成和几何谓词校验，实现闭环可验证执行。在Unitree G1上显著改善基线GR00T-N1.7的成功率，尤其在需要维持3D关系的长程任务中增益最大。",
-          "reasonCn": "提出用于人形机器人VLA的持久化3D对象令牌方法，直接涉及视觉、语言和动作。",
-          "lane": "VLA",
-          "link": "https://arxiv.org/abs/2607.18016v1",
-          "pdfLink": "https://arxiv.org/pdf/2607.18016v1",
-          "published": "2026-07-20T14:52:46Z",
-          "updated": "2026-07-20T14:52:46Z",
-          "authors": [
-            "Peng Ren",
-            "Haoyang Ge",
-            "Jiang Zhao",
-            "Cong Huang",
-            "Yukun Shi",
-            "Pei Chi",
-            "Kai Chen"
-          ],
-          "categories": [
-            "cs.RO"
-          ],
-          "heuristicScore": 88,
-          "llmTotalScore": 0
-        },
-        {
-          "id": "2607.17521v1",
-          "title": "GeoWorldAD: Geometry World Action Model for Autonomous Driving",
-          "summary": "Autonomous driving requires both safe and efficient planning decisions in dynamic 3D environments. Although recent Vision/Video-Action models learn policies directly from visual observations and scale well with advances in vision transformers and large-scale training data, they often lack explicit geometric grounding and future-aware spatial guidance, limiting their ability to balance collision avoidance and driving progress. In this work, we propose GeoWorldAD, a geometry world action model that grounds trajector…",
-          "summaryCn": "提出GeoWorldAD，一种用于自动驾驶的几何世界动作模型，在自车对齐的3D空间中接地轨迹规划并预测未来几何态。模型通过多尺度几何渐进聚合和迭代轨迹精炼，在NAVSIM v1和v2上达到最优性能，证明显式3D几何世界建模能提升安全与效率。",
-          "reasonCn": "该文明确提出了几何世界动作模型，以3D几何世界模型为核心进行轨迹规划，符合WAM定义。",
-          "lane": "WAM",
-          "link": "https://arxiv.org/abs/2607.17521v1",
-          "pdfLink": "https://arxiv.org/pdf/2607.17521v1",
-          "published": "2026-07-20T03:56:07Z",
-          "updated": "2026-07-20T03:56:07Z",
-          "authors": [
-            "Songyan Zhang",
-            "Jinyuan Tian",
-            "Hanbing Li",
-            "Daqi Liu",
-            "Hao Chen",
-            "Wenhui Huang",
-            "Fang Li",
-            "Guang Chen",
-            "Hangjun Ye",
-            "Long Chen"
-          ],
-          "categories": [
-            "cs.RO"
-          ],
-          "heuristicScore": 83,
-          "llmTotalScore": 0
-        },
-        {
-          "id": "2607.17454v1",
-          "title": "Test-Time Scaling for World Action Models via Zero-Shot Geometric Evaluation",
-          "summary": "Test-time scaling improves foundation-model inference by spending additional computation, but robot control requires deciding whether extra compute is useful before executing an action. World Action Models (WAMs) make this decision natural: each rollout exposes both an action chunk and predicted future observations. We propose \\methodgated, a training-free selective test-time scaling framework for WAMs.",
-          "summaryCn": "提出一种无训练的WAM测试时选择性缩放框架，通过交叉视角深度重投影一致性评估采样推演质量，并引入动作-未来一致性门控仅在需要时触发额外计算。在RoboCasa、LIBERO Long和RoboTwin 2.0上，固定预算Best-of-N选择一致提升成功率，门控版本以较低计算开销恢复大部分增益。",
-          "reasonCn": "本文聚焦世界动作模型（WAM）的测试时计算扩展，提出利用世界模型预测未来进行动作选择。",
-          "lane": "WAM",
-          "link": "https://arxiv.org/abs/2607.17454v1",
-          "pdfLink": "https://arxiv.org/pdf/2607.17454v1",
-          "published": "2026-07-20T01:05:02Z",
-          "updated": "2026-07-20T01:05:02Z",
-          "authors": [
-            "Zesen Zhao",
-            "Minkyoung Cho",
-            "Hui shen",
-            "Boyuan Zheng",
-            "Kunxiao Gao",
-            "Yulong Cao",
-            "Z. Morley Mao"
-          ],
-          "categories": [
-            "cs.RO"
-          ],
-          "heuristicScore": 81,
-          "llmTotalScore": 0
-        },
-        {
-          "id": "2607.17973v1",
-          "title": "SAGE: Subgoal-Conditioned Action Generation for Latent World Model Planning",
-          "summary": "Latent world models have emerged as a powerful planning paradigm by learning action-conditioned predictive dynamics and using them as internal simulators to imagine and evaluate candidate action sequences. However, as the planning horizon grows, performance becomes increasingly constrained by proposal quality: a fixed candidate budget must search an exponentially larger action space, making it difficult to expose the world model to high-quality candidate futures for evaluation. In this paper, we introduce a prior-…",
-          "summaryCn": "SAGE引入子目标条件动作生成与潜在世界模型规划框架，使用目标条件生成器预测潜在子目标，再条件化候选动作序列生成，由冻结世界模型评估优化。在PushT和OGBench Cube上，该方法大幅提升长时域规划成功率，同时保持短期性能，解决候选预算下搜索效率问题。",
-          "reasonCn": "提出利用潜在世界模型进行规划，结合子目标先验生成动作序列，世界模型是核心。",
-          "lane": "WAM",
-          "link": "https://arxiv.org/abs/2607.17973v1",
-          "pdfLink": "https://arxiv.org/pdf/2607.17973v1",
-          "published": "2026-07-20T14:10:56Z",
-          "updated": "2026-07-20T14:10:56Z",
-          "authors": [
-            "Letian Cheng",
-            "Qi Zhang",
-            "Yisen Wang"
-          ],
-          "categories": [
-            "cs.AI"
-          ],
-          "heuristicScore": 49,
-          "llmTotalScore": 0
-        },
-        {
-          "id": "2607.17747v1",
-          "title": "Mobile Network Control with a World Model",
-          "summary": "The increasing complexity of mobile networks necessitates intelligent and dynamic control strategies for efficient, energy-conserving management. We propose a world model-based approach for network control that enables adaptive configuration of crucial parameters. The world model is trained from historical data and predicts the impact of its actions on future network states.",
-          "summaryCn": "提出基于世界模型的移动网络控制方法，从历史数据训练的世界模型预测动作后网络状态，利用不确定性估计寻找最优配置。在仿真闭环控制中，该方法在平衡节能与服务质量方面优于传统和强化学习方法，并在真实数据上验证了反事实动作。",
-          "reasonCn": "论文使用世界模型预测动作对网络状态的影响进行优化控制，符合WAM定义。",
-          "lane": "WAM",
-          "link": "https://arxiv.org/abs/2607.17747v1",
-          "pdfLink": "https://arxiv.org/pdf/2607.17747v1",
-          "published": "2026-07-20T09:40:43Z",
-          "updated": "2026-07-20T09:40:43Z",
-          "authors": [
-            "Maxime Bouton",
-            "Ioanna Mitsioni",
-            "Simon Lindståhl",
-            "Jaeseong Jeong"
-          ],
-          "categories": [
-            "cs.AI"
-          ],
-          "heuristicScore": 49,
-          "llmTotalScore": 0
-        },
-        {
-          "id": "2607.17977v1",
-          "title": "RynnBrain 1.1: Towards More Capable and Generalizable Embodied Foundation Model",
-          "summary": "We present RynnBrain 1.1, a family of embodied foundation models spanning 2B, 9B, and 122B-A10B scales. Trained with a unified spatio-temporal and physically grounded framework, RynnBrain 1.1 supports embodied perception, spatial reasoning, localization, and planning. Compared with RynnBrain 1.0, it further introduces contact-point prediction across the model family and native 3D grounding for the 2B and 9B models, yielding representations and outputs that are more directly aligned with robot manipulation.",
-          "summaryCn": "RynnBrain 1.1是一个具身基础模型家族，具备统一跨具身动作空间，其中RynnBrain-VLA在多种机器人上部署。该模型在认知、定位和3D接地基准上表现优异，真实机器人实验表明优于Qwen基和代表性通用VLA，多任务多具身训练进一步提升成功率。",
-          "reasonCn": "RynnBrain 1.1包含专门的VLA模块，支持视觉、语言指令和跨具身动作输出。",
-          "lane": "VLA",
-          "link": "https://arxiv.org/abs/2607.17977v1",
-          "pdfLink": "https://arxiv.org/pdf/2607.17977v1",
-          "published": "2026-07-20T14:13:27Z",
-          "updated": "2026-07-20T14:13:27Z",
-          "authors": [
-            "Kehan Li",
-            "Bohan Hou",
-            "Minghao Zhu",
-            "Tianyi Zhang",
-            "Zesen Cheng",
-            "Zhikai Wang",
-            "Sicong Leng",
-            "Xin Li",
-            "Xiao Lin",
-            "Biying Yao"
-          ],
-          "categories": [
-            "cs.RO"
-          ],
-          "heuristicScore": 30,
           "llmTotalScore": 0
         }
       ]
