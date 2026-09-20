@@ -1,5 +1,5 @@
 window.PAPERS_SITE_DATA = {
-  "generatedAt": "2026-09-19T03:21:42.716372+00:00",
+  "generatedAt": "2026-09-20T03:32:37.949420+00:00",
   "description": "每天北京时间 08:00 自动更新，只筛选与 VLA 和 WAM 主问题强相关的 arXiv 新论文。",
   "dateWindowDays": 7,
   "categories": [
@@ -12,12 +12,20 @@ window.PAPERS_SITE_DATA = {
     "vision-language-action",
     "world action model"
   ],
-  "currentDateKey": "20260919",
+  "currentDateKey": "20260920",
   "selectionMethod": "deepseek_vla_wam_rerank",
   "llmEnabled": true,
   "llmProvider": "DeepSeek",
   "modelInfo": "deepseek-v4-pro",
   "archives": [
+    {
+      "dateKey": "20260920",
+      "dateLabel": "2026-09-20",
+      "generatedAt": "2026-09-20T03:32:37.949270+00:00",
+      "sourceMode": "fallback_30d",
+      "sourceNoteCn": "当日严格窗口与 7 天窗口均未命中论文，已回退展示截止当日最近 30 天内最相关的 VLA / WAM 论文。",
+      "papers": []
+    },
     {
       "dateKey": "20260919",
       "dateLabel": "2026-09-19",
@@ -23055,185 +23063,6 @@ window.PAPERS_SITE_DATA = {
           ],
           "heuristicScore": 30,
           "llmTotalScore": 30
-        }
-      ]
-    },
-    {
-      "dateKey": "20260722",
-      "dateLabel": "2026-07-22",
-      "generatedAt": "2026-07-22T02:50:01.356168+00:00",
-      "sourceMode": "strict",
-      "sourceNoteCn": "严格窗口：使用前一天 08:00 到当天 08:00 的 VLA / WAM 论文。",
-      "papers": [
-        {
-          "id": "2607.18840v1",
-          "title": "WorldScape Policy 2.0: Empowering Steerable World Action Modeling with Reasoning-Augmented Memory",
-          "summary": "World Action Models (WAMs) offer a promising paradigm for robotic manipulation by jointly modeling visual state transitions and robot actions. However, existing WAMs are constrained by limited temporal context, coarse episode-level language supervision, and predominantly text-only conditioning, which hinder task-progress tracking and fine-grained language-video-action grounding while limiting visual-context reasoning and cross-embodiment transfer. In this paper, we introduce WorldScape Policy 2.0, a controllable W…",
-          "summaryCn": "提出WorldScape Policy 2.0，通过推理增强记忆实现可控的世界动作建模；利用短期视觉记忆和长期事件记忆提升任务进度追踪；构建ManipEvent-5M数据集支持细粒度多模态可控性。",
-          "reasonCn": "该论文明确聚焦世界动作模型（WAM），同时建模视觉状态转移和机器人动作，符合WAM标准。",
-          "lane": "WAM",
-          "link": "https://arxiv.org/abs/2607.18840v1",
-          "pdfLink": "https://arxiv.org/pdf/2607.18840v1",
-          "published": "2026-07-21T08:25:37Z",
-          "updated": "2026-07-21T08:25:37Z",
-          "authors": [
-            "Haisheng Su",
-            "Zongdai Liu",
-            "Xin Jin",
-            "Haoxuan Dou",
-            "Chengming Hu",
-            "Baorun Li",
-            "Zhanwang Liu",
-            "Ruiyan Xu",
-            "Jianjie Fang",
-            "Xin Zhang"
-          ],
-          "categories": [
-            "cs.RO"
-          ],
-          "heuristicScore": 75,
-          "llmTotalScore": 0
-        },
-        {
-          "id": "2607.18709v1",
-          "title": "RoboInter1.5: A Holistic Intermediate Representation Suite for Embodied World Modeling and Robotic Manipulation",
-          "summary": "Existing robot datasets remain expensive to curate, embodiment-specific, and insufficiently annotated with the fine-grained structure required for generalizable reasoning, execution, or long-horizon environment dynamics simulation. Building on our prior work, RoboInter1.0, we present RoboInter1.5, an extended and holistic suite of intermediate representations for both robotic manipulation and embodied world modeling. RoboInter1.5 provides a unified resource of data, benchmarks, and models centered on dense manipul…",
-          "summaryCn": "RoboInter1.5提供了超过23万操作片段的多模态标注数据，包括多种中间表示；基准测试涵盖空间与时间VQA及VLA；引入RoboInter-World利用中间表示作为结构化条件信号进行世界建模。",
-          "reasonCn": "该论文提出面向具身世界建模和机器人操作的中间表示套件，并明确探索了中间表示如何通过VLA范式增强动作执行，符合VLA和WAM双重标准。",
-          "lane": "BOTH",
-          "link": "https://arxiv.org/abs/2607.18709v1",
-          "pdfLink": "https://arxiv.org/pdf/2607.18709v1",
-          "published": "2026-07-21T05:05:01Z",
-          "updated": "2026-07-21T05:05:01Z",
-          "authors": [
-            "Ziqin Wang",
-            "Hao Li",
-            "Weijun Wang",
-            "Junhao Cai",
-            "Jia Zeng",
-            "Yilun Chen",
-            "Jiangmiao Pang",
-            "Si Liu"
-          ],
-          "categories": [
-            "cs.RO"
-          ],
-          "heuristicScore": 73,
-          "llmTotalScore": 0
-        },
-        {
-          "id": "2607.19191v1",
-          "title": "ABot-World-0: Infinite Interactive World Rollout on a Single Desktop GPU",
-          "summary": "We present ABot-World-0, an action-conditioned video world model for real-time, long-horizon closed-loop interaction, supported by a multi-source data infrastructure spanning AAA games, simulation engines, and internet videos to learn controllable world dynamics. WorldExplorer performs agent-driven collection guided by training feedback, while a unified pipeline applies 14 deterministic quality checks, VLM-based assessment, and synchronized action and text annotation. We progressively distill a bidirectional actio…",
-          "summaryCn": "提出ABot-World-0，一个可在单桌面GPU上运行的交互式视频世界模型；通过探索式收集和统一质量检查从多源数据学习可控世界动态；采用教师-学生蒸馏和LongForcing缓解分布偏移，实现16 FPS流式推理。",
-          "reasonCn": "该论文提出动作条件化的视频世界模型，用于实时闭环交互，明确将世界模型用于动作控制，符合WAM标准。",
-          "lane": "WAM",
-          "link": "https://arxiv.org/abs/2607.19191v1",
-          "pdfLink": "https://arxiv.org/pdf/2607.19191v1",
-          "published": "2026-07-21T15:26:50Z",
-          "updated": "2026-07-21T15:26:50Z",
-          "authors": [
-            "Fan Jiang",
-            "Zhaoxu Sun",
-            "Mengchao Wang",
-            "Ziyu Zhu",
-            "Chiyu Wang",
-            "Yunpeng Zhang",
-            "Wenlin Liu",
-            "Yun Wang",
-            "Xue Zheng",
-            "Rui Sun"
-          ],
-          "categories": [
-            "cs.CV",
-            "cs.AI",
-            "cs.LG"
-          ],
-          "heuristicScore": 60,
-          "llmTotalScore": 0
-        },
-        {
-          "id": "2607.19343v1",
-          "title": "Masked Visual Actions for Unified World Modeling",
-          "summary": "Video models absorb rich priors over how the visual world moves, interacts, and responds to contact, making them promising substrates for robotic world modeling. The central challenge is how to communicate action to such models in a form aligned with the visual space in which they learned these interaction priors, yet still grounded in physical manipulation. We introduce Masked Visual Actions, a pixel-space control interface that expresses action as a partially revealed trajectory of an arbitrary entity in a video.",
-          "summaryCn": "提出遮罩视觉动作，一种像素空间控制接口，将动作表达为部分可见实体轨迹；在15小时真实和仿真数据上微调后，模型可预测场景响应并支持逆向建模；用于策略评估、基于模型的规划和机器人运动合成。",
-          "reasonCn": "论文聚焦于机器人世界建模，通过遮罩视觉动作实现像素空间控制，将世界模型用于动作预测和模型基规划，符合WAM标准。",
-          "lane": "WAM",
-          "link": "https://arxiv.org/abs/2607.19343v1",
-          "pdfLink": "https://arxiv.org/pdf/2607.19343v1",
-          "published": "2026-07-21T17:59:11Z",
-          "updated": "2026-07-21T17:59:11Z",
-          "authors": [
-            "Hadi Alzayer",
-            "Wenlong Huang",
-            "Haonan Chen",
-            "Christopher Luey",
-            "Lvmin Zhang",
-            "Maneesh Agrawala",
-            "Gordon Wetzstein",
-            "Li Fei-Fei",
-            "Yilun Du",
-            "Jiajun Wu"
-          ],
-          "categories": [
-            "cs.CV",
-            "cs.RO"
-          ],
-          "heuristicScore": 57,
-          "llmTotalScore": 0
-        },
-        {
-          "id": "2607.19190v1",
-          "title": "Agentic Real2Sim: Physics-based World Modeling with Vision-Language Agents",
-          "summary": "Real-to-sim conversion for robotic interaction with objects remains labor-intensive because it requires more than visual reconstruction: a streamlined real2sim process must recover scene geometries and object states, infer physical parameters, and assemble actors, objects, cameras, poses, and trajectories into a runnable physical simulation. Today this process still depends on manual tuning of visual foundation models, mesh cleanup, coordinate-frame alignment, and brittle workflow glue across visual perception too…",
-          "summaryCn": "提出Agentic Real2Sim框架，利用VLM智能体将真实物体-机器人交互记录转换为可执行的物理模拟孪生；涵盖刚体、可变形物体和人体动作场景；旨在为下游策略学习和评估提供真实世界对齐的仿真环境。",
-          "reasonCn": "论文提出基于视觉-语言智能体的物理世界建模框架，将真实交互转换为可模拟的孪生场景，明确用于策略学习与评估，符合WAM标准。",
-          "lane": "WAM",
-          "link": "https://arxiv.org/abs/2607.19190v1",
-          "pdfLink": "https://arxiv.org/pdf/2607.19190v1",
-          "published": "2026-07-21T15:23:38Z",
-          "updated": "2026-07-21T15:23:38Z",
-          "authors": [
-            "Guanxiong Chen",
-            "Qianjun Xia",
-            "Jiawei Peng",
-            "Heng Zhang",
-            "Bole Ma",
-            "Justin Qian",
-            "Ziyi Jiao",
-            "Bingyang Zhou",
-            "Luoxin Ye",
-            "Kaifeng Zhang"
-          ],
-          "categories": [
-            "cs.RO",
-            "cs.AI"
-          ],
-          "heuristicScore": 57,
-          "llmTotalScore": 0
-        },
-        {
-          "id": "2607.18715v1",
-          "title": "DWM: Separating World Effects from Actions in Latent World Models",
-          "summary": "Latent world models underpin much of modern model-based control, yet current action-conditioned formulations supervise the next-latent transition with a single, undifferentiated target, forcing a monolithic learning signal to absorb every source of state change. In real world, however, transitions arise from two heterogeneous sources: an action-driven component induced by the agent, and an action-invariant world effect -- the change that would still occur under a null action, dictated by the environment's intrinsi…",
-          "summaryCn": "提出DWM，在潜在世界模型中通过辅助世界头实现动作不变与世界效应分解，正则化约束确保可加性；旨在提升模型基控制策略的转移性和归因能力。",
-          "reasonCn": "论文专注于潜在世界模型中的动作-世界效应分解，明确用于改进基于模型的控制，符合WAM标准。",
-          "lane": "WAM",
-          "link": "https://arxiv.org/abs/2607.18715v1",
-          "pdfLink": "https://arxiv.org/pdf/2607.18715v1",
-          "published": "2026-07-21T05:13:26Z",
-          "updated": "2026-07-21T05:13:26Z",
-          "authors": [
-            "Yi-Ge Zhang",
-            "Tianqi Du",
-            "Qi Zhang",
-            "Yisen Wang"
-          ],
-          "categories": [
-            "cs.AI"
-          ],
-          "heuristicScore": 49,
-          "llmTotalScore": 0
         }
       ]
     }
