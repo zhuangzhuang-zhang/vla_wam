@@ -1,5 +1,5 @@
 window.PAPERS_SITE_DATA = {
-  "generatedAt": "2026-09-20T03:32:37.949420+00:00",
+  "generatedAt": "2026-09-21T03:30:06.199576+00:00",
   "description": "每天北京时间 08:00 自动更新，只筛选与 VLA 和 WAM 主问题强相关的 arXiv 新论文。",
   "dateWindowDays": 7,
   "categories": [
@@ -12,12 +12,20 @@ window.PAPERS_SITE_DATA = {
     "vision-language-action",
     "world action model"
   ],
-  "currentDateKey": "20260920",
+  "currentDateKey": "20260921",
   "selectionMethod": "deepseek_vla_wam_rerank",
   "llmEnabled": true,
   "llmProvider": "DeepSeek",
   "modelInfo": "deepseek-v4-pro",
   "archives": [
+    {
+      "dateKey": "20260921",
+      "dateLabel": "2026-09-21",
+      "generatedAt": "2026-09-21T03:30:06.199490+00:00",
+      "sourceMode": "fallback_30d",
+      "sourceNoteCn": "当日严格窗口与 7 天窗口均未命中论文，已回退展示截止当日最近 30 天内最相关的 VLA / WAM 论文。",
+      "papers": []
+    },
     {
       "dateKey": "20260920",
       "dateLabel": "2026-09-20",
@@ -22880,189 +22888,6 @@ window.PAPERS_SITE_DATA = {
           ],
           "heuristicScore": 118,
           "llmTotalScore": 0
-        }
-      ]
-    },
-    {
-      "dateKey": "20260723",
-      "dateLabel": "2026-07-23",
-      "generatedAt": "2026-07-23T03:48:23.631101+00:00",
-      "sourceMode": "strict",
-      "sourceNoteCn": "严格窗口：使用前一天 08:00 到当天 08:00 的 VLA / WAM 论文。",
-      "papers": [
-        {
-          "id": "2607.20345v1",
-          "title": "Closing the Lab-to-Store Gap: A Data-Efficient Post-Training and Experience-Driven Learning VLA Framework for Retail Humanoids",
-          "summary": "Closing the gap between benchmark performance and reliable real-world operation remains a central challenge for Vision-Language-Action (VLA) humanoid robots, which must handle execution errors, distribution shifts, and environmental variability. This paper presents DEED (Data-Efficient Post-Training and Experience-Driven Learning), a systems-level approach evaluated on a supermarket chip-restocking task using a Unitree G1-Edu humanoid robot and the GR00T N1.6 foundation model. DEED comprises three key components:…",
-          "summaryCn": "提出DEED框架，通过数据高效后训练和经验驱动学习提升零售人形机器人的VLA性能，在真实超市补货任务中仅用单GPU实现胜任能力。结合控制频率对齐、任务相关视觉高亮和基于文本的优势前缀进行经验改进。价值在于将关注点引向系统集成而非架构革新。",
-          "reasonCn": "论文直接研究VLA人形机器人的视觉-语言-动作集成，解决了从实验室到商店的部署差距。",
-          "lane": "VLA",
-          "link": "https://arxiv.org/abs/2607.20345v1",
-          "pdfLink": "https://arxiv.org/pdf/2607.20345v1",
-          "published": "2026-07-22T16:30:51Z",
-          "updated": "2026-07-22T16:30:51Z",
-          "authors": [
-            "Roger Sala Sisó",
-            "Tiago Silvério",
-            "Jakob Sand",
-            "Tran Nguyen Le"
-          ],
-          "categories": [
-            "cs.RO",
-            "cs.AI"
-          ],
-          "heuristicScore": 92,
-          "llmTotalScore": 92
-        },
-        {
-          "id": "2607.19876v1",
-          "title": "KineBench: Benchmarking Embodied World Models via IDM-Free Kinematic Grounding",
-          "summary": "Evaluating the physical consistency of embodied world models(EWMs) is a critical open challenge. While closed-loop evaluation via simulator rollouts offers a more faithful assessment of physical plausibility than open-loop alternatives, existing frameworks almost exclusively rely on Inverse Dynamics Models(IDMs) for action extraction. Due to the intricate mapping from 2D pixel space to 3D kinematic space, the learned IDMs can be brittle to data outside their training distribution, resulting in unreliable action ex…",
-          "summaryCn": "提出KineBench基准，通过无逆动力学模型的运动学接地评估具身世界模型的物理一致性，用生成的视频提取末端执行器位姿并在模拟器中执行。包含20个操作任务和运动学指标。价值在于消除提取器偏差，实现更可靠的世界模型评估。",
-          "reasonCn": "论文专注于具身世界模型在闭环动作执行中的评估，世界模型被用于生成视频并间接支持动作预测。",
-          "lane": "WAM",
-          "link": "https://arxiv.org/abs/2607.19876v1",
-          "pdfLink": "https://arxiv.org/pdf/2607.19876v1",
-          "published": "2026-07-22T08:04:17Z",
-          "updated": "2026-07-22T08:04:17Z",
-          "authors": [
-            "Zeyu Liu",
-            "Zhangzhe Zhu",
-            "Yang Zhang",
-            "Chenyou Fan",
-            "Chenjia Bai",
-            "Xuelong Li"
-          ],
-          "categories": [
-            "cs.RO",
-            "cs.CV"
-          ],
-          "heuristicScore": 57,
-          "llmTotalScore": 57
-        },
-        {
-          "id": "2607.19749v1",
-          "title": "The World Model Remembers, the Actor Forgets: Dream Rehearsal for Continual Model-Based RL",
-          "summary": "Model-based reinforcement-learning agents of the DreamerV3 family forget catastrophically when trained on task sequences, even when an unbounded replay buffer preserves every earlier experience. We ask a question the continual-RL literature has assumed an answer to but never measured: which component forgets? Under never-clear replay, pre-registered component-level probes (n=3 seeds throughout) show that the world model retains essentially everything measurable about old tasks -- reward discrimination (retention r…",
-          "summaryCn": "发现DreamerV3智能体在持续学习中世界模型保留知识而行动者遗忘，提出基于世界模型生成的梦境进行分级复述以恢复行动者技能。无需任务标签或环境交互。价值在于揭示遗忘本质并给出简单有效的持续学习方案。",
-          "reasonCn": "论文以世界模型为核心，利用其生成的想象轨迹直接用于行动者策略恢复，属于典型的WAM研究。",
-          "lane": "WAM",
-          "link": "https://arxiv.org/abs/2607.19749v1",
-          "pdfLink": "https://arxiv.org/pdf/2607.19749v1",
-          "published": "2026-07-22T04:46:49Z",
-          "updated": "2026-07-22T04:46:49Z",
-          "authors": [
-            "Gurp Nijjer"
-          ],
-          "categories": [
-            "cs.LG",
-            "cs.AI"
-          ],
-          "heuristicScore": 51,
-          "llmTotalScore": 51
-        },
-        {
-          "id": "2607.20061v1",
-          "title": "ReferTrack: Referring Then Tracking for Embodied Visual Tracking",
-          "summary": "Embodied visual tracking (EVT) requires a mobile agent to continuously follow a specific target described in natural language using only onboard vision. While recent vision-language-action (VLA) policies unify target identification and trajectory planning, their chain-of-thought (CoT) reasoning often operates in abstract spatial latents that are difficult to supervise and weakly aligned with explicit image-space detections. To address this, we introduce ReferTrack, a referring-then-tracking paradigm that grounds E…",
-          "summaryCn": "提出ReferTrack，一种先指称后跟踪的具身视觉跟踪范式，用自然语言指令和视觉边界框输出跟踪路径点。引入时态-视角-边界框指示符和改进的指称QA训练。价值在于提供显式图像级决策，优于抽象潜在推理的VLA方法。",
-          "reasonCn": "论文处理视觉和语言输入以输出机器人跟踪动作，属于VLA范畴，尽管是VLA的替代范式。",
-          "lane": "VLA",
-          "link": "https://arxiv.org/abs/2607.20061v1",
-          "pdfLink": "https://arxiv.org/pdf/2607.20061v1",
-          "published": "2026-07-22T12:05:13Z",
-          "updated": "2026-07-22T12:05:13Z",
-          "authors": [
-            "Hanjing Ye",
-            "Tianle Zeng",
-            "Jiazhao Zhang",
-            "Shaoan Wang",
-            "Zibo Zhang",
-            "Weisi Situ",
-            "Yuchen Zhou",
-            "Yonggen Ling",
-            "Hong Zhang"
-          ],
-          "categories": [
-            "cs.RO"
-          ],
-          "heuristicScore": 50,
-          "llmTotalScore": 50
-        },
-        {
-          "id": "2607.19809v1",
-          "title": "Dreamer-CPC: Message Learning with World Models for Decentralized Multi-agent Reinforcement Learning",
-          "summary": "In multi-agent reinforcement learning (MARL), inter-agent communication is effective for improving performance under partial observability. Representation learning-based approaches enable decentralized agents to learn messages grounded in their own observations, but they rely only on current observations and cannot convey information accumulated over time. We propose Dreamer-CPC, a decentralized model-based MARL method that integrates message learning based on Collective Predictive Coding (CPC) into the world mode…",
-          "summaryCn": "提出Dreamer-CPC，将集体预测编码消息学习集成到DreamerV3的世界模型中，用于分布式多智能体强化学习。智能体基于世界模型潜在状态生成消息，改善部分可观测环境下的协调。价值在于显著提升缺失观测时的性能。",
-          "reasonCn": "论文将消息学习与基于世界模型的强化学习结合，世界模型用于动作选择和通信，符合WAM定义。",
-          "lane": "WAM",
-          "link": "https://arxiv.org/abs/2607.19809v1",
-          "pdfLink": "https://arxiv.org/pdf/2607.19809v1",
-          "published": "2026-07-22T06:42:03Z",
-          "updated": "2026-07-22T06:42:03Z",
-          "authors": [
-            "Taisuke Takayama",
-            "Naoto Yoshida",
-            "Tadahiro Taniguchi"
-          ],
-          "categories": [
-            "cs.LG"
-          ],
-          "heuristicScore": 47,
-          "llmTotalScore": 47
-        },
-        {
-          "id": "2607.19695v1",
-          "title": "NavVerse: Benchmarking Indoor-to-Outdoor Embodied Navigation in Continuous Robot Simulation",
-          "summary": "Robots deployed in delivery, campus, and emergency-response settings often need to navigate from buildings to streets within a single continuous episode. Existing benchmarks usually evaluate indoor and outdoor navigation separately, and many abstract away robot execution, leaving exit finding, boundary traversal, adaptation, and kinodynamic failures underexplored. We introduce NavVerse, a physics-enabled benchmark for indoor-to-outdoor embodied navigation.",
-          "summaryCn": "提出NavVerse室内到室外具身导航基准，包含目标导航、视觉语言导航和地点导航任务，评估RL、VLA和模块化智能体。揭示VLA零样本成功率最高但适应瓶颈明显。价值在于推动跨环境导航研究。",
-          "reasonCn": "基准涉及视觉、语言指令和机器人导航动作，并且评估了VLA智能体，与VLA紧密相关。",
-          "lane": "VLA",
-          "link": "https://arxiv.org/abs/2607.19695v1",
-          "pdfLink": "https://arxiv.org/pdf/2607.19695v1",
-          "published": "2026-07-22T02:53:46Z",
-          "updated": "2026-07-22T02:53:46Z",
-          "authors": [
-            "Junzhe Wu",
-            "Yue Hu",
-            "Zeyu Han",
-            "Po-Hsun Chang",
-            "Yinan Dong",
-            "Behrad Rabiei",
-            "Maani Ghaffari"
-          ],
-          "categories": [
-            "cs.RO",
-            "cs.CV"
-          ],
-          "heuristicScore": 40,
-          "llmTotalScore": 40
-        },
-        {
-          "id": "2607.19719v1",
-          "title": "Koopman Dreamer: Spectrally Constrained Latent Dynamics for Stable World-Model Imagination",
-          "summary": "Latent world models improve sample efficiency in continuous control by optimizing policies over imagined latent trajectories, but common neural transitions offer limited direct control over modal persistence and error accumulation in long rollouts. We propose Koopman Dreamer, a Dreamer-style world model with a spectrally constrained deterministic latent dynamics core. Its Koopman-inspired backbone uses two-dimensional rotation--scaling blocks with bounded radii to represent damping, rotation, and near-periodic mod…",
-          "summaryCn": "提出Koopman Dreamer，采用受Koopman启发的频谱约束潜在动力学改进Dreamer世界模型，用于稳定长期想象。用旋转-缩放块和双线性动作项建模，提供误差界。价值在于提升世界模型在连续控制和导航中的稳定性。",
-          "reasonCn": "论文提出一种新的世界模型架构，用于基于模型的强化学习中的动作策略优化，符合WAM。",
-          "lane": "WAM",
-          "link": "https://arxiv.org/abs/2607.19719v1",
-          "pdfLink": "https://arxiv.org/pdf/2607.19719v1",
-          "published": "2026-07-22T03:38:15Z",
-          "updated": "2026-07-22T03:38:15Z",
-          "authors": [
-            "Jiaqi Li",
-            "Xinglong Zhang",
-            "Haibin Xie",
-            "Yixing Lan",
-            "Wei Pan",
-            "Xin Xu"
-          ],
-          "categories": [
-            "cs.LG",
-            "cs.RO"
-          ],
-          "heuristicScore": 30,
-          "llmTotalScore": 30
         }
       ]
     }
