@@ -1,5 +1,5 @@
 window.PAPERS_SITE_DATA = {
-  "generatedAt": "2026-09-21T03:30:06.199576+00:00",
+  "generatedAt": "2026-09-22T03:32:27.194251+00:00",
   "description": "每天北京时间 08:00 自动更新，只筛选与 VLA 和 WAM 主问题强相关的 arXiv 新论文。",
   "dateWindowDays": 7,
   "categories": [
@@ -12,12 +12,20 @@ window.PAPERS_SITE_DATA = {
     "vision-language-action",
     "world action model"
   ],
-  "currentDateKey": "20260921",
+  "currentDateKey": "20260922",
   "selectionMethod": "deepseek_vla_wam_rerank",
   "llmEnabled": true,
   "llmProvider": "DeepSeek",
   "modelInfo": "deepseek-v4-pro",
   "archives": [
+    {
+      "dateKey": "20260922",
+      "dateLabel": "2026-09-22",
+      "generatedAt": "2026-09-22T03:32:27.194146+00:00",
+      "sourceMode": "fallback_30d",
+      "sourceNoteCn": "当日严格窗口与 7 天窗口均未命中论文，已回退展示截止当日最近 30 天内最相关的 VLA / WAM 论文。",
+      "papers": []
+    },
     {
       "dateKey": "20260921",
       "dateLabel": "2026-09-21",
@@ -22854,39 +22862,6 @@ window.PAPERS_SITE_DATA = {
             "cs.AI"
           ],
           "heuristicScore": 43,
-          "llmTotalScore": 0
-        }
-      ]
-    },
-    {
-      "dateKey": "20260724",
-      "dateLabel": "2026-07-24",
-      "generatedAt": "2026-07-24T03:23:49.520726+00:00",
-      "sourceMode": "strict",
-      "sourceNoteCn": "严格窗口：使用前一天 08:00 到当天 08:00 的 VLA / WAM 论文。",
-      "papers": [
-        {
-          "id": "2607.20988v1",
-          "title": "HyWorldVLA: A Vision-Language-Action Model with Hybrid World Modeling for Autonomous Driving",
-          "summary": "Vision-Language-Action (VLA) models augmented with world modeling represent a promising paradigm for end-to-end autonomous driving. While pixel-level future prediction enables fine-grained spatiotemporal reasoning, it compromises robustness in noisy driving scenarios. Conversely, latent-based world models alleviate this sensitivity but often incur limited interpretability and representational degradation due to absent pixel-level grounding.",
-          "summaryCn": "HyWorldVLA提出一种用于自动驾驶的混合世界模型VLA框架，结合像素级和潜在表示学习，在NAVSIM基准上显著超越现有方法，并首次系统分析世界模型噪声鲁棒性。",
-          "reasonCn": "论文提出混合世界模型增强的VLA框架，同时涉及视觉、语言和动作输出，且世界模型用于动作预测。",
-          "lane": "BOTH",
-          "link": "https://arxiv.org/abs/2607.20988v1",
-          "pdfLink": "https://arxiv.org/pdf/2607.20988v1",
-          "published": "2026-07-23T07:11:41Z",
-          "updated": "2026-07-23T07:11:41Z",
-          "authors": [
-            "Quanfu Yu",
-            "Xian Wu",
-            "Hao Xu",
-            "Liulong Ma"
-          ],
-          "categories": [
-            "cs.CV",
-            "cs.AI"
-          ],
-          "heuristicScore": 118,
           "llmTotalScore": 0
         }
       ]
