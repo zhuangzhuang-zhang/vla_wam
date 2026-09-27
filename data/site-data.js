@@ -1,5 +1,5 @@
 window.PAPERS_SITE_DATA = {
-  "generatedAt": "2026-09-26T03:41:36.106330+00:00",
+  "generatedAt": "2026-09-27T03:42:42.170728+00:00",
   "description": "每天北京时间 08:00 自动更新，只筛选与 VLA 和 WAM 主问题强相关的 arXiv 新论文。",
   "dateWindowDays": 7,
   "categories": [
@@ -12,12 +12,20 @@ window.PAPERS_SITE_DATA = {
     "vision-language-action",
     "world action model"
   ],
-  "currentDateKey": "20260926",
+  "currentDateKey": "20260927",
   "selectionMethod": "deepseek_vla_wam_rerank",
   "llmEnabled": true,
   "llmProvider": "DeepSeek",
   "modelInfo": "deepseek-v4-pro",
   "archives": [
+    {
+      "dateKey": "20260927",
+      "dateLabel": "2026-09-27",
+      "generatedAt": "2026-09-27T03:42:42.170645+00:00",
+      "sourceMode": "fallback_30d",
+      "sourceNoteCn": "当日严格窗口与 7 天窗口均未命中论文，已回退展示截止当日最近 30 天内最相关的 VLA / WAM 论文。",
+      "papers": []
+    },
     {
       "dateKey": "20260926",
       "dateLabel": "2026-09-26",
@@ -20606,211 +20614,6 @@ window.PAPERS_SITE_DATA = {
             "cs.LG"
           ],
           "heuristicScore": 32,
-          "llmTotalScore": 0
-        }
-      ]
-    },
-    {
-      "dateKey": "20260729",
-      "dateLabel": "2026-07-29",
-      "generatedAt": "2026-07-29T02:57:30.377379+00:00",
-      "sourceMode": "strict",
-      "sourceNoteCn": "严格窗口：使用前一天 08:00 到当天 08:00 的 VLA / WAM 论文。",
-      "papers": [
-        {
-          "id": "2607.25516v1",
-          "title": "A Causality-aware Infer-diagnose-refine Framework for Test-time Modality Adaptation in VLA Models",
-          "summary": "Vision-language-action (VLA) models predict sequential actions to execute tasks specified by language instructions, conditioned on visual observations and proprioceptive states. However, how to fuse modalities in VLA models remains an open problem, since robot manipulation involves dynamic phases, such as long-distance movements and close-range interactions, in which the importance of visual observations may vary over time. In this paper, we propose an infer-diagnose-refine (IDR) framework, a model-agnostic framew…",
-          "summaryCn": "提出因果推断-诊断-细化框架，动态调整视觉模态重要性，无需训练即可提升VLA模型动作预测性能。模拟和真实实验验证有效性。",
-          "reasonCn": "论文直接针对VLA模型的动作预测进行改进，融合视觉与语言指令。",
-          "lane": "VLA",
-          "link": "https://arxiv.org/abs/2607.25516v1",
-          "pdfLink": "https://arxiv.org/pdf/2607.25516v1",
-          "published": "2026-07-28T09:56:42Z",
-          "updated": "2026-07-28T09:56:42Z",
-          "authors": [
-            "Haoyu Zhang",
-            "Yuwei Wu",
-            "Jin Chen",
-            "Gao Zhi",
-            "Zhenxin Diao",
-            "Mingyang Gao",
-            "Kun Wu",
-            "Yongchun Liu",
-            "Fan Li"
-          ],
-          "categories": [
-            "cs.RO"
-          ],
-          "heuristicScore": 88,
-          "llmTotalScore": 0
-        },
-        {
-          "id": "2607.25487v1",
-          "title": "CoTinyVLA: Chain-of-Thought Distillation for a Sub-Billion-Parameter Vision-Language-Action Model",
-          "summary": "Vision-Language-Action (VLA) models translate natural-language commands into robot action sequences, but leading systems on the LIBERO-Plus robustness benchmark use three- to seven-billion-parameter backbones whose memory demands can exceed embedded robotic budgets. We present CoTinyVLA, a 0.9B-parameter action model on a Qwen3.5-0.8B backbone that obtains that robustness by structuring supervision instead of enlarging the model. Three components target different axes of the problem: dual-view temporal input of 16…",
-          "summaryCn": "提出CoTinyVLA，通过层级思维链蒸馏、双视图时间输入和指令增强，使0.9B模型在LIBERO-Plus基准上超越7B模型。方法针对性提升空间、物体、目标和长时间任务表现。",
-          "reasonCn": "论文提出小参数VLA模型，通过思维链蒸馏提升机器人指令到动作的转换鲁棒性。",
-          "lane": "VLA",
-          "link": "https://arxiv.org/abs/2607.25487v1",
-          "pdfLink": "https://arxiv.org/pdf/2607.25487v1",
-          "published": "2026-07-28T09:24:17Z",
-          "updated": "2026-07-28T09:24:17Z",
-          "authors": [
-            "Minhyeok Lee",
-            "Chiyoung Kim",
-            "Chanhoe Gu",
-            "Seongrok Kim",
-            "Sanghyuk Roy Choi",
-            "Donghwan Hwang",
-            "Donghun Ryu",
-            "Seokhyun Kim"
-          ],
-          "categories": [
-            "cs.AI",
-            "cs.CV"
-          ],
-          "heuristicScore": 83,
-          "llmTotalScore": 0
-        },
-        {
-          "id": "2607.25912v1",
-          "title": "SAM3D-Guided Object-Centric Representation Alignment for Vision-Language-Action Models",
-          "summary": "Vision-Language-Action (VLA) models have shown strong potential for general robot manipulation, but most existing models rely on 2D visual-language backbones and lack fine-grained 3D understanding of target objects, especially under occlusion, pose variation, scale changes, and precise spatial interaction. We propose an object-centric 3D representation alignment framework built upon $π_0$, using SAM3D as a frozen 3D teacher to provide target-object 3D priors during training. Specifically, we localize task-relevant…",
-          "summaryCn": "提出SAM3D引导的物体中心表征对齐框架，在训练时融入目标3D先验，测试时不需额外模块，提升VLA模型在遮挡、位姿变化下的操作成功率。仿真和真实实验表明尤其在长序列任务中有效。",
-          "reasonCn": "论文针对VLA模型，利用SAM3D进行目标中心3D表征对齐，提升机器人操作中的3D理解。",
-          "lane": "VLA",
-          "link": "https://arxiv.org/abs/2607.25912v1",
-          "pdfLink": "https://arxiv.org/pdf/2607.25912v1",
-          "published": "2026-07-28T16:05:32Z",
-          "updated": "2026-07-28T16:05:32Z",
-          "authors": [
-            "Zonghe Liu",
-            "Shanyuan Jie",
-            "Xiaoquan Sun",
-            "Chen Cao",
-            "Zetian Xu",
-            "Zongsheng Liu",
-            "Jiayu Chen"
-          ],
-          "categories": [
-            "cs.RO",
-            "cs.AI"
-          ],
-          "heuristicScore": 79,
-          "llmTotalScore": 0
-        },
-        {
-          "id": "2607.25918v1",
-          "title": "DC-WAM: Dynamic-Centric Visual Supervision and Reasoning for World-Action Models",
-          "summary": "World-Action Models (WAMs) augment robot policies with future visual prediction, but it remains unclear what the visual modality should learn for control. While photorealistic future prediction provides dense supervision, it also incurs substantial computation and can allocate capacity to texture, illumination, and background variations that are only weakly related to action selection. Recent efficient WAM variants suggest that the main benefit of the video branch may not lie in the rendered future itself, but in…",
-          "summaryCn": "提出DC-WAM，从动态中心视角重新设计RGB视频分支的监督和推理，强调时间差分流匹配和轨迹加权，提升世界-动作模型在控制相关动态上的表征和预测效率。",
-          "reasonCn": "论文聚焦世界-动作模型，通过动态监督和推理重定向视觉预测，服务于机器人控制。",
-          "lane": "WAM",
-          "link": "https://arxiv.org/abs/2607.25918v1",
-          "pdfLink": "https://arxiv.org/pdf/2607.25918v1",
-          "published": "2026-07-28T16:08:50Z",
-          "updated": "2026-07-28T16:08:50Z",
-          "authors": [
-            "Haoyuan Ji",
-            "Lingxiang Fan",
-            "Shang Su",
-            "Yinqiao Lu",
-            "Mengkai Shi",
-            "Jun Gao",
-            "Shuo Feng"
-          ],
-          "categories": [
-            "cs.RO"
-          ],
-          "heuristicScore": 68,
-          "llmTotalScore": 0
-        },
-        {
-          "id": "2607.26056v1",
-          "title": "INTACT: Isomorphic Intent-to-Action Learning for Search-Free World Models",
-          "summary": "Forward latent world models predict how actions change a scene, but recover actions for a desired change only through expensive test-time search. We introduce INTACT (INtent-To-ACTion), an end-to-end JEPA that turns action-labeled, reward-free trajectories into a deployable intent-to-action interface. Each transition supplies physical intent $z_{t+1}-z_t$, while a future goal supplies deployment intent $\\operatorname{sg}(z_g)-z_t$.",
-          "summaryCn": "提出INTACT，通过同构架构从意图学习动作，利用世界模型实现搜索自由的策略，在四个LeWM任务上达到高成功率，无需复杂规划。",
-          "reasonCn": "论文提出从意图到动作的端到端学习，基于世界模型实现无需搜索的策略，直接输出动作。",
-          "lane": "WAM",
-          "link": "https://arxiv.org/abs/2607.26056v1",
-          "pdfLink": "https://arxiv.org/pdf/2607.26056v1",
-          "published": "2026-07-28T17:59:40Z",
-          "updated": "2026-07-28T17:59:40Z",
-          "authors": [
-            "Junhan Sun",
-            "Hao Zhao",
-            "Guofeng Zhang"
-          ],
-          "categories": [
-            "cs.RO"
-          ],
-          "heuristicScore": 53,
-          "llmTotalScore": 0
-        },
-        {
-          "id": "2607.25236v1",
-          "title": "VisualPatchWorld: Code World Models as Latent Structured Representations for Planning",
-          "summary": "Different research lines use the term world model in different ways, yet they share a common aim: to capture how the world evolves under action in a form that supports perception, simulation, and planning. Two prominent realizations are neural predictors that learn dynamics in continuous vector spaces, and hand-built physics engines that expose explicit state and physical laws. Neural predictors scale from data but leave the form of the dynamics implicit; physics engines are inspectable and editable but difficult…",
-          "summaryCn": "提出VisualPatchWorld，用代码表示世界动态，可像模拟器一样前向滚动并用于规划，在导航和抓取任务上超越基线。",
-          "reasonCn": "论文提出代码世界模型，用于模型预测控制中的动作规划，符合WAM定义。",
-          "lane": "WAM",
-          "link": "https://arxiv.org/abs/2607.25236v1",
-          "pdfLink": "https://arxiv.org/pdf/2607.25236v1",
-          "published": "2026-07-28T03:23:47Z",
-          "updated": "2026-07-28T03:23:47Z",
-          "authors": [
-            "Jiaxin Bai",
-            "Jiaxuan Xiong"
-          ],
-          "categories": [
-            "cs.RO"
-          ],
-          "heuristicScore": 53,
-          "llmTotalScore": 0
-        },
-        {
-          "id": "2607.26040v1",
-          "title": "Reinformed Dreamer: An Asymmetric World Model Efficiently Trained through Latent Guidance",
-          "summary": "Much like humans benefit from guidance while learning, reinforcement learning algorithms may benefit from additional supervision beyond rewards. Leveraging additional information during training to learn better representations and behaviors has been the focus of asymmetric reinforcement learning. This learning paradigm has proven effective under partial observability when additional state information is available, but also under full observability when more refined state information is available.",
-          "summaryCn": "提出Reinformed Dreamer，通过非对称学习与潜在引导改进世界模型训练，提升模型基于RL的样本效率和性能。",
-          "reasonCn": "论文改进Dreamer世界模型，用于强化学习中的动作预测与决策，符合WAM定义。",
-          "lane": "WAM",
-          "link": "https://arxiv.org/abs/2607.26040v1",
-          "pdfLink": "https://arxiv.org/pdf/2607.26040v1",
-          "published": "2026-07-28T17:49:29Z",
-          "updated": "2026-07-28T17:49:29Z",
-          "authors": [
-            "Gaspard Lambrechts",
-            "Adrien Bolland",
-            "Daniel Ebi",
-            "Damien Ernst"
-          ],
-          "categories": [
-            "cs.LG"
-          ],
-          "heuristicScore": 32,
-          "llmTotalScore": 0
-        },
-        {
-          "id": "2607.25337v1",
-          "title": "Temporal-Distance JEPA: Plan-Aware Representation Learning for Latent World Model Predictive Control",
-          "summary": "Joint-Embedding Predictive Architectures (JEPAs) learn world models by predicting in representation space rather than reconstructing pixels, making them a natural backbone for latent model predictive control from offline demonstration logs. JEPA-style training optimizes short-horizon latent prediction, whereas planning requires a multi-step ranking of imagined futures by goal progress. Prior JEPA planners often inherit that ranking from embedding geometry, typically latent Euclidean distance, which arises as a byp…",
-          "summaryCn": "提出TD-JEPA，挖掘无奖励轨迹中的时间距离作为规划代价，改进世界模型在控制任务中的规划效率和成功率。",
-          "reasonCn": "论文基于世界模型的预测控制，提出时间距离JEPA，直接用于动作规划，符合WAM。",
-          "lane": "WAM",
-          "link": "https://arxiv.org/abs/2607.25337v1",
-          "pdfLink": "https://arxiv.org/pdf/2607.25337v1",
-          "published": "2026-07-28T06:38:16Z",
-          "updated": "2026-07-28T06:38:16Z",
-          "authors": [
-            "Jiaxin Bai",
-            "Jiaxuan Xiong"
-          ],
-          "categories": [
-            "cs.RO"
-          ],
-          "heuristicScore": 30,
           "llmTotalScore": 0
         }
       ]
