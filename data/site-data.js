@@ -1,5 +1,5 @@
 window.PAPERS_SITE_DATA = {
-  "generatedAt": "2026-09-27T03:42:42.170728+00:00",
+  "generatedAt": "2026-09-28T03:44:28.009301+00:00",
   "description": "每天北京时间 08:00 自动更新，只筛选与 VLA 和 WAM 主问题强相关的 arXiv 新论文。",
   "dateWindowDays": 7,
   "categories": [
@@ -12,12 +12,20 @@ window.PAPERS_SITE_DATA = {
     "vision-language-action",
     "world action model"
   ],
-  "currentDateKey": "20260927",
+  "currentDateKey": "20260928",
   "selectionMethod": "deepseek_vla_wam_rerank",
   "llmEnabled": true,
   "llmProvider": "DeepSeek",
   "modelInfo": "deepseek-v4-pro",
   "archives": [
+    {
+      "dateKey": "20260928",
+      "dateLabel": "2026-09-28",
+      "generatedAt": "2026-09-28T03:44:28.009167+00:00",
+      "sourceMode": "fallback_30d",
+      "sourceNoteCn": "当日严格窗口与 7 天窗口均未命中论文，已回退展示截止当日最近 30 天内最相关的 VLA / WAM 论文。",
+      "papers": []
+    },
     {
       "dateKey": "20260927",
       "dateLabel": "2026-09-27",
@@ -20371,250 +20379,6 @@ window.PAPERS_SITE_DATA = {
           ],
           "heuristicScore": 38,
           "llmTotalScore": 38
-        }
-      ]
-    },
-    {
-      "dateKey": "20260730",
-      "dateLabel": "2026-07-30",
-      "generatedAt": "2026-07-30T01:51:51.170017+00:00",
-      "sourceMode": "strict",
-      "sourceNoteCn": "严格窗口：使用前一天 08:00 到当天 08:00 的 VLA / WAM 论文。",
-      "papers": [
-        {
-          "id": "2607.26991v1",
-          "title": "RL$^2$-VLA: Adaptive RL Latent Compositional Steering with Test-Time Scaling for Vision-Language-Action Models",
-          "summary": "Despite the impressive visuomotor capabilities enabled by Vision-Language-Action (VLA) models, their performance often degrades on challenging and out-of-domain tasks. Recent test-time steering and scaling methods improve performance without extensive data collection and retraining, but action samples often remain concentrated around similar behaviors and therefore inherit correlated failure modes. Moreover, existing methods apply the same intervention strategy at every timestep, regardless of whether the base pol…",
-          "summaryCn": "RL^2-VLA利用离线强化学习在VLA隐空间上进行组合引导，提升动作多样性和复杂任务性能。该方法根据成功/失败状态自适应调整干预，并在多种VLA上验证了有效性。",
-          "reasonCn": "论文提出用于VLA模型的自适应测试时引导框架，明确涉及视觉、语言指令与机器人动作输出。",
-          "lane": "VLA",
-          "link": "https://arxiv.org/abs/2607.26991v1",
-          "pdfLink": "https://arxiv.org/pdf/2607.26991v1",
-          "published": "2026-07-29T14:49:56Z",
-          "updated": "2026-07-29T14:49:56Z",
-          "authors": [
-            "Derek Ming Siang Tan",
-            "Shailesh Shailesh",
-            "Srikrishna Iyer",
-            "William Wei Jie Teo",
-            "Yuanliang Ju",
-            "Qiao Gu",
-            "Guillaume Sartoretti"
-          ],
-          "categories": [
-            "cs.RO"
-          ],
-          "heuristicScore": 113,
-          "llmTotalScore": 0
-        },
-        {
-          "id": "2607.26789v1",
-          "title": "CheckVLA: Execution-Time Verification with Action-Conditioned World Model for Long-Horizon Mobile Manipulation",
-          "summary": "Vision-language-action (VLA) policies commonly execute long-horizon mobile manipulation through open-loop action chunks, issuing multiple actions without receiving new high-level visual input. A committed chunk therefore implies how observations should evolve, but accidental deviations can violate this expectation while the remaining actions continue to propagate the error: commit-time policy confidence cannot react to a deviation that occurs after dispatch, and observation-only anomaly scores lack an action-condi…",
-          "summaryCn": "CheckVLA提出在VLA执行期间用动作条件世界模型验证偏差，通过共形校准风险阈值决定干预时机。在RoboCasa365上任务成功率提升8.5个百分点，并提高了故障检测召回率。",
-          "reasonCn": "基于VLA的移动操作策略，采用动作条件世界模型进行执行时验证与重规划，同时涉及视觉-语言-动作与行动条件世界模型。",
-          "lane": "BOTH",
-          "link": "https://arxiv.org/abs/2607.26789v1",
-          "pdfLink": "https://arxiv.org/pdf/2607.26789v1",
-          "published": "2026-07-29T11:31:33Z",
-          "updated": "2026-07-29T11:31:33Z",
-          "authors": [
-            "Yushan Liu",
-            "Peibo Sun",
-            "Xintao Chao",
-            "Zhenyang Yang",
-            "Yifan Xie",
-            "Lingfeng Zhang",
-            "Shoujie Li",
-            "Chenyu Tang",
-            "Fang Chen",
-            "Xiao-Ping Zhang"
-          ],
-          "categories": [
-            "cs.RO"
-          ],
-          "heuristicScore": 113,
-          "llmTotalScore": 0
-        },
-        {
-          "id": "2607.26513v1",
-          "title": "Explicit Kinematic Guidance from Analytic Concepts for Vision-Language-Action Models",
-          "summary": "Current Vision-Language-Action (VLA) models rely mainly on 2D inputs, neglecting the rich object structural information and commonsense knowledge inherent in the 3D physical world. This deficiency restricts their spatial awareness and adaptability for complex, high-precision manipulation. To bridge this crucial gap, we construct a Concept Expert module for VLA to build executable Analytic Concepts that represent objects as explicit, programmatic blueprints.",
-          "summaryCn": "构建Concept Expert模块从3D视觉基础模型中提取对象运动学蓝图，并以密集奖励和空间引导微调VLA。实验表明该方法提高了操作成功率和学习效率。",
-          "reasonCn": "论文聚焦于VLA模型，利用可执行分析概念提供显式运动学引导以增强操作能力。",
-          "lane": "VLA",
-          "link": "https://arxiv.org/abs/2607.26513v1",
-          "pdfLink": "https://arxiv.org/pdf/2607.26513v1",
-          "published": "2026-07-29T06:24:25Z",
-          "updated": "2026-07-29T06:24:25Z",
-          "authors": [
-            "Mingyang Sun",
-            "Jiude Wei",
-            "Xiujian Liang",
-            "Qichen He",
-            "Donglin Wang",
-            "Cewu Lu",
-            "Jianhua Sun"
-          ],
-          "categories": [
-            "cs.RO"
-          ],
-          "heuristicScore": 83,
-          "llmTotalScore": 0
-        },
-        {
-          "id": "2607.26452v1",
-          "title": "CG-World: A Large-Scale World-State Dataset and Protocol for World Models",
-          "summary": "World models must learn the joint dynamics of states, actions, events, and observations, yet existing video, robotics, and simulation datasets usually capture only part of this structure. We introduce CG-World, a large-scale world-state dataset and protocol derived from industrial computer graphics production pipelines. CG-World explicitly records intermediate states, including multimodal semantics, spatial structure, skeletal and controller states, motion curves, camera and lighting parameters, physics caches, co…",
-          "summaryCn": "CG-World是从工业CG管线构建的大规模世界状态数据集，包含动作、事件和分支元数据，支持干预学习与反事实推理。实验验证了其在动作预测和VLA策略迁移上的价值。",
-          "reasonCn": "数据集明确记录动作与状态，用于训练世界模型并评估动作预测及闭环VLA策略迁移，同时覆盖WAM和VLA。",
-          "lane": "BOTH",
-          "link": "https://arxiv.org/abs/2607.26452v1",
-          "pdfLink": "https://arxiv.org/pdf/2607.26452v1",
-          "published": "2026-07-29T04:06:28Z",
-          "updated": "2026-07-29T04:06:28Z",
-          "authors": [
-            "Yiming Cai",
-            "Fangjie Yu",
-            "Meiqing Yu",
-            "Ziyue Shi",
-            "Pengfei Yuan",
-            "Yong Guo"
-          ],
-          "categories": [
-            "cs.AI",
-            "cs.CV"
-          ],
-          "heuristicScore": 73,
-          "llmTotalScore": 0
-        },
-        {
-          "id": "2607.26807v1",
-          "title": "Route by Kinematics, Act by Observation: Kinematics-Supervised Expert Routing in MoE-Augmented VLA",
-          "summary": "While MoE augments VLA via expert specialization, router suffers from ineffective expert routing owing to the kinematic heterogeneity of actions across manipulation tasks and, even worse, the unavailability of the kinematic signals at inference time. In this work, we first observe that most semantically distinct manipulation tasks reduce to multiple kinematic archetypes. Motivated by this finding, we propose Kinematics-supervised explicit routing (KinRT), a new paradigm that shifts from implicit, observation-drive…",
-          "summaryCn": "KinRT将操作任务简化为运动学原型，通过非对称蒸馏在推理时仅用视觉-语言观测进行专家路由。在RoboTwin和自制DIYRobot平台上都取得了显著性能提升。",
-          "reasonCn": "论文提出VLA中MoE的显式路由方法，利用运动学聚类监督路由器训练，以改善动作输出。",
-          "lane": "VLA",
-          "link": "https://arxiv.org/abs/2607.26807v1",
-          "pdfLink": "https://arxiv.org/pdf/2607.26807v1",
-          "published": "2026-07-29T11:48:45Z",
-          "updated": "2026-07-29T11:48:45Z",
-          "authors": [
-            "Tianhang Yang",
-            "Yanze Zheng",
-            "Junjie Wang",
-            "Wei-Bin Kou",
-            "Ruotong Li",
-            "Yujiu Yang"
-          ],
-          "categories": [
-            "cs.RO"
-          ],
-          "heuristicScore": 68,
-          "llmTotalScore": 0
-        },
-        {
-          "id": "2607.26712v1",
-          "title": "ActSWM: Action-Sensitive World Models for Long-Horizon Planning in Open-World Games",
-          "summary": "Latent world models support efficient model-predictive control by optimizing future control sequences in latent space and replanning in a receding-horizon manner. However, existing latent predictors often lack stable long-horizon rollout ability, and prediction accuracy alone does not ensure that rollouts remain responsive to the actions being planned. We identify Context Collapse, a failure mode in which autoregressive latent predictors maintain high similarity to future states while producing nearly indistinguis…",
-          "summaryCn": "ActSWM引入动作敏感约束，使不同动作序列的未来轨迹在隐空间中保持可分。在Minecraft规划任务中成功率和长期一致性优于现有基线。",
-          "reasonCn": "论文提出动作敏感的潜在世界模型，用于开放世界游戏中的长时规划，明确以动作为条件进行rollout。",
-          "lane": "WAM",
-          "link": "https://arxiv.org/abs/2607.26712v1",
-          "pdfLink": "https://arxiv.org/pdf/2607.26712v1",
-          "published": "2026-07-29T09:55:54Z",
-          "updated": "2026-07-29T09:55:54Z",
-          "authors": [
-            "Zhenfeng Gan",
-            "ZiTong Zeng",
-            "Jiajun Cheng",
-            "Yeke Song",
-            "Yongyi Tang",
-            "Xueqian Wang"
-          ],
-          "categories": [
-            "cs.RO"
-          ],
-          "heuristicScore": 53,
-          "llmTotalScore": 0
-        },
-        {
-          "id": "2607.26579v1",
-          "title": "ContactFlow: A video action conditioning that transfers across embodiments",
-          "summary": "World models offer a promising route toward robot planning by enabling agents to imagine and verify the consequences of actions before execution. However, current video-based world models often struggle to capture the physical constraints that govern manipulation, particularly contact. Further, their action conditioning is often constrained to specific embodiments such as parallel grippers.",
-          "summaryCn": "ContactFlow将操作编码为3D接触点轨迹，使世界模型能统一人类与机器人数据。生成的rollout经视觉语言模型评估后执行，实现了跨具身迁移。",
-          "reasonCn": "论文提出跨具身的接触流动作表示，训练视频世界模型并用于机器人操作的想象-验证-执行规划。",
-          "lane": "WAM",
-          "link": "https://arxiv.org/abs/2607.26579v1",
-          "pdfLink": "https://arxiv.org/pdf/2607.26579v1",
-          "published": "2026-07-29T07:59:47Z",
-          "updated": "2026-07-29T07:59:47Z",
-          "authors": [
-            "Sami Azirar",
-            "Enrico Pallotta",
-            "Jan Nogga",
-            "Jürgen Gall",
-            "Sven Behnke",
-            "Hermann Blum"
-          ],
-          "categories": [
-            "cs.RO",
-            "cs.CV"
-          ],
-          "heuristicScore": 42,
-          "llmTotalScore": 0
-        },
-        {
-          "id": "2607.26657v1",
-          "title": "Enfold: Folding World-Generator Computation into Predictive Representations for Efficient Embodied Control",
-          "summary": "World generative models are typically used through what they produce: a rendered future, a video-conditioned action, or latent context computed by a costly generative branch. We argue that their more reusable asset is the computation that constructs a future. As a generator transforms a corrupted future into a coherent trajectory, its intermediate states organize appearance, spatial layout, and interaction across levels of abstraction.",
-          "summaryCn": "Enfold将未来生成过程的中间状态蒸馏为当前观测的表示，避免了部署时的生成器。在多个机器人基准上实现了数倍的推理加速，并保持了强控制性能。",
-          "reasonCn": "论文将世界生成模型的计算折叠成预测性表示，以支持高效具身控制，明确用于动作预测。",
-          "lane": "WAM",
-          "link": "https://arxiv.org/abs/2607.26657v1",
-          "pdfLink": "https://arxiv.org/pdf/2607.26657v1",
-          "published": "2026-07-29T09:17:33Z",
-          "updated": "2026-07-29T09:17:33Z",
-          "authors": [
-            "Weili Zeng",
-            "Yitong Xing",
-            "Fulong Liu",
-            "Chengqun Yang",
-            "Antao Xiang",
-            "Feng Tian",
-            "Jingnan Gao",
-            "Jisong Cai",
-            "Xin Wang",
-            "Xiaomin Wu"
-          ],
-          "categories": [
-            "cs.RO"
-          ],
-          "heuristicScore": 38,
-          "llmTotalScore": 0
-        },
-        {
-          "id": "2607.26752v1",
-          "title": "CalTwin: Towards Calibrated, Shift-Robust Medical World Models via Fisher-Information Regularisation",
-          "summary": "Medical world models aim to learn a latent state of patient or organ physiology and a transition function that forecasts how that state evolves under interventions, supporting downstream tasks from imaging-based diagnosis to digital-twin treatment planning. Two failure modes threaten the reliability of such models in clinical deployment: (i)~\\emph{covariate shift}, because training data are fragmented across hospitals, scanners, and time, so the feature distribution seen by the latent-dynamics predictor differs ac…",
-          "summaryCn": "CalTwin针对医疗世界模型的协变量偏移和置信度错位问题，通过联合正则化统一处理。在PhysioNet数据集上的评估表明了其在数字孪生治疗规划中的潜力。",
-          "reasonCn": "论文提出医疗世界模型，利用Fisher信息正则化提升校准和鲁棒性，用于治疗规划。",
-          "lane": "WAM",
-          "link": "https://arxiv.org/abs/2607.26752v1",
-          "pdfLink": "https://arxiv.org/pdf/2607.26752v1",
-          "published": "2026-07-29T10:47:52Z",
-          "updated": "2026-07-29T10:47:52Z",
-          "authors": [
-            "Behraj Khan",
-            "Shabir Ahmad",
-            "Syed Ahmad Chan Bukhari",
-            "Tahir Qasim Syed"
-          ],
-          "categories": [
-            "cs.LG"
-          ],
-          "heuristicScore": 32,
-          "llmTotalScore": 0
         }
       ]
     }
