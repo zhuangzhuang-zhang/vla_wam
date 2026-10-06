@@ -1,5 +1,5 @@
 window.PAPERS_SITE_DATA = {
-  "generatedAt": "2026-10-05T04:13:35.214797+00:00",
+  "generatedAt": "2026-10-06T05:13:21.872316+00:00",
   "description": "每天北京时间 08:00 自动更新，只筛选与 VLA 和 WAM 主问题强相关的 arXiv 新论文。",
   "dateWindowDays": 7,
   "categories": [
@@ -12,12 +12,536 @@ window.PAPERS_SITE_DATA = {
     "vision-language-action",
     "world action model"
   ],
-  "currentDateKey": "20261005",
+  "currentDateKey": "20261006",
   "selectionMethod": "deepseek_vla_wam_rerank",
   "llmEnabled": true,
   "llmProvider": "DeepSeek",
   "modelInfo": "deepseek-v4-pro",
   "archives": [
+    {
+      "dateKey": "20261006",
+      "dateLabel": "2026-10-06",
+      "generatedAt": "2026-10-06T05:13:21.872187+00:00",
+      "sourceMode": "strict",
+      "sourceNoteCn": "严格窗口：使用前一天 08:00 到当天 08:00 的 VLA / WAM 论文。",
+      "papers": [
+        {
+          "id": "2610.06271v1",
+          "title": "VLA-ZO: Fast Zeroth-Order Adaptation for Vision-Language-Action Models",
+          "summary": "Adapting vision-language-action (VLA) models to deployment-time distribution shifts is important for reliable robotic operation, but conventional first-order adaptation can exceed the memory budget of inference-oriented deployment platforms. Zeroth-order (ZO) optimization offers a forward-only alternative with inference-level memory, but accurate gradient estimation requires many perturbation queries, making naive ZO prohibitively slow for large VLA models. We present VLA-ZO, a framework for fast ZO adaptation tha…",
+          "summaryCn": "提出VLA-ZO框架，通过仅适应动作侧并重用视觉语言前缀状态，加速VLA模型的零阶适应。在LIBERO相机视角变化下大幅减少适应时间并提高任务成功率。",
+          "reasonCn": "论文聚焦于视觉-语言-动作模型的快速适应，直接涉及视觉输入、语言指令和机器人动作输出。",
+          "lane": "VLA",
+          "link": "https://arxiv.org/abs/2610.06271v1",
+          "pdfLink": "https://arxiv.org/pdf/2610.06271v1",
+          "published": "2026-10-05T13:05:34Z",
+          "updated": "2026-10-05T13:05:34Z",
+          "authors": [
+            "Jaemin Kim",
+            "Jiahn Kim",
+            "Taesik Gong"
+          ],
+          "categories": [
+            "cs.RO",
+            "cs.AI"
+          ],
+          "heuristicScore": 117,
+          "llmTotalScore": 117
+        },
+        {
+          "id": "2610.06814v1",
+          "title": "TAPDreamer: Transferable Adversarial Patches for World Action Models",
+          "summary": "World models learn to predict how their environment will evolve, making them an important foundation for general-purpose robotic control. Yet world action models depend on camera inputs whose manipulation can corrupt the visual representations used across tasks and action policies. Existing attacks on these models optimize against the victim's actions or predicted futures and therefore require access to target-model outputs.",
+          "summaryCn": "提出TAPDreamer攻击方法，利用公共编码器构建可迁移的对抗补丁，用于破坏世界动作模型。在LIBERO和RoboTwin上使成功率降至0%，揭示WAM的脆弱性。",
+          "reasonCn": "论文以世界动作模型为核心，研究其对抗攻击并评估对动作预测和任务执行的影响。",
+          "lane": "WAM",
+          "link": "https://arxiv.org/abs/2610.06814v1",
+          "pdfLink": "https://arxiv.org/pdf/2610.06814v1",
+          "published": "2026-10-05T17:55:21Z",
+          "updated": "2026-10-05T17:55:21Z",
+          "authors": [
+            "Xuanyu Lu",
+            "Fengqing Jiang",
+            "Kaiyuan Zheng",
+            "Yichen Feng",
+            "Yaorui Ding",
+            "Yuetai Li",
+            "Zhen Xiang",
+            "Bhaskar Ramasubramanian",
+            "Basel Alomair",
+            "Luyao Niu"
+          ],
+          "categories": [
+            "cs.CV",
+            "cs.AI",
+            "cs.RO"
+          ],
+          "heuristicScore": 111,
+          "llmTotalScore": 111
+        },
+        {
+          "id": "2610.05878v1",
+          "title": "OGAM: Connecting Systematic Testing to Runtime Assurance through Object-Grounded Attention Monitoring for VLA Policies",
+          "summary": "Benchmarks expose vision-language-action (VLA) policies to few canonical instructions, while exhaustive deployment testing is impossible. We introduce Object-Grounded Attention Monitoring (OGAM), connecting systematic testing to runtime assurance: testing reveals attention divergence between successful and failed executions, and OGAM uses this signal to stop failures beyond the finite suite. We generate scene-grounded instructions through pairwise combinations of action templates and objects, and separately test m…",
+          "summaryCn": "提出OGAM，通过对象接地注意力监测连接系统测试与运行时保证，用于VLA策略。在四个策略上以低误停率停止大多数失败执行。",
+          "reasonCn": "论文研究视觉-语言-动作策略的注意力监控与失败停止，直接涉及视觉、语言和动作输出。",
+          "lane": "VLA",
+          "link": "https://arxiv.org/abs/2610.05878v1",
+          "pdfLink": "https://arxiv.org/pdf/2610.05878v1",
+          "published": "2026-10-05T06:49:55Z",
+          "updated": "2026-10-05T06:49:55Z",
+          "authors": [
+            "Haki Darwish",
+            "Xiangyu Yin",
+            "Changwen Li",
+            "Rongjie Yan",
+            "Francisco Gomes de Oliveira Neto",
+            "Chih-Hong Cheng"
+          ],
+          "categories": [
+            "cs.LG",
+            "cs.AI",
+            "cs.RO"
+          ],
+          "heuristicScore": 94,
+          "llmTotalScore": 94
+        },
+        {
+          "id": "2610.05994v1",
+          "title": "How (and How Not) to Use Data Augmentation in VLA Post-Training",
+          "summary": "Vision-language-action (VLA) models currently demonstrate strong performance in a wide range of real-world robotics tasks. However, they often still lack the generalization ability to handle large visual out-of-distribution shifts. Post-training of VLAs with reinforcement learning (RL) has been shown to benefit robustness, but significant room for improvement remains.",
+          "summaryCn": "系统研究图像增强在VLA后训练中的作用，发现仅增强critic模块而保持actor输入清洁可提升分布外成功率。为VLA鲁棒性后训练提供实用建议。",
+          "reasonCn": "论文聚焦VLA模型后训练中的图像增强策略，属于视觉-语言-动作模型范畴。",
+          "lane": "VLA",
+          "link": "https://arxiv.org/abs/2610.05994v1",
+          "pdfLink": "https://arxiv.org/pdf/2610.05994v1",
+          "published": "2026-10-05T08:48:13Z",
+          "updated": "2026-10-05T08:48:13Z",
+          "authors": [
+            "Bram Grooten",
+            "Joaquin Vanschoren"
+          ],
+          "categories": [
+            "cs.RO",
+            "cs.LG"
+          ],
+          "heuristicScore": 90,
+          "llmTotalScore": 90
+        },
+        {
+          "id": "2610.06617v1",
+          "title": "RealtimeWAM: One-Step Asynchronous World Action Models",
+          "summary": "World Action Models (WAMs) incorporate visual representations from video generation backbones to guide action prediction. Recent efficient WAMs adopt Mixture-of-Transformers (MoT) architectures and compute video representations once for reuse by the action expert. However, intra-expert iteration (\\ie, multi-step action denoising) and inter-expert waiting (\\ie, sequential execution of the video and action experts) still limit inference efficiency.",
+          "summaryCn": "提出RealtimeWAM，通过教师锚定一致性蒸馏和跨专家波前流水线实现一步式异步世界动作模型。大幅提升推理效率，在多个基准上验证。",
+          "reasonCn": "论文以世界动作模型为核心，明确用于动作预测并优化推理效率。",
+          "lane": "WAM",
+          "link": "https://arxiv.org/abs/2610.06617v1",
+          "pdfLink": "https://arxiv.org/pdf/2610.06617v1",
+          "published": "2026-10-05T16:18:07Z",
+          "updated": "2026-10-05T16:18:07Z",
+          "authors": [
+            "Chengtao Lv",
+            "Jinyang Du",
+            "Shuyi Feng",
+            "Yang Yong",
+            "Shiqiao Gu",
+            "Shunzi Yang",
+            "Ruihao Gong",
+            "Shen Ren",
+            "Tianwei Zhang",
+            "Wenya Wang"
+          ],
+          "categories": [
+            "cs.CV",
+            "cs.LG",
+            "cs.RO"
+          ],
+          "heuristicScore": 89,
+          "llmTotalScore": 89
+        },
+        {
+          "id": "2610.05818v1",
+          "title": "What the Guard Misses, the Robot Executes: Implied Harm in VLA Instructions",
+          "summary": "Vision-language-action models (VLAs) act on instructions without being able to refuse, so screening harmful requests falls to monitors. We test whether these monitors catch ordinary robot tasks requested for harmful reasons, holding the task fixed while varying only how explicitly the intent is stated. $π_{0.5}$ completes the task at every level of explicitness, as often as for harmless controls.",
+          "summaryCn": "研究VLA指令中隐含危害的检测问题，发现文本守卫对隐含危害请求漏检率高达90%。线性探测表明语言与视觉模型中危害分离在机器人训练后减弱。",
+          "reasonCn": "论文直接评估视觉-语言-动作模型对有害指令的执行行为，属于VLA安全研究。",
+          "lane": "VLA",
+          "link": "https://arxiv.org/abs/2610.05818v1",
+          "pdfLink": "https://arxiv.org/pdf/2610.05818v1",
+          "published": "2026-10-05T05:11:58Z",
+          "updated": "2026-10-05T05:11:58Z",
+          "authors": [
+            "Sripad Karne",
+            "Arjun Balaji"
+          ],
+          "categories": [
+            "cs.RO"
+          ],
+          "heuristicScore": 88,
+          "llmTotalScore": 88
+        },
+        {
+          "id": "2610.06280v1",
+          "title": "Future Anchored Verification and Online Recovery for World Action Models",
+          "summary": "World action models (WAMs) have emerged as a promising paradigm for robotic manipulation. They act by first predicting how a task should be performed and then decoding the actions from that future. However, the remaining actions are invalid once execution drifts from the prediction.",
+          "summaryCn": "提出FAVOR框架，利用世界动作模型预测的未来帧作为锚点进行验证和恢复。在不修改策略的情况下提高LIBERO和LIBERO-Plus上的任务成功率。",
+          "reasonCn": "论文以世界动作模型为核心，通过未来锚定验证与恢复提升动作执行可靠性。",
+          "lane": "WAM",
+          "link": "https://arxiv.org/abs/2610.06280v1",
+          "pdfLink": "https://arxiv.org/pdf/2610.06280v1",
+          "published": "2026-10-05T13:08:58Z",
+          "updated": "2026-10-05T13:08:58Z",
+          "authors": [
+            "Zhibin Qin",
+            "Zhenxiong Tan",
+            "Xinchao Wang"
+          ],
+          "categories": [
+            "cs.RO",
+            "cs.AI"
+          ],
+          "heuristicScore": 87,
+          "llmTotalScore": 87
+        },
+        {
+          "id": "2610.06318v1",
+          "title": "Wiring Matters: Injection Topology and Initialization of Affordance Heads in Vision-Language-Action Policies",
+          "summary": "Dense affordance supervision is an appealing auxiliary signal for vision-language-action (VLA) policies, yet naively co-training an affordance head can severely damage instruction following. We present a controlled study of how to wire such a head into a modern VLA on the LIBERO benchmark. Our recipe reads the backbone through a stop-gradient and re-injects an intermediate head feature into the action expert via a learned bridge.",
+          "summaryCn": "研究如何将affordance头注入现代VLA策略，提出stop-gradient保护和主动初始化残差桥，在LIBERO上达到96.2%成功率。通过探针解释机制。",
+          "reasonCn": "论文聚焦视觉-语言-动作策略中的affordance头布线，属于VLA方法改进。",
+          "lane": "VLA",
+          "link": "https://arxiv.org/abs/2610.06318v1",
+          "pdfLink": "https://arxiv.org/pdf/2610.06318v1",
+          "published": "2026-10-05T13:32:51Z",
+          "updated": "2026-10-05T13:32:51Z",
+          "authors": [
+            "Zijian An",
+            "Linhan Wang",
+            "Jiayan Wang",
+            "Shijie Geng",
+            "Ran Yang",
+            "Yiming Feng",
+            "Lifeng Zhou"
+          ],
+          "categories": [
+            "cs.CV",
+            "cs.AI"
+          ],
+          "heuristicScore": 83,
+          "llmTotalScore": 83
+        },
+        {
+          "id": "2610.06184v1",
+          "title": "Arm-wise Compositional Generalization in Dual-Arm Vision-Language-Action Models",
+          "summary": "Generalization in multi-arm collaboration can be studied as composing familiar atomic skills in new ways across arms. However, existing evaluations offer limited insight into which training and architectural choices support this ability under different coordination requirements. We introduce \\textbf{ACG-Bench}, a benchmark for \\emph{Arm-wise Compositional Generalization} that provides a common testbed for studying skill recomposition in dual-arm policies.",
+          "summaryCn": "提出ACG-Bench用于双臂VLA的组合泛化评估，并比较数据增强与架构策略，结合技能LoRA与臂间注意力得到AE-VLA。在模拟中显著提升泛化成功率。",
+          "reasonCn": "论文研究双臂视觉-语言-动作模型的组合泛化，涉及视觉、语言和动作输出。",
+          "lane": "VLA",
+          "link": "https://arxiv.org/abs/2610.06184v1",
+          "pdfLink": "https://arxiv.org/pdf/2610.06184v1",
+          "published": "2026-10-05T12:03:04Z",
+          "updated": "2026-10-05T12:03:04Z",
+          "authors": [
+            "Zaibin Zhang",
+            "Binghao Ran",
+            "Yuhan Wu",
+            "Zhongbo Zhang",
+            "Yifan Wang",
+            "Junwei Jiang",
+            "Junlan Xiao",
+            "Wangcheng Shi",
+            "Li Kang",
+            "Yiran Qin"
+          ],
+          "categories": [
+            "cs.RO"
+          ],
+          "heuristicScore": 83,
+          "llmTotalScore": 83
+        },
+        {
+          "id": "2610.06598v1",
+          "title": "SimForcing: Distilling Simulation Motion Priors into Real-Domain Robot World Models",
+          "summary": "Action-conditioned robot world models must respond precisely to robot trajectories while preserving realistic visual dynamics, yet learning both from heterogeneous robot videos remains challenging. Simulation offers structured motion supervision, but appearance differences hinder direct transfer, and inaccurate simulation predictions can misguide real-video generation. We present SimForcing, a simulation-guided framework that uses simulation both as a source of transferable motion knowledge and as a controllable r…",
+          "summaryCn": "提出SimForcing，通过潜在运动蒸馏和模拟条件化将仿真运动先验迁移到真实域机器人世界模型。在Bridge数据集上取得最佳生成质量。",
+          "reasonCn": "论文以动作条件世界模型为核心，用于机器人视觉动态预测，但未涉及语言指令，故归为WAM。",
+          "lane": "WAM",
+          "link": "https://arxiv.org/abs/2610.06598v1",
+          "pdfLink": "https://arxiv.org/pdf/2610.06598v1",
+          "published": "2026-10-05T16:08:01Z",
+          "updated": "2026-10-05T16:08:01Z",
+          "authors": [
+            "Xiaodong Wang",
+            "Tianle Li",
+            "Chuanxin Song",
+            "Junliang Xie",
+            "Zhanmi Zhong",
+            "Suiying Wu",
+            "Peixi Peng"
+          ],
+          "categories": [
+            "cs.RO",
+            "cs.AI",
+            "cs.CV"
+          ],
+          "heuristicScore": 81,
+          "llmTotalScore": 81
+        },
+        {
+          "id": "2610.05719v1",
+          "title": "When to Switch: Reliable Action-Chunk Extension for Vision-Language-Action Models",
+          "summary": "Vision-Language-Action (VLA) models serve as unified policies for robotic manipulation, yet their expensive inference forces robots to pause between policy calls, resulting in stop-and-go execution that interrupts smooth motion and prolongs task completion. Extending the action chunk reduces policy calls and hence these pauses, but predicting farther into the future makes long-chunk execution unreliable. To understand where this unreliability arises, we analyze action errors within long chunks and find that they c…",
+          "summaryCn": "提出RACE框架，通过预测子技能切换时机并条件化动作生成，实现可靠的长动作块扩展。在仿真和真实机器人上减少停顿并提高成功率。",
+          "reasonCn": "论文聚焦VLA模型的动作块扩展，直接改进视觉-语言-动作策略的执行效率。",
+          "lane": "VLA",
+          "link": "https://arxiv.org/abs/2610.05719v1",
+          "pdfLink": "https://arxiv.org/pdf/2610.05719v1",
+          "published": "2026-10-05T03:07:36Z",
+          "updated": "2026-10-05T03:07:36Z",
+          "authors": [
+            "Seonghoon Yu",
+            "Dongwon Kim",
+            "HyungRok Jung",
+            "Yoonjae Baek",
+            "Byung-kwan Lee",
+            "Suha Kwak",
+            "Jeany Son"
+          ],
+          "categories": [
+            "cs.RO"
+          ],
+          "heuristicScore": 81,
+          "llmTotalScore": 81
+        },
+        {
+          "id": "2610.06235v1",
+          "title": "Encoded but Not in Control: Revealing the Grounding Gap in Vision-Language Robot Policies",
+          "summary": "Instruction following is central to language-conditioned robot policies: language should determine what to do when the same scene permits multiple valid actions. Yet successful execution alone cannot establish whether a policy follows the instruction or infers the task from the scene. We study this ambiguity through scene-preserving instruction interventions, using valid target substitutions, arbitrary nouns, and unrelated sentences while holding the scene fixed.",
+          "summaryCn": "研究语言条件机器人策略中指令跟随与场景推断的混淆，评估VLA和WAM的接地差距。发现指令被编码但很少控制动作，注意力对指令词贡献弱。",
+          "reasonCn": "论文同时分析视觉-语言-动作策略和世界动作模型的语言接地问题，属于VLA与WAM交叉研究。",
+          "lane": "BOTH",
+          "link": "https://arxiv.org/abs/2610.06235v1",
+          "pdfLink": "https://arxiv.org/pdf/2610.06235v1",
+          "published": "2026-10-05T12:37:55Z",
+          "updated": "2026-10-05T12:37:55Z",
+          "authors": [
+            "Shaohan Jiang",
+            "Jiahang Cao",
+            "Qiduo He",
+            "Fengting Deng",
+            "Kun Wu",
+            "Jingkai Sun",
+            "Jiaxu Wang",
+            "Qiang Zhang",
+            "Qihao Zheng",
+            "Chunfeng Song"
+          ],
+          "categories": [
+            "cs.RO",
+            "cs.LG"
+          ],
+          "heuristicScore": 80,
+          "llmTotalScore": 80
+        },
+        {
+          "id": "2610.06349v1",
+          "title": "KineWorld: Action-Induced Transport Fields for Embodied World Modeling",
+          "summary": "Embodied world models predict the visual consequences of candidate actions before execution. However, existing action-conditioned world models often adopt uniformly weighted visual generation objectives that can be misaligned with embodied prediction needs. Even with explicit motion conditioning, these objectives can underemphasize spatially sparse changes that are critical to interaction.",
+          "summaryCn": "提出KineWorld，通过运动学传输提升和传输感知世界扩散将机器人运动学扩展到空间生成监督。在RoboTwin 2.0上取得先进的EWMScore-P和TWB-Score。",
+          "reasonCn": "论文以动作条件世界模型为核心，聚焦动作后果建模，用于具身决策。",
+          "lane": "WAM",
+          "link": "https://arxiv.org/abs/2610.06349v1",
+          "pdfLink": "https://arxiv.org/pdf/2610.06349v1",
+          "published": "2026-10-05T13:51:44Z",
+          "updated": "2026-10-05T13:51:44Z",
+          "authors": [
+            "Ziying Song",
+            "Yuchen Liu",
+            "Zhuoran Xu",
+            "Ziyang Liu",
+            "Jian Jin",
+            "Jiangtao Su",
+            "Haibao Yu",
+            "Lei Yang",
+            "Yuanpei Chen"
+          ],
+          "categories": [
+            "cs.CV",
+            "cs.RO"
+          ],
+          "heuristicScore": 77,
+          "llmTotalScore": 77
+        },
+        {
+          "id": "2610.06250v1",
+          "title": "Generative World Models Enable Predictive Control of Laser Melt Pool Dynamics",
+          "summary": "World models, which learn how environments respond to actions, are emerging as a powerful paradigm for planning through imagined futures, transforming decision-making across games, robotics and autonomous driving. Bringing this capability to manufacturing could enable process decisions on timescales inaccessible to high-fidelity simulation. Here we introduce a generative world model for localized highly dynamic laser melt pool that predicts evolution from histories of temperature and phase morphology under candida…",
+          "summaryCn": "提出用于激光熔池动力学的生成式世界模型，可预测温度与相形态演化并直接作为预测控制对象。通过可微动力学优化激光调度，并蒸馏为单步策略。",
+          "reasonCn": "论文以世界模型为核心，明确用于激光加工中的动作预测与控制。",
+          "lane": "WAM",
+          "link": "https://arxiv.org/abs/2610.06250v1",
+          "pdfLink": "https://arxiv.org/pdf/2610.06250v1",
+          "published": "2026-10-05T12:47:44Z",
+          "updated": "2026-10-05T12:47:44Z",
+          "authors": [
+            "Yiyang Yan",
+            "Markus Bambach",
+            "Mohamadreza Afrasiabi"
+          ],
+          "categories": [
+            "cs.LG"
+          ],
+          "heuristicScore": 67,
+          "llmTotalScore": 67
+        },
+        {
+          "id": "2610.06843v1",
+          "title": "Recursive Video In-Context Learning for Agentic Robot",
+          "summary": "LLM agents that orchestrate frozen vision-language-action (VLA) policies improve across episodes through text memory, which records what the agent did but not how the task is done. A demonstration video shows it, but fits poorly into an agent's context. The full video slows every turn, fixed keyframes lose the contact detail that decides whether a grasp holds, and what the agent needs shifts from the task's structure while planning to the frames around each contact.",
+          "summaryCn": "提出RV-ICL，将演示视频构建为层次化结构，供LLM智能体在规划与执行过程中按需读取。在LIBERO-PRO和LIBERO-Plus上显著提升冻结VLA策略的成功率。",
+          "reasonCn": "论文通过视频上下文学习增强视觉-语言-动作策略，涉及视觉输入、语言指令和机器人动作。",
+          "lane": "VLA",
+          "link": "https://arxiv.org/abs/2610.06843v1",
+          "pdfLink": "https://arxiv.org/pdf/2610.06843v1",
+          "published": "2026-10-05T17:59:11Z",
+          "updated": "2026-10-05T17:59:11Z",
+          "authors": [
+            "Wenrui Bao",
+            "Xinxin Liu",
+            "Bingxin Xu",
+            "Yuzhang Shang"
+          ],
+          "categories": [
+            "cs.RO",
+            "cs.AI"
+          ],
+          "heuristicScore": 62,
+          "llmTotalScore": 62
+        },
+        {
+          "id": "2610.05996v1",
+          "title": "EpicWorldModel: Exploration-driven Planning with Latent World Models",
+          "summary": "Latent world models based on Joint-Embedding Predictive Architecture (JEPA) are deterministic by design. While successful in fully observable scenarios, this paradigm breaks down when past observations and actions lead to multiple plausible future possibilities, e.g., due to occlusion. We introduce EpicWorldModel, a framework to train stochastic JEPAs for environments and tasks with inherent uncertainty under partially observability.",
+          "summaryCn": "提出EpicWorldModel，在JEPA框架下训练随机世界模型，通过流匹配预测多种未来并利用预测方差指导CEM规划。在部分可观测环境中提升规划成功率。",
+          "reasonCn": "论文以潜在世界模型为核心，明确用于动作规划与探索。",
+          "lane": "WAM",
+          "link": "https://arxiv.org/abs/2610.05996v1",
+          "pdfLink": "https://arxiv.org/pdf/2610.05996v1",
+          "published": "2026-10-05T08:49:27Z",
+          "updated": "2026-10-05T08:49:27Z",
+          "authors": [
+            "Bowen Feng",
+            "Julian Ost",
+            "May Mei",
+            "Anirudha Majumdar",
+            "Felix Heide"
+          ],
+          "categories": [
+            "cs.LG",
+            "cs.AI",
+            "cs.RO"
+          ],
+          "heuristicScore": 59,
+          "llmTotalScore": 59
+        },
+        {
+          "id": "2610.06805v1",
+          "title": "H-JEPA: End-to-End Learning of Hierarchical World Models for Visual Planning",
+          "summary": "Long-horizon planning with latent world models requires reasoning across timescales and levels of abstraction. Existing task-agnostic JEPA world models predict and plan at a single timescale or with multiple horizons in one shared latent space. We introduce H-JEPA, an end-to-end recipe for training a hierarchy of action-conditioned JEPAs in which each level predicts farther ahead in its own learned latent space.",
+          "summaryCn": "提出H-JEPA，端到端训练层次化动作条件JEPA世界模型，自上而下进行视觉规划。在模拟导航和真实机器人视频上提升规划保真度并降低计算量。",
+          "reasonCn": "论文以层次化世界模型为核心，明确用于动作条件预测和规划。",
+          "lane": "WAM",
+          "link": "https://arxiv.org/abs/2610.06805v1",
+          "pdfLink": "https://arxiv.org/pdf/2610.06805v1",
+          "published": "2026-10-05T17:53:34Z",
+          "updated": "2026-10-05T17:53:34Z",
+          "authors": [
+            "Wancong Zhang",
+            "Basile Terver",
+            "Michael Rabbat",
+            "Yann LeCun",
+            "Randall Balestriero"
+          ],
+          "categories": [
+            "cs.LG",
+            "cs.RO"
+          ],
+          "heuristicScore": 55,
+          "llmTotalScore": 55
+        },
+        {
+          "id": "2610.06008v1",
+          "title": "Ultrasound Operator Guidance Using World Modeling and Retrieval Based Action Planning",
+          "summary": "Ultrasound is widely used, but acquisition quality is heavily dependent on the operator's knowledge and expertise. With demand for examinations outpacing the supply of trained sonographers, operator-guidance systems aim to close this gap by instructing a less trained user how to move the probe toward a target view. In this paper, we propose a retrieval-induced latent transition model for ultrasound acquisition dynamics, formulating ultrasound operator guidance as multi-step planning and retrieval in a world model.",
+          "summaryCn": "提出基于检索诱导潜在转移模型的超声操作引导方法，将超声采集动力学建模为世界模型并进行多步规划。在颈动脉超声目标视图到达率上优于基线。",
+          "reasonCn": "论文以世界模型为核心，明确用于超声探头的动作规划。",
+          "lane": "WAM",
+          "link": "https://arxiv.org/abs/2610.06008v1",
+          "pdfLink": "https://arxiv.org/pdf/2610.06008v1",
+          "published": "2026-10-05T09:05:30Z",
+          "updated": "2026-10-05T09:05:30Z",
+          "authors": [
+            "Noortje I. P. Schueler",
+            "Hans van Gorp",
+            "Ruud J. G. van Sloun"
+          ],
+          "categories": [
+            "cs.LG",
+            "cs.CV"
+          ],
+          "heuristicScore": 43,
+          "llmTotalScore": 43
+        },
+        {
+          "id": "2610.06078v1",
+          "title": "Do VLAs Understand and Adapt to the Objects They Handle, or Simply Replay Learned Behaviors?",
+          "summary": "This paper asks whether VLA generalization is grounded in a global understanding of objects' physical properties that enables policies to adapt their motion to unseen setups, or if policies simply replay the motions they've learnt that happen to succeed in new setups. The former reflects genuine generalization; the latter reflects incidental robustness. We first examine awareness of physical properties in seven VLAs by applying linear probing and representational similarity analysis (RSA) to their activations.",
+          "summaryCn": "研究VLA模型是否真正理解物体物理属性并适应动作，通过线性探测和RSA分析发现物理属性编码较弱且机器人预训练削弱语言流编码。多数VLA对质量变化未调整抓取行为。",
+          "reasonCn": "论文直接评估视觉-语言-动作模型的物理属性理解与动作生成，属于VLA分析。",
+          "lane": "VLA",
+          "link": "https://arxiv.org/abs/2610.06078v1",
+          "pdfLink": "https://arxiv.org/pdf/2610.06078v1",
+          "published": "2026-10-05T10:11:11Z",
+          "updated": "2026-10-05T10:11:11Z",
+          "authors": [
+            "Xinnuo Xu"
+          ],
+          "categories": [
+            "cs.RO",
+            "cs.AI"
+          ],
+          "heuristicScore": 42,
+          "llmTotalScore": 42
+        },
+        {
+          "id": "2610.05745v1",
+          "title": "Beyond In-Distribution Preservation: Recovering Generalization in Quantized VLAs via Vulnerability-Oriented Tuning",
+          "summary": "Post-training quantization has been shown to preserve VLA performance under standard evaluation conditions, but whether it preserves the full-precision model's robustness and generalization remains underexplored. In this study, we systematically study the robustness and generalization of post-quantized VLA policies under environmental disturbances. Empirical results show that quantized policies can become fragile to subtle environmental variations despite retaining comparable in-distribution performance.",
+          "summaryCn": "研究量化后VLA策略的鲁棒性与泛化能力，提出PIVOT-Q漏洞导向调优框架，选择性纠正脆弱状态。在环境扰动下恢复泛化性能。",
+          "reasonCn": "论文聚焦视觉-语言-动作模型量化后的泛化恢复，属于VLA优化。",
+          "lane": "VLA",
+          "link": "https://arxiv.org/abs/2610.05745v1",
+          "pdfLink": "https://arxiv.org/pdf/2610.05745v1",
+          "published": "2026-10-05T03:51:21Z",
+          "updated": "2026-10-05T03:51:21Z",
+          "authors": [
+            "Shen Ruan",
+            "Wenchang Gao",
+            "Jin Wang",
+            "Siao Liu",
+            "Zhoxizhuoma",
+            "Dongchun Ren",
+            "Xin Zheng"
+          ],
+          "categories": [
+            "cs.LG",
+            "cs.RO"
+          ],
+          "heuristicScore": 38,
+          "llmTotalScore": 38
+        }
+      ]
+    },
     {
       "dateKey": "20261005",
       "dateLabel": "2026-10-05",
@@ -21252,96 +21776,6 @@ window.PAPERS_SITE_DATA = {
           ],
           "heuristicScore": 79,
           "llmTotalScore": 0
-        }
-      ]
-    },
-    {
-      "dateKey": "20260807",
-      "dateLabel": "2026-08-07",
-      "generatedAt": "2026-08-07T03:30:16.780626+00:00",
-      "sourceMode": "strict",
-      "sourceNoteCn": "严格窗口：使用前一天 08:00 到当天 08:00 的 VLA / WAM 论文。",
-      "papers": [
-        {
-          "id": "2608.06375v1",
-          "title": "$ω$-0: A Latent Predictive World Action Model for Concurrent Humanoid Loco-Manipulation",
-          "summary": "Humanoid household tasks often require concurrent loco-manipulation, where the robot must move, adjust posture, maintain balance, and manipulate objects as a single coordinated behavior. Yet existing humanoid policies typically decompose locomotion and manipulation, while recent world-action models remain either arm-centric or video-centered. We present $ω$-0, a latent predictive whole-body world-action model for real-world humanoid concurrent loco-manipulation.",
-          "summaryCn": "提出ω-0，一个面向人形机器人移动操作的世界动作模型。模型接收语言指令与视觉观测，直接预测全身动作潜在表示，并通过隐式视觉前瞻耦合扩散动作生成。在40+小时真实数据集上实验，展示11项家庭任务中的协调操作行为。",
-          "reasonCn": "论文同时涉及语言指令、视觉输入和全身动作输出，并构建潜在世界模型用于动作预测，符合VLA与WAM双重标准。",
-          "lane": "BOTH",
-          "link": "https://arxiv.org/abs/2608.06375v1",
-          "pdfLink": "https://arxiv.org/pdf/2608.06375v1",
-          "published": "2026-08-06T17:59:31Z",
-          "updated": "2026-08-06T17:59:31Z",
-          "authors": [
-            "Zhe Li",
-            "Zhenzhe Zhang",
-            "Yangyang Wei",
-            "Wenjie Zhang",
-            "Xichen Yuan",
-            "Peiyuan Zhi",
-            "Gen Li",
-            "Xinying Guo",
-            "Fengjie Gao",
-            "Jianfei Yang"
-          ],
-          "categories": [
-            "cs.RO"
-          ],
-          "heuristicScore": 103,
-          "llmTotalScore": 103
-        },
-        {
-          "id": "2608.05903v1",
-          "title": "Robust-WAM: Bridging Generative Pretraining and Semantic Foresight in World-Action Models",
-          "summary": "Mainstream World-Action Models (WAMs) adapt pretrained video generation models (VGMs) for robot control, transferring their learned dynamics prior for action prediction. These VGMs are typically trained in a variational autoencoder (VAE) latent space. However, the VAE latent space is optimized for pixel reconstruction, which rewards fine appearance detail and leaves the action prediction fragile under visual shifts.",
-          "summaryCn": "提出Robust-WAM，一种增强视频生成型世界动作模型鲁棒性的后训练方法。通过在动作流上添加轻量语义前瞻对齐，保持大规模预训练优势的同时提升对光照等外观变化的稳健性。",
-          "reasonCn": "论文专注于世界动作模型，通过语义前瞻对齐增强动作预测鲁棒性，不涉及语言指令，属WAM。",
-          "lane": "WAM",
-          "link": "https://arxiv.org/abs/2608.05903v1",
-          "pdfLink": "https://arxiv.org/pdf/2608.05903v1",
-          "published": "2026-08-06T11:31:56Z",
-          "updated": "2026-08-06T11:31:56Z",
-          "authors": [
-            "Haodong Yan",
-            "Junfeng Li",
-            "Junjie He",
-            "Zhide Zhong",
-            "MingMing Yu",
-            "Wenxuan Song",
-            "Jiaguan Zhu",
-            "Yangyang Zheng",
-            "Yuqiao Du",
-            "Jiadi You"
-          ],
-          "categories": [
-            "cs.CV",
-            "cs.RO"
-          ],
-          "heuristicScore": 72,
-          "llmTotalScore": 72
-        },
-        {
-          "id": "2608.06008v1",
-          "title": "Adaptive-WAM: Quality-Guided Early-Exit Planning from Intermediate Video-Diffusion Features",
-          "summary": "Large video diffusion models provide rich spatiotemporal priors for autonomous driving, but existing world-action models often inherit the cost of iterative future-video generation even though deployment only requires an ego trajectory. We ask a more basic question: how much of a video diffusion model must be executed to make a reliable driving decision? Through a controlled study of video denoising timesteps and Diffusion Transformer (DiT) depth, we find that planning performance is largely insensitive to the tes…",
-          "summaryCn": "提出Adaptive-WAM，一种基于视频扩散模型中间特征的质量引导早停规划器。无需生成完整视频，通过动态分配网络深度实现高效轨迹预测，在NAVSIM上达到90.8 PDMS。",
-          "reasonCn": "论文基于视频扩散模型特征进行驾驶轨迹规划，属于世界动作模型在自动驾驶中的应用，不含语言指令，归为WAM。",
-          "lane": "WAM",
-          "link": "https://arxiv.org/abs/2608.06008v1",
-          "pdfLink": "https://arxiv.org/pdf/2608.06008v1",
-          "published": "2026-08-06T13:13:07Z",
-          "updated": "2026-08-06T13:13:07Z",
-          "authors": [
-            "Sining Ang",
-            "Yuguang Yang",
-            "Yan Wang"
-          ],
-          "categories": [
-            "cs.RO"
-          ],
-          "heuristicScore": 68,
-          "llmTotalScore": 68
         }
       ]
     }
