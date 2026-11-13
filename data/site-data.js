@@ -1,5 +1,5 @@
 window.PAPERS_SITE_DATA = {
-  "generatedAt": "2026-11-12T06:14:06.863865+00:00",
+  "generatedAt": "2026-11-13T05:23:45.741360+00:00",
   "description": "每天北京时间 08:00 自动更新，只筛选与 VLA 和 WAM 主问题强相关的 arXiv 新论文。",
   "dateWindowDays": 7,
   "categories": [
@@ -12,12 +12,50 @@ window.PAPERS_SITE_DATA = {
     "vision-language-action",
     "world action model"
   ],
-  "currentDateKey": "20261112",
+  "currentDateKey": "20261113",
   "selectionMethod": "deepseek_vla_wam_rerank",
   "llmEnabled": true,
   "llmProvider": "DeepSeek",
   "modelInfo": "deepseek-v4-pro",
   "archives": [
+    {
+      "dateKey": "20261113",
+      "dateLabel": "2026-11-13",
+      "generatedAt": "2026-11-13T05:23:45.741267+00:00",
+      "sourceMode": "strict",
+      "sourceNoteCn": "严格窗口：使用前一天 08:00 到当天 08:00 的 VLA / WAM 论文。",
+      "papers": [
+        {
+          "id": "2611.16589v1",
+          "title": "STVLA: Spatial-aware and Temporal-memory forVision-Language-Action Models",
+          "summary": "Robotic manipulation often requires both spatial scene understanding and task history. However, many vision-language-action (VLA) policies rely primarily on current observations, without explicitly integrating spatial structure and task history. Appearance-based memories can be sensitive to occlusion and viewpoint changes, while spatial representations of the current scene alone do not preserve how the scene has changed during task execution.",
+          "summaryCn": "这篇论文围绕 VLA 主线展开，问题设置与方法设计具有直接相关性。从摘要看，它的核心内容是：Robotic manipulation often requires both spatial scene understanding and task history. However, many vision-language-action (VLA) policies rely primarily on current observations,…。如果你关注该方向近期进展，这篇论文值得优先浏览原文。",
+          "reasonCn": "规则回退：标题和摘要多次命中 VLA / WAM 相关术语，因此被保留。",
+          "lane": "VLA",
+          "link": "https://arxiv.org/abs/2611.16589v1",
+          "pdfLink": "https://arxiv.org/pdf/2611.16589v1",
+          "published": "2026-11-12T10:21:49Z",
+          "updated": "2026-11-12T10:21:49Z",
+          "authors": [
+            "Zhuo Han",
+            "Yeqiang Wang",
+            "Xinran Wang",
+            "Hongwei Han",
+            "Yi Xiong",
+            "Zunian Wan",
+            "Jianbo Mao",
+            "Huan Peng",
+            "Yongcheng Liu",
+            "Wei Shan"
+          ],
+          "categories": [
+            "cs.RO"
+          ],
+          "heuristicScore": 83,
+          "llmTotalScore": null
+        }
+      ]
+    },
     {
       "dateKey": "20261112",
       "dateLabel": "2026-11-12",
@@ -23689,217 +23727,6 @@ window.PAPERS_SITE_DATA = {
           ],
           "heuristicScore": 53,
           "llmTotalScore": 53
-        }
-      ]
-    },
-    {
-      "dateKey": "20260914",
-      "dateLabel": "2026-09-14",
-      "generatedAt": "2026-09-14T04:57:58.206670+00:00",
-      "sourceMode": "fallback_7d",
-      "sourceNoteCn": "当日严格窗口没有命中论文，已回退展示截止当日最近 7 天内最相关的 VLA / WAM 论文。",
-      "papers": [
-        {
-          "id": "2609.09418v1",
-          "title": "Valerant: An Automatic Navigable Game Map Generator via Action-Conditioned World Model Exploration",
-          "summary": "World Action Models (WAMs) couple predictive world modeling with action generation, allowing anticipated future states to guide agent behavior. Although WAMs are rapidly advancing embodied AI, general-purpose counterparts remain largely unexplored in games. Existing game-oriented approaches often combine action-conditioned world models with external policies and reward functions to realize WAM-like decision-making, yet they operate mainly in 2D visual observation space and do not instantiate persistent 3D geometry.",
-          "summaryCn": "提出Valerant框架，通过耦合动作条件世界模型预测、SLAM空间重建和探索驱动动作选择，自动生成可导航3D游戏地图。该方法无需训练，将视觉世界模型扩展为可交互的WAM。价值在于将世界模型从被动视频预测推进到主动空间构建。",
-          "reasonCn": "将预训练动作条件世界模型转化为WAM用于探索和构建可导航3D游戏地图，核心是动作预测与空间重建。",
-          "lane": "WAM",
-          "link": "https://arxiv.org/abs/2609.09418v1",
-          "pdfLink": "https://arxiv.org/pdf/2609.09418v1",
-          "published": "2026-09-08T20:17:48Z",
-          "updated": "2026-09-08T20:17:48Z",
-          "authors": [
-            "Yiran Qiao",
-            "Feng Wang",
-            "Jing Ma"
-          ],
-          "categories": [
-            "cs.AI"
-          ],
-          "heuristicScore": 93,
-          "llmTotalScore": 93
-        },
-        {
-          "id": "2609.11697v1",
-          "title": "ActSafeGuard: Differentiable and Training-Aligned Constraint Enforcement for Flow-Matching Policies",
-          "summary": "Vision-Language-Action (VLA) and World-Action Models (WAMs) have demonstrated strong capabilities in general-purpose robotic manipulation, yet their generated actions may violate hard physical constraints and therefore be unsafe or infeasible for deployment. Existing safety approaches either optimize statistical safety objectives without deterministic per-step guarantees or correct unsafe actions only during inference, creating a mismatch between policy training and execution. We introduce ActSafeGuard, a differen…",
-          "summaryCn": "针对VLA/WAM策略的动作安全问题，提出ActSafeGuard可微分安全层，将硬约束融入流匹配策略训练。通过解析射线缩放操作实现边界感知梯度，使模型自然学习约束流形。实验表明在任务成功率不降甚至提升的同时实现100%步安全率。",
-          "reasonCn": "论文针对VLA和WAM生成动作的安全约束，提出可微分安全层，属于两者动作可行性保障。",
-          "lane": "BOTH",
-          "link": "https://arxiv.org/abs/2609.11697v1",
-          "pdfLink": "https://arxiv.org/pdf/2609.11697v1",
-          "published": "2026-09-10T15:21:47Z",
-          "updated": "2026-09-10T15:21:47Z",
-          "authors": [
-            "Jianming Ma",
-            "Rongjun Jin",
-            "Xiaxi Si",
-            "Yang Zhang",
-            "Yiheng Li",
-            "Yue Gao"
-          ],
-          "categories": [
-            "cs.RO",
-            "cs.AI"
-          ],
-          "heuristicScore": 77,
-          "llmTotalScore": 77
-        },
-        {
-          "id": "2609.09155v1",
-          "title": "SyncWorld: Visual Calibration Enables World Models as Zero-Shot Simulators",
-          "summary": "World models are increasingly used as policy-in-the-loop imagination environments, where reliable rollouts require fine-grained controllability with respect to low-level robot actions. A key obstacle to scaling such models in robotics is that actions are not a universal language in pixel space: changes in visual environment, camera view, robot placement, or embodiment alter how the same numerical action manifests visually, leading to conflicting supervision under mixed training and brittle generalization at deploy…",
-          "summaryCn": "提出SyncWorld动作条件世界模型，利用视觉校准片段在上下文中指定动作-视觉映射，实现零样本跨环境模拟。该模型可准确模拟未见场景中的动作结果，并支持测试时策略改进。价值在于解决了像素空间中动作非通用导致的泛化难题。",
-          "reasonCn": "提出动作条件世界模型，通过视觉校准实现跨环境零样本动作结果模拟，用于策略改进。",
-          "lane": "WAM",
-          "link": "https://arxiv.org/abs/2609.09155v1",
-          "pdfLink": "https://arxiv.org/pdf/2609.09155v1",
-          "published": "2026-09-08T17:59:47Z",
-          "updated": "2026-09-08T17:59:47Z",
-          "authors": [
-            "Yuncong Yang",
-            "Zhengtao Han",
-            "Furkan Ozyurt",
-            "Zeyuan Yang",
-            "Han Yang",
-            "Junyi Cao",
-            "Haoyu Zhen",
-            "Yilun Du",
-            "Chuang Gan"
-          ],
-          "categories": [
-            "cs.CV"
-          ],
-          "heuristicScore": 61,
-          "llmTotalScore": 61
-        },
-        {
-          "id": "2609.12641v1",
-          "title": "Breaking the Vision-Action Shortcut: Latent Interface Training for Generalizable Robotics Foundation Models",
-          "summary": "Robot foundation models achieve strong in-distribution performance but often degrade under visual distribution shifts. When learning to generate actions from pretrained visual representations, models may exploit task-irrelevant visual cues that correlate with demonstrated actions within the training distribution. Such vision-action shortcuts can undermine generalization when these correlations change under distribution shifts.",
-          "summaryCn": "针对机器人基础模型在视觉分布偏移下性能下降的问题，提出Latent Interface Training两阶段策略。第一阶段建立目标姿态条件的动作先验，第二阶段通过姿态监督的潜在接口约束视觉条件。方法有效打破视觉-动作捷径，提高泛化能力。",
-          "reasonCn": "提出潜在接口训练约束机器人基础模型中的视觉信息使用，提升视觉分布偏移下的动作生成泛化。",
-          "lane": "VLA",
-          "link": "https://arxiv.org/abs/2609.12641v1",
-          "pdfLink": "https://arxiv.org/pdf/2609.12641v1",
-          "published": "2026-09-11T09:42:44Z",
-          "updated": "2026-09-11T09:42:44Z",
-          "authors": [
-            "Jianman Lin",
-            "Shailesh Shailesh",
-            "Zhongyi Luo",
-            "Jiafei Duan"
-          ],
-          "categories": [
-            "cs.RO"
-          ],
-          "heuristicScore": 55,
-          "llmTotalScore": 55
-        },
-        {
-          "id": "2609.12103v1",
-          "title": "RodForesight: A World Model Enhanced Diffusion Policy for Slender and Material Agnostic Rod Insertion",
-          "summary": "Slender rod insertion arises in precision manufacturing, where millimetre scale diameter and tight clearances demand accurate perception and control. Conventional peg-in-hole methods assume a rigid object whose tip pose is fixed relative to the gripper. This assumption breaks down for a high aspect ratio rod, which can bend during manipulation, making its tip motion dependent on the rod configuration, grasp, material properties, and contact.",
-          "summaryCn": "提出RodForesight框架，将细长杆插入分解为粗接近和预测插入两阶段。在插入阶段，扩散策略生成候选动作，动作条件世界模型预测对齐误差以选择最佳执行。实验显示成功率从88.9%提升至96.7%。该方法突出世界模型在精密操作中的价值。",
-          "reasonCn": "世界模型增强的扩散策略利用动作条件世界模型预测杆孔对齐效果并选择最佳动作，用于细长杆插入控制。",
-          "lane": "WAM",
-          "link": "https://arxiv.org/abs/2609.12103v1",
-          "pdfLink": "https://arxiv.org/pdf/2609.12103v1",
-          "published": "2026-09-10T18:31:55Z",
-          "updated": "2026-09-10T18:31:55Z",
-          "authors": [
-            "Chuanbo Yu",
-            "Mingyu Yue",
-            "Yan Lyu",
-            "Chuhan Song",
-            "Peng Wang"
-          ],
-          "categories": [
-            "cs.RO"
-          ],
-          "heuristicScore": 48,
-          "llmTotalScore": 48
-        },
-        {
-          "id": "2609.08638v1",
-          "title": "CASD: Chunk-Aligned Semantic Distillation for Multi-StageRobot Manipulation",
-          "summary": "An action chunk can span several stages of a manipulation task, yet a label for its first step describes only the current stage. We introduce Chunk-Aligned Semantic Distillation (CASD), which derives semantic targets for entire action chunks. An offline vision--language model segments demonstrations into described stages.",
-          "summaryCn": "提出CASD方法，通过离线视觉-语言模型分割演示并生成动作块的加权语义目标，训练策略依据观察、机器人状态和任务指令预测语义。该方法无需在线VLM调用，提升多阶段操作性能。在LIBERO等基准上验证有效。",
-          "reasonCn": "该论文面向多阶段机器人操作，通过视觉-语言模型蒸馏块级语义目标改善动作策略，符合VLA视觉语言动作框架。",
-          "lane": "VLA",
-          "link": "https://arxiv.org/abs/2609.08638v1",
-          "pdfLink": "https://arxiv.org/pdf/2609.08638v1",
-          "published": "2026-09-08T12:07:52Z",
-          "updated": "2026-09-08T12:07:52Z",
-          "authors": [
-            "Tinghe Ding",
-            "Jiahao Li",
-            "He Wang"
-          ],
-          "categories": [
-            "cs.RO",
-            "cs.AI"
-          ],
-          "heuristicScore": 34,
-          "llmTotalScore": 34
-        },
-        {
-          "id": "2609.11561v1",
-          "title": "Memory as Plans: World-Action Modeling with Memory-Grounded Planning",
-          "summary": "Mainstream robotic policies often adopt a Markovian formulation, but many complex real-world manipulation tasks are inherently non-Markovian, requiring long-horizon memory beyond the current observation. Existing memory mechanisms often rely on language summaries, growing visual windows, or their combinations, and may therefore lose fine-grained visual evidence or face a trade-off between history coverage and execution efficiency. We introduce MaP-WAM, a Memory-as-Plans framework that decomposes memory-dependent w…",
-          "summaryCn": "提出MaP-WAM框架，将记忆依赖的世界动作建模分解为记忆基础规划和计划条件执行。长期多模态情景上下文作为规划证据，转换为紧凑计划。World-Action-Progress模型在执行中联合预测动作块和进度，自适应切换片段。该框架提高长时程非马尔可夫任务效率。",
-          "reasonCn": "MaP-WAM明确以记忆为基础进行世界动作建模，使用World-Action-Progress模型同时预测动作块和执行进度，符合WAM。",
-          "lane": "WAM",
-          "link": "https://arxiv.org/abs/2609.11561v1",
-          "pdfLink": "https://arxiv.org/pdf/2609.11561v1",
-          "published": "2026-09-10T13:52:51Z",
-          "updated": "2026-09-10T13:52:51Z",
-          "authors": [
-            "Sizhe Zhao",
-            "Haozhe Xie",
-            "Weiyu Zhao",
-            "Chenchu Zhang",
-            "Huan Wang",
-            "Chenyang Wang",
-            "Qinglin Liu",
-            "Shengping Zhang"
-          ],
-          "categories": [
-            "cs.RO"
-          ],
-          "heuristicScore": 33,
-          "llmTotalScore": 33
-        },
-        {
-          "id": "2609.07398v1",
-          "title": "OpenWAM: An Open, Modular Exploration Towards Systematic World-Action Model Pretraining",
-          "summary": "World-Action Models inherit world knowledge from video-generative priors, and channel it into executable control signals through embodied experience. Existing systems, however, are monolithic: the generative backbone, visual representation, architecture, information flow, inference procedure, and training data are tightly coupled, obscuring which design choices matter and why. We introduce OpenWAM, an open research stack that turns world-action pretraining into a controlled experimental program.",
-          "summaryCn": "提出OpenWAM开放研究栈，将世界动作预训练分解为可组合模块，并通过受控实验研究设计选择。研究总结出上游知识继承、世界-动作协同和具身预训练泛化三项原则。基于这些原则构建OpenWAM-α，在6400小时自我中心人类和机器人数据上预训练。",
-          "reasonCn": "OpenWAM作为模块化世界动作模型预训练研究栈，明确聚焦WAM的系统性探索。",
-          "lane": "WAM",
-          "link": "https://arxiv.org/abs/2609.07398v1",
-          "pdfLink": "https://arxiv.org/pdf/2609.07398v1",
-          "published": "2026-09-07T12:12:32Z",
-          "updated": "2026-09-07T12:12:32Z",
-          "authors": [
-            "Yuran Wang",
-            "Siqiao Huang",
-            "Mingleyang Li",
-            "Chenhao Zhang",
-            "Jiaqi Liang",
-            "Weiyang Jin",
-            "Yue Chen",
-            "Xuemin Chi",
-            "Donghao Zhou",
-            "Qize Yu"
-          ],
-          "categories": [
-            "cs.RO"
-          ],
-          "heuristicScore": 29,
-          "llmTotalScore": 29
         }
       ]
     }
