@@ -1,5 +1,5 @@
 window.PAPERS_SITE_DATA = {
-  "generatedAt": "2026-11-19T05:40:33.616947+00:00",
+  "generatedAt": "2026-11-20T06:21:10.576169+00:00",
   "description": "每天北京时间 08:00 自动更新，只筛选与 VLA 和 WAM 主问题强相关的 arXiv 新论文。",
   "dateWindowDays": 7,
   "categories": [
@@ -12,12 +12,545 @@ window.PAPERS_SITE_DATA = {
     "vision-language-action",
     "world action model"
   ],
-  "currentDateKey": "20261119",
+  "currentDateKey": "20261120",
   "selectionMethod": "deepseek_vla_wam_rerank",
   "llmEnabled": true,
   "llmProvider": "DeepSeek",
   "modelInfo": "deepseek-v4-pro",
   "archives": [
+    {
+      "dateKey": "20261120",
+      "dateLabel": "2026-11-20",
+      "generatedAt": "2026-11-20T06:21:10.576051+00:00",
+      "sourceMode": "strict",
+      "sourceNoteCn": "严格窗口：使用前一天 08:00 到当天 08:00 的 VLA / WAM 论文。",
+      "papers": [
+        {
+          "id": "2611.25656v1",
+          "title": "A$^2$-VLA: Adapting Vision-Language-Action Policies to New Tools through Agentic Affordance Discovery",
+          "summary": "Tools with different shapes can have similar functions, but transferring manipulation skills across tools requires understanding how tool geometry relates to the specific task and adjusting the manipulation strategy accordingly. The key challenge is to discover the common affordances that contribute to task completion across different tools and verify whether they support new tools in performing similar work. We present A$^2$-VLA, a tool-adaptation framework that combines an embodied agent with a VLA policy.",
+          "summaryCn": "这篇论文围绕 VLA 主线展开，问题设置与方法设计具有直接相关性。从摘要看，它的核心内容是：Tools with different shapes can have similar functions, but transferring manipulation skills across tools requires understanding how tool geometry relates to the specific task and…。如果你关注该方向近期进展，这篇论文值得优先浏览原文。",
+          "reasonCn": "规则回退：标题和摘要多次命中 VLA / WAM 相关术语，因此被保留。",
+          "lane": "VLA",
+          "link": "https://arxiv.org/abs/2611.25656v1",
+          "pdfLink": "https://arxiv.org/pdf/2611.25656v1",
+          "published": "2026-11-19T07:38:47Z",
+          "updated": "2026-11-19T07:38:47Z",
+          "authors": [
+            "Chenyuan Zhou",
+            "Chaoyi Huang",
+            "Zibo Wang",
+            "Zhiyuan Li",
+            "Yong-Lu Li"
+          ],
+          "categories": [
+            "cs.RO",
+            "cs.AI"
+          ],
+          "heuristicScore": 117,
+          "llmTotalScore": null
+        },
+        {
+          "id": "2611.25580v1",
+          "title": "FlashX: Scaling Robotic Experience Reuse for Embodied Agents with CBA-Based NAND Flash",
+          "summary": "Embodied agents are emerging as a promising paradigm for complex robotic tasks, leveraging Vision-Language-Action (VLA) and World Action Models (WAMs) to generate actions through Diffusion Transformer (DiT)-based iterative denoising. However, existing models often struggle to generalize to out-of-distribution (OOD) environments. We observe that retrieving successful experiences and using them to warm-start denoising enables agents to better adapt to unfamiliar situations while reducing computational overhead.",
+          "summaryCn": "这篇论文围绕 VLA / WAM 主线展开，问题设置与方法设计具有直接相关性。从摘要看，它的核心内容是：Embodied agents are emerging as a promising paradigm for complex robotic tasks, leveraging Vision-Language-Action (VLA) and World Action Models (WAMs) to generate actions through…。如果你关注该方向近期进展，这篇论文值得优先浏览原文。",
+          "reasonCn": "规则回退：标题和摘要多次命中 VLA / WAM 相关术语，因此被保留。",
+          "lane": "BOTH",
+          "link": "https://arxiv.org/abs/2611.25580v1",
+          "pdfLink": "https://arxiv.org/pdf/2611.25580v1",
+          "published": "2026-11-19T06:24:38Z",
+          "updated": "2026-11-19T06:24:38Z",
+          "authors": [
+            "Yuseon Choi",
+            "Sanghyeon Park",
+            "Eunjong Lee",
+            "Hanseo Lee",
+            "Sangjin Kim"
+          ],
+          "categories": [
+            "cs.AI",
+            "cs.RO"
+          ],
+          "heuristicScore": 102,
+          "llmTotalScore": null
+        },
+        {
+          "id": "2611.25413v1",
+          "title": "WAMotor: Accelerating World Action Models via Speculative Inference under Dual Nonuniform Denoising Dynamics",
+          "summary": "World Action Models (WAMs) unify world modeling and action generation for robotic control by integrating flow-matching velocities, yet suffer from high multi-step denoising latency. Recent studies have explored speculative inference to accelerate WAMs by drafting and verifying denoising steps in parallel. However, existing methods either require training task-specific draft models or overlook critical WAM denoising dynamics when reusing past velocities as drafts.",
+          "summaryCn": "这篇论文围绕 WAM 主线展开，问题设置与方法设计具有直接相关性。从摘要看，它的核心内容是：World Action Models (WAMs) unify world modeling and action generation for robotic control by integrating flow-matching velocities, yet suffer from high multi-step denoising latenc…。如果你关注该方向近期进展，这篇论文值得优先浏览原文。",
+          "reasonCn": "规则回退：标题和摘要多次命中 VLA / WAM 相关术语，因此被保留。",
+          "lane": "WAM",
+          "link": "https://arxiv.org/abs/2611.25413v1",
+          "pdfLink": "https://arxiv.org/pdf/2611.25413v1",
+          "published": "2026-11-19T02:52:51Z",
+          "updated": "2026-11-19T02:52:51Z",
+          "authors": [
+            "Zexun Lin",
+            "Yuan Feng",
+            "Xike Xie"
+          ],
+          "categories": [
+            "cs.RO"
+          ],
+          "heuristicScore": 101,
+          "llmTotalScore": null
+        },
+        {
+          "id": "2611.25667v1",
+          "title": "CauSyncVLA: Causal Latent World Modeling for Asynchronous Robot Control",
+          "summary": "Vision-Language-Action (VLA) policies must react while visual inference is still running. Overlapping computation and execution reduces waiting, yet leaves perceptual memory stale and successive action chunks disconnected. We present CauSyncVLA, an asynchronous dual-system controller that aligns perceptual-memory prediction and trajectory correction with actual robot execution.",
+          "summaryCn": "这篇论文围绕 VLA / WAM 主线展开，问题设置与方法设计具有直接相关性。从摘要看，它的核心内容是：Vision-Language-Action (VLA) policies must react while visual inference is still running. Overlapping computation and execution reduces waiting, yet leaves perceptual memory stale…。如果你关注该方向近期进展，这篇论文值得优先浏览原文。",
+          "reasonCn": "规则回退：标题和摘要多次命中 VLA / WAM 相关术语，因此被保留。",
+          "lane": "BOTH",
+          "link": "https://arxiv.org/abs/2611.25667v1",
+          "pdfLink": "https://arxiv.org/pdf/2611.25667v1",
+          "published": "2026-11-19T07:45:18Z",
+          "updated": "2026-11-19T07:45:18Z",
+          "authors": [
+            "Xu Pan",
+            "Chubin Zhang",
+            "Xingrui Yu",
+            "Runmin Lan",
+            "Zihao Wang",
+            "Wenkai Guo",
+            "Bofang Jia",
+            "Bo An",
+            "Ziwei Wang"
+          ],
+          "categories": [
+            "cs.RO",
+            "cs.CV"
+          ],
+          "heuristicScore": 97,
+          "llmTotalScore": null
+        },
+        {
+          "id": "2611.25400v1",
+          "title": "Dune: A Zeroth-Order Optimizer with Time-Conditioned Historical Error Regression for VLA Test-Time Adaptation",
+          "summary": "Test-Time Adaptation (TTA) enables Vision-Language-Action (VLA) models to handle distribution shifts during deployment without source-domain retraining. However, backpropagation-based adaptation incurs heavy memory overhead on resource-constrained robots, whereas zeroth-order (ZO) methods suffer from high estimation variance under limited perturbation budgets. We observe that while ZO estimation enables low-memory adaptation with rapid initial gains, it often stalls or degrades over long-horizon updates due to noi…",
+          "summaryCn": "这篇论文围绕 VLA 主线展开，问题设置与方法设计具有直接相关性。从摘要看，它的核心内容是：Test-Time Adaptation (TTA) enables Vision-Language-Action (VLA) models to handle distribution shifts during deployment without source-domain retraining. However, backpropagation-b…。如果你关注该方向近期进展，这篇论文值得优先浏览原文。",
+          "reasonCn": "规则回退：标题和摘要多次命中 VLA / WAM 相关术语，因此被保留。",
+          "lane": "VLA",
+          "link": "https://arxiv.org/abs/2611.25400v1",
+          "pdfLink": "https://arxiv.org/pdf/2611.25400v1",
+          "published": "2026-11-19T02:40:38Z",
+          "updated": "2026-11-19T02:40:38Z",
+          "authors": [
+            "Chengyang Dong",
+            "Ze Chen",
+            "Kai Ye",
+            "Chutian Wang",
+            "Heng Xu",
+            "Wei Mo",
+            "Maomao Li",
+            "Jiayan Xu",
+            "Jiayuan Wu",
+            "Yihao Xiao"
+          ],
+          "categories": [
+            "cs.RO",
+            "cs.AI"
+          ],
+          "heuristicScore": 90,
+          "llmTotalScore": null
+        },
+        {
+          "id": "2611.26405v1",
+          "title": "TacInno: Teaching Vision-Language-Action Models the Contact Dynamics Beyond Vision and Action",
+          "summary": "Vision-Language-Action (VLA) models have recently been equipped with tactile sensing to perceive visually subtle contact events in contact-rich manipulation. However, adding tactile input yields inconsistent gains, and some visuo-tactile VLA models rely little on tactile input, because much of the tactile change, such as the gel deformation during gripper closure, is predictable from visual observations and executed actions. To address this problem, we introduce TacInno, which isolates the contact dynamics that vi…",
+          "summaryCn": "这篇论文围绕 VLA 主线展开，问题设置与方法设计具有直接相关性。从摘要看，它的核心内容是：Vision-Language-Action (VLA) models have recently been equipped with tactile sensing to perceive visually subtle contact events in contact-rich manipulation. However, adding tacti…。如果你关注该方向近期进展，这篇论文值得优先浏览原文。",
+          "reasonCn": "规则回退：标题和摘要多次命中 VLA / WAM 相关术语，因此被保留。",
+          "lane": "VLA",
+          "link": "https://arxiv.org/abs/2611.26405v1",
+          "pdfLink": "https://arxiv.org/pdf/2611.26405v1",
+          "published": "2026-11-19T16:53:19Z",
+          "updated": "2026-11-19T16:53:19Z",
+          "authors": [
+            "Weile Li",
+            "Yunfan Lou",
+            "Muqing Shi",
+            "Zihao Zhang",
+            "Zhenbiao Huang",
+            "Boxian Yao",
+            "Xiyu Zhu",
+            "Zhibo Pang"
+          ],
+          "categories": [
+            "cs.RO",
+            "cs.CV"
+          ],
+          "heuristicScore": 87,
+          "llmTotalScore": null
+        },
+        {
+          "id": "2611.26242v1",
+          "title": "FastRoverVLA: Fast Vision-Language-Action Execution for Off-Road Autonomous Driving",
+          "summary": "Off-road vision-language-action (VLA) models generate scene-conditioned plans, but frequent trajectory updates can repeatedly invoke expensive multimodal inference. Reusing a prediction reduces this demand while leaving its commands exposed to changes in vehicle motion. FastRoverVLA addresses this mismatch by decoupling visual plan generation from motion-conditioned execution.",
+          "summaryCn": "这篇论文围绕 VLA 主线展开，问题设置与方法设计具有直接相关性。从摘要看，它的核心内容是：Off-road vision-language-action (VLA) models generate scene-conditioned plans, but frequent trajectory updates can repeatedly invoke expensive multimodal inference. Reusing a pred…。如果你关注该方向近期进展，这篇论文值得优先浏览原文。",
+          "reasonCn": "规则回退：标题和摘要多次命中 VLA / WAM 相关术语，因此被保留。",
+          "lane": "VLA",
+          "link": "https://arxiv.org/abs/2611.26242v1",
+          "pdfLink": "https://arxiv.org/pdf/2611.26242v1",
+          "published": "2026-11-19T15:23:14Z",
+          "updated": "2026-11-19T15:23:14Z",
+          "authors": [
+            "Changtao Zhao",
+            "Yingxue Guan",
+            "Li Wang",
+            "Shijie Zhao",
+            "Yuhang Zhang",
+            "Shengkai Zhang",
+            "Qing Wang",
+            "Ziying Song"
+          ],
+          "categories": [
+            "cs.RO",
+            "cs.AI"
+          ],
+          "heuristicScore": 87,
+          "llmTotalScore": null
+        },
+        {
+          "id": "2611.25595v1",
+          "title": "LoopedWAM: Looped World Action Models for Elastic Inference",
+          "summary": "World action models (WAMs) couple generative video modeling with robotic action prediction but typically require large video and action transformers, limiting deployment efficiency. We present LoopedWAM, a compact WAM that recurrently applies a shared six-block core in each expert, executing 30 transformer layers while storing only 12 blocks per expert. To account for their asymmetric inference costs, the video and action experts can operate at different depths: visual features are computed once per query, whereas…",
+          "summaryCn": "这篇论文围绕 WAM 主线展开，问题设置与方法设计具有直接相关性。从摘要看，它的核心内容是：World action models (WAMs) couple generative video modeling with robotic action prediction but typically require large video and action transformers, limiting deployment efficienc…。如果你关注该方向近期进展，这篇论文值得优先浏览原文。",
+          "reasonCn": "规则回退：标题和摘要多次命中 VLA / WAM 相关术语，因此被保留。",
+          "lane": "WAM",
+          "link": "https://arxiv.org/abs/2611.25595v1",
+          "pdfLink": "https://arxiv.org/pdf/2611.25595v1",
+          "published": "2026-11-19T06:42:13Z",
+          "updated": "2026-11-19T06:42:13Z",
+          "authors": [
+            "Anh Dao",
+            "Xinxin Liu",
+            "Hang Yu",
+            "Jeffrey A Chan Santiago",
+            "Yuzhang Shang"
+          ],
+          "categories": [
+            "cs.CV",
+            "cs.RO"
+          ],
+          "heuristicScore": 87,
+          "llmTotalScore": null
+        },
+        {
+          "id": "2611.26444v1",
+          "title": "Mind2Act World: A Diagnostic Benchmark for Embodied Mind, Physical Action, and Mind-Action Composition in Robotic Manipulation",
+          "summary": "Embodied intelligence aims to let robots perform complex physical tasks with human-like adaptability and reliability, which requires three complementary capabilities: history-based cognitive reasoning, precise and timely physical execution, and the composition of reasoning and execution through environmental feedback. Yet existing benchmarks either evaluate reasoning and execution within the same tasks or assess them separately without their composition, so they reveal little about whether a failure comes from rea…",
+          "summaryCn": "这篇论文围绕 VLA / WAM 主线展开，问题设置与方法设计具有直接相关性。从摘要看，它的核心内容是：Embodied intelligence aims to let robots perform complex physical tasks with human-like adaptability and reliability, which requires three complementary capabilities: history-base…。如果你关注该方向近期进展，这篇论文值得优先浏览原文。",
+          "reasonCn": "规则回退：标题和摘要多次命中 VLA / WAM 相关术语，因此被保留。",
+          "lane": "BOTH",
+          "link": "https://arxiv.org/abs/2611.26444v1",
+          "pdfLink": "https://arxiv.org/pdf/2611.26444v1",
+          "published": "2026-11-19T17:15:38Z",
+          "updated": "2026-11-19T17:15:38Z",
+          "authors": [
+            "Yuzhi Huang",
+            "Jie Wu",
+            "Fanding Huang",
+            "Junchao Lin",
+            "Weichen Zhang",
+            "Ziyi Xiong",
+            "Yang Li",
+            "Zhengwei Xie",
+            "Zhimin Wang",
+            "Zhen Liu"
+          ],
+          "categories": [
+            "cs.RO",
+            "cs.AI",
+            "cs.CV"
+          ],
+          "heuristicScore": 86,
+          "llmTotalScore": null
+        },
+        {
+          "id": "2611.26239v1",
+          "title": "Teaching Vision-Language-Action Models to Stop Safely",
+          "summary": "Vision-language-action (VLA) models enable robots to perform diverse tasks from visual observations and language instructions. While prior work has explored task suppression and refusal, stopping prohibited behavior once execution is underway and controlling the resulting physical response remain challenging. Our evaluation reveals that policies which suppress a task from its initial state can still complete it when taking over partway through execution.",
+          "summaryCn": "这篇论文围绕 VLA 主线展开，问题设置与方法设计具有直接相关性。从摘要看，它的核心内容是：Vision-language-action (VLA) models enable robots to perform diverse tasks from visual observations and language instructions. While prior work has explored task suppression and r…。如果你关注该方向近期进展，这篇论文值得优先浏览原文。",
+          "reasonCn": "规则回退：标题和摘要多次命中 VLA / WAM 相关术语，因此被保留。",
+          "lane": "VLA",
+          "link": "https://arxiv.org/abs/2611.26239v1",
+          "pdfLink": "https://arxiv.org/pdf/2611.26239v1",
+          "published": "2026-11-19T15:14:55Z",
+          "updated": "2026-11-19T15:14:55Z",
+          "authors": [
+            "Zheyuan Liu",
+            "Chuhan Wang",
+            "Jinduo Guo",
+            "Yue Huang",
+            "Xiangchi Yuan",
+            "Ningshan Ma",
+            "Meng Jiang"
+          ],
+          "categories": [
+            "cs.RO"
+          ],
+          "heuristicScore": 83,
+          "llmTotalScore": null
+        },
+        {
+          "id": "2611.25719v1",
+          "title": "SteerTrace: Tracing How Target Attacks Steer World Action Models",
+          "summary": "World action models (WAMs) predict future videos and actions with one backbone, and their imagined future is often seen as a safety signal. We introduce SteerTrace, a targeted universal attack on WAMs that also traces its effect inside the model. One $\\ell_\\infty$-bounded (4/255) perturbation per model, shared across frames, tasks, and camera views, pushes the executed action toward an attacker-chosen target.",
+          "summaryCn": "这篇论文围绕 WAM 主线展开，问题设置与方法设计具有直接相关性。从摘要看，它的核心内容是：World action models (WAMs) predict future videos and actions with one backbone, and their imagined future is often seen as a safety signal. We introduce SteerTrace, a targeted uni…。如果你关注该方向近期进展，这篇论文值得优先浏览原文。",
+          "reasonCn": "规则回退：标题和摘要多次命中 VLA / WAM 相关术语，因此被保留。",
+          "lane": "WAM",
+          "link": "https://arxiv.org/abs/2611.25719v1",
+          "pdfLink": "https://arxiv.org/pdf/2611.25719v1",
+          "published": "2026-11-19T08:32:45Z",
+          "updated": "2026-11-19T08:32:45Z",
+          "authors": [
+            "Yukun Dai",
+            "Tianshi Wang",
+            "Fengling Li",
+            "Jingjing Li",
+            "Xin Li",
+            "Lei Zhu"
+          ],
+          "categories": [
+            "cs.CV",
+            "cs.AI"
+          ],
+          "heuristicScore": 83,
+          "llmTotalScore": null
+        },
+        {
+          "id": "2611.26438v1",
+          "title": "Risk-Controlled Test-Time Adaptation for Vision-Language-Action Models",
+          "summary": "Retrieval-augmented vision-language-action (VLA) models enable efficient test-time adaptation by leveraging expert demonstrations as additional context without updating model parameters. However, even when retrieved demonstrations are relevant to the current task, the VLA may fail to effectively utilize the retrieved information, ultimately leading to task failure. To address this challenge, we propose R2-VLA, a risk-controlled retrieval-augmented VLA framework that enables reliable test-time adaptation by satisfy…",
+          "summaryCn": "这篇论文围绕 VLA 主线展开，问题设置与方法设计具有直接相关性。从摘要看，它的核心内容是：Retrieval-augmented vision-language-action (VLA) models enable efficient test-time adaptation by leveraging expert demonstrations as additional context without updating model para…。如果你关注该方向近期进展，这篇论文值得优先浏览原文。",
+          "reasonCn": "规则回退：标题和摘要多次命中 VLA / WAM 相关术语，因此被保留。",
+          "lane": "VLA",
+          "link": "https://arxiv.org/abs/2611.26438v1",
+          "pdfLink": "https://arxiv.org/pdf/2611.26438v1",
+          "published": "2026-11-19T17:12:48Z",
+          "updated": "2026-11-19T17:12:48Z",
+          "authors": [
+            "Zixuan Liu",
+            "Hashem Haghbayan",
+            "Zizhan Zheng",
+            "Siavash Khajavi"
+          ],
+          "categories": [
+            "cs.CV"
+          ],
+          "heuristicScore": 79,
+          "llmTotalScore": null
+        },
+        {
+          "id": "2611.25695v1",
+          "title": "DMT-Attack: Diffusion-Prior Texture Search for Closed-Loop Vision-Language-Action Policies",
+          "summary": "Vision-language-action (VLA) policies rely on visual feedback throughout manipulation, making them vulnerable to persistent texture attacks. However, optimized patterns can stand out from their surroundings, making an attack easier to notice and its carrier more likely to be inspected or removed. To address this limitation, our key insight is to search the structured image distribution of a diffusion model for natural-looking textures while using closed-loop feedback to identify task-disruptive candidates.",
+          "summaryCn": "这篇论文围绕 VLA 主线展开，问题设置与方法设计具有直接相关性。从摘要看，它的核心内容是：Vision-language-action (VLA) policies rely on visual feedback throughout manipulation, making them vulnerable to persistent texture attacks. However, optimized patterns can stand…。如果你关注该方向近期进展，这篇论文值得优先浏览原文。",
+          "reasonCn": "规则回退：标题和摘要多次命中 VLA / WAM 相关术语，因此被保留。",
+          "lane": "VLA",
+          "link": "https://arxiv.org/abs/2611.25695v1",
+          "pdfLink": "https://arxiv.org/pdf/2611.25695v1",
+          "published": "2026-11-19T08:09:25Z",
+          "updated": "2026-11-19T08:09:25Z",
+          "authors": [
+            "Jun Xia",
+            "Shangwen Wang",
+            "Jun Ma",
+            "Ruichao Ren",
+            "Zhouyang Jia",
+            "Xin Zhao",
+            "Huijun Liu",
+            "Jie Yu"
+          ],
+          "categories": [
+            "cs.AI"
+          ],
+          "heuristicScore": 79,
+          "llmTotalScore": null
+        },
+        {
+          "id": "2611.25614v1",
+          "title": "Don't Lose the Future: Latent-Aware 4-Bit Quantization of World Action Models",
+          "summary": "World action models (WAMs) predict how a scene will evolve and condition their actions on this predicted future. Deploying them on a robot's onboard computer calls for 4-bit weights, activations and key-value caches (W4A4KV4). Existing 4-bit quantizers for WAMs preserve the generated action, and estimate sensitivity one denoising step at a time.",
+          "summaryCn": "这篇论文围绕 WAM 主线展开，问题设置与方法设计具有直接相关性。从摘要看，它的核心内容是：World action models (WAMs) predict how a scene will evolve and condition their actions on this predicted future. Deploying them on a robot's onboard computer calls for 4-bit weigh…。如果你关注该方向近期进展，这篇论文值得优先浏览原文。",
+          "reasonCn": "规则回退：标题和摘要多次命中 VLA / WAM 相关术语，因此被保留。",
+          "lane": "WAM",
+          "link": "https://arxiv.org/abs/2611.25614v1",
+          "pdfLink": "https://arxiv.org/pdf/2611.25614v1",
+          "published": "2026-11-19T06:59:37Z",
+          "updated": "2026-11-19T06:59:37Z",
+          "authors": [
+            "Yichen Guo",
+            "Yanlong Chen",
+            "Xinyue Zhang",
+            "Mohan Liu",
+            "Song Zhang",
+            "Yawei Li"
+          ],
+          "categories": [
+            "cs.AI"
+          ],
+          "heuristicScore": 79,
+          "llmTotalScore": null
+        },
+        {
+          "id": "2611.26565v1",
+          "title": "PhyDEX: A Benchmark for Physical Reasoning in Vision-Language-Action Models via Dynamic Extrinsic Dexterity",
+          "summary": "Vision-Language-Action (VLA) models have advanced rapidly in language-conditioned robotic manipulation, yet existing benchmarks mainly evaluate gripper--object contact and largely ignore how objects interact with the environment through gravity, friction, inertia, and mass distribution. As a result, it remains unclear whether current policies truly understand physics or merely interpolate from their training data. We address this gap through the lens of dynamic extrinsic dexterity and introduce PhyDEX, a throwing…",
+          "summaryCn": "这篇论文围绕 VLA 主线展开，问题设置与方法设计具有直接相关性。从摘要看，它的核心内容是：Vision-Language-Action (VLA) models have advanced rapidly in language-conditioned robotic manipulation, yet existing benchmarks mainly evaluate gripper--object contact and largely…。如果你关注该方向近期进展，这篇论文值得优先浏览原文。",
+          "reasonCn": "规则回退：标题和摘要多次命中 VLA / WAM 相关术语，因此被保留。",
+          "lane": "VLA",
+          "link": "https://arxiv.org/abs/2611.26565v1",
+          "pdfLink": "https://arxiv.org/pdf/2611.26565v1",
+          "published": "2026-11-19T18:33:43Z",
+          "updated": "2026-11-19T18:33:43Z",
+          "authors": [
+            "Hao Vo",
+            "Taisei Hanyu",
+            "Yuki Ikebe",
+            "Pham Tri Quang",
+            "Sreevenkata Anjani Tishita Godavarthi",
+            "Nghi D. Q. Bui",
+            "Daniel Sonntag",
+            "Chase Rainwater",
+            "Duy Minh Ho Nguyen",
+            "Anh Nguyen"
+          ],
+          "categories": [
+            "cs.RO"
+          ],
+          "heuristicScore": 75,
+          "llmTotalScore": null
+        },
+        {
+          "id": "2611.25460v1",
+          "title": "LoongForge-Embodied: A Unified Framework for Training Heterogeneous Embodied Models",
+          "summary": "Training Vision-Language-Action (VLA) models and World-Action Models (WAMs) is computationally expensive, while their heterogeneous architectures and fragmented training stacks make system optimizations difficult to reuse across models. To address these challenges, we present LoongForge-Embodied, a native-PyTorch framework that unifies and accelerates the training of heterogeneous embodied models. At its core, LoongForge-Embodied introduces a common abstraction layer that decouples model-specific implementations f…",
+          "summaryCn": "这篇论文围绕 VLA / WAM 主线展开，问题设置与方法设计具有直接相关性。从摘要看，它的核心内容是：Training Vision-Language-Action (VLA) models and World-Action Models (WAMs) is computationally expensive, while their heterogeneous architectures and fragmented training stacks ma…。如果你关注该方向近期进展，这篇论文值得优先浏览原文。",
+          "reasonCn": "规则回退：标题和摘要多次命中 VLA / WAM 相关术语，因此被保留。",
+          "lane": "BOTH",
+          "link": "https://arxiv.org/abs/2611.25460v1",
+          "pdfLink": "https://arxiv.org/pdf/2611.25460v1",
+          "published": "2026-11-19T03:45:44Z",
+          "updated": "2026-11-19T03:45:44Z",
+          "authors": [
+            "LoongForge Team"
+          ],
+          "categories": [
+            "cs.AI"
+          ],
+          "heuristicScore": 72,
+          "llmTotalScore": null
+        },
+        {
+          "id": "2611.26385v1",
+          "title": "Beyond the Sink Interpretation: Radial Attention in Flow-Based VLA Policies",
+          "summary": "Prior work calls the high attention on the first and last action tokens of a flow-based VLA policy a radial action sink, and uses these tokens to set the execution horizon. In language models, a sink is a token with high incoming attention, a small value, and little effect on the output. We test whether that profile holds, not the horizon rule, in one $π_{0.5}$ checkpoint on five RoboCasa tasks.",
+          "summaryCn": "这篇论文围绕 VLA 主线展开，问题设置与方法设计具有直接相关性。从摘要看，它的核心内容是：Prior work calls the high attention on the first and last action tokens of a flow-based VLA policy a radial action sink, and uses these tokens to set the execution horizon. In lan…。如果你关注该方向近期进展，这篇论文值得优先浏览原文。",
+          "reasonCn": "规则回退：标题和摘要多次命中 VLA / WAM 相关术语，因此被保留。",
+          "lane": "VLA",
+          "link": "https://arxiv.org/abs/2611.26385v1",
+          "pdfLink": "https://arxiv.org/pdf/2611.26385v1",
+          "published": "2026-11-19T16:41:07Z",
+          "updated": "2026-11-19T16:41:07Z",
+          "authors": [
+            "Yuxi Zheng",
+            "Yueqian Lin",
+            "Yudong Liu",
+            "Zijia Tang",
+            "Junyu Pan",
+            "Yiheng Wang",
+            "Hai Helen Li",
+            "Yiran Chen"
+          ],
+          "categories": [
+            "cs.RO"
+          ],
+          "heuristicScore": 68,
+          "llmTotalScore": null
+        },
+        {
+          "id": "2611.26596v1",
+          "title": "PGX: Physically Grounded Execution for Long-Horizon Humanoid Loco-Manipulation",
+          "summary": "Robotic vision-language-action (VLA) models can execute diverse individual manipulation skills, yet they still struggle with long-horizon loco-manipulation tasks, where temporal structure, skills, and precision are tightly coupled within a monolithic model. We propose Physically Grounded Execution (PGX), a framework that offloads temporal and precision control to two classical training-free components, allowing the VLA to focus on stage-specific skill dynamics. PGX decomposes long-horizon loco-manipulation into th…",
+          "summaryCn": "这篇论文围绕 VLA 主线展开，问题设置与方法设计具有直接相关性。从摘要看，它的核心内容是：Robotic vision-language-action (VLA) models can execute diverse individual manipulation skills, yet they still struggle with long-horizon loco-manipulation tasks, where temporal s…。如果你关注该方向近期进展，这篇论文值得优先浏览原文。",
+          "reasonCn": "规则回退：标题和摘要多次命中 VLA / WAM 相关术语，因此被保留。",
+          "lane": "VLA",
+          "link": "https://arxiv.org/abs/2611.26596v1",
+          "pdfLink": "https://arxiv.org/pdf/2611.26596v1",
+          "published": "2026-11-19T18:52:18Z",
+          "updated": "2026-11-19T18:52:18Z",
+          "authors": [
+            "Kai Lu",
+            "Chenyang Ma",
+            "Ioannis Havoutis"
+          ],
+          "categories": [
+            "cs.RO",
+            "cs.AI"
+          ],
+          "heuristicScore": 62,
+          "llmTotalScore": null
+        },
+        {
+          "id": "2611.26103v1",
+          "title": "UniVEP: Unifying Velocity and Endpoint Prediction for Robot Manipulation",
+          "summary": "Flow-matching robot policies usually use one prediction target throughout action generation, even though recovering actions from noise and polishing nearly clean actions bring different challenges. We systematically compare velocity prediction (V), endpoint prediction (X), and velocity-weighted endpoint prediction (X--V) across multiple robot policies, benchmarks, and inference budgets. On StarVLA and LiLa-WAM, X--V works best for few-step generation, while V gains more from iterative refinement.",
+          "summaryCn": "这篇论文围绕 VLA / WAM 主线展开，问题设置与方法设计具有直接相关性。从摘要看，它的核心内容是：Flow-matching robot policies usually use one prediction target throughout action generation, even though recovering actions from noise and polishing nearly clean actions bring dif…。如果你关注该方向近期进展，这篇论文值得优先浏览原文。",
+          "reasonCn": "规则回退：标题和摘要多次命中 VLA / WAM 相关术语，因此被保留。",
+          "lane": "BOTH",
+          "link": "https://arxiv.org/abs/2611.26103v1",
+          "pdfLink": "https://arxiv.org/pdf/2611.26103v1",
+          "published": "2026-11-19T13:36:23Z",
+          "updated": "2026-11-19T13:36:23Z",
+          "authors": [
+            "Zhengtu Liang",
+            "Qiwei Liang",
+            "Tao Lin",
+            "Shihang Weng",
+            "Boyang Cai",
+            "Xiangyu Chen",
+            "Yikeng Chen",
+            "Jiaming Liang",
+            "Bohan Tan",
+            "Yu Yan"
+          ],
+          "categories": [
+            "cs.RO",
+            "cs.CV"
+          ],
+          "heuristicScore": 62,
+          "llmTotalScore": null
+        },
+        {
+          "id": "2611.25529v1",
+          "title": "CoachSI: Self-Improvement of Robot Policies with a Language Coach",
+          "summary": "Generalist robot policies execute atomic skills reliably but fail when the same skills are composed into long-horizon tasks. Self-improvement from the policy's own experience does not close this gap: experience collected by the policy alone stays within its own distribution and reproduces what it can already do. We show that what the policy lacks is not a skill but the next step.",
+          "summaryCn": "这篇论文围绕 VLA / WAM 主线展开，问题设置与方法设计具有直接相关性。从摘要看，它的核心内容是：Generalist robot policies execute atomic skills reliably but fail when the same skills are composed into long-horizon tasks. Self-improvement from the policy's own experience does…。如果你关注该方向近期进展，这篇论文值得优先浏览原文。",
+          "reasonCn": "规则回退：标题和摘要多次命中 VLA / WAM 相关术语，因此被保留。",
+          "lane": "BOTH",
+          "link": "https://arxiv.org/abs/2611.25529v1",
+          "pdfLink": "https://arxiv.org/pdf/2611.25529v1",
+          "published": "2026-11-19T05:28:19Z",
+          "updated": "2026-11-19T05:28:19Z",
+          "authors": [
+            "Jiachen Tao",
+            "Gengyu Zhang",
+            "Haoxuan Wang",
+            "Bing Liu",
+            "Yan Yan"
+          ],
+          "categories": [
+            "cs.RO",
+            "cs.AI"
+          ],
+          "heuristicScore": 60,
+          "llmTotalScore": null
+        }
+      ]
+    },
     {
       "dateKey": "20261119",
       "dateLabel": "2026-11-19",
@@ -25788,14 +26321,6 @@ window.PAPERS_SITE_DATA = {
       "dateKey": "20260922",
       "dateLabel": "2026-09-22",
       "generatedAt": "2026-09-22T03:32:27.194146+00:00",
-      "sourceMode": "fallback_30d",
-      "sourceNoteCn": "当日严格窗口与 7 天窗口均未命中论文，已回退展示截止当日最近 30 天内最相关的 VLA / WAM 论文。",
-      "papers": []
-    },
-    {
-      "dateKey": "20260921",
-      "dateLabel": "2026-09-21",
-      "generatedAt": "2026-09-21T03:30:06.199490+00:00",
       "sourceMode": "fallback_30d",
       "sourceNoteCn": "当日严格窗口与 7 天窗口均未命中论文，已回退展示截止当日最近 30 天内最相关的 VLA / WAM 论文。",
       "papers": []
